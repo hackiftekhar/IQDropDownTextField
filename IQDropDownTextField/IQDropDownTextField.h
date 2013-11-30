@@ -10,6 +10,7 @@
 typedef enum IQDropDownMode
 {
     IQDropDownModeTextPicker,
+    IQDropDownModeTimePicker,
     IQDropDownModeDatePicker,
 }IQDropDownMode;
 

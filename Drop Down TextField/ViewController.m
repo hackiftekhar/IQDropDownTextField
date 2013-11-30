@@ -20,16 +20,19 @@
     
     UIToolbar *toolbar = [[UIToolbar alloc] init];
     [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-   [toolbar sizeToFit];
+    [toolbar sizeToFit];
     UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClicked:)];
     
     [toolbar setItems:[NSArray arrayWithObjects:buttonflexible,buttonDone, nil]];
     textFieldDatePicker.inputAccessoryView = toolbar;
     textFieldTextPicker.inputAccessoryView = toolbar;
+    textFieldTimePicker.inputAccessoryView = toolbar;
     
     [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
     [textFieldDatePicker setDropDownMode:IQDropDownModeDatePicker];
+    
+    [textFieldTimePicker setDropDownMode:IQDropDownModeTimePicker];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

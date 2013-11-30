@@ -14,6 +14,7 @@
 
     IBOutlet IQDropDownTextField *textFieldTextPicker;
     IBOutlet IQDropDownTextField *textFieldDatePicker;
+    __weak IBOutlet IQDropDownTextField *textFieldTimePicker;
 
 }
 @end
