@@ -15,7 +15,9 @@
 {
     UIPickerView *pickerView;
     UIDatePicker *datePicker;
+    UIDatePicker *timePicker;
     NSDateFormatter *dropDownDateFormatter;
+    NSDateFormatter *dropDownTimeFormatter;
 }
 
 -(void)initialize
@@ -28,7 +30,11 @@
     dropDownDateFormatter = [[NSDateFormatter alloc] init];
     [dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
-
+    
+    dropDownTimeFormatter = [[NSDateFormatter alloc] init];
+    [dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
+    [dropDownTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    
     pickerView = [[UIPickerView alloc] init];
     [pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
     [pickerView setShowsSelectionIndicator:YES];
@@ -39,6 +45,11 @@
     [datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
     [datePicker setDatePickerMode:UIDatePickerModeDate];
     [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    timePicker = [[UIDatePicker alloc] init];
+    [timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    [timePicker setDatePickerMode:UIDatePickerModeTime];
+    [timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
     
     [self setDropDownMode:IQDropDownModeTextPicker];
 }
@@ -72,11 +83,14 @@
         case IQDropDownModeTextPicker:
             self.inputView = pickerView;
             break;
-
+            
         case IQDropDownModeDatePicker:
             self.inputView = datePicker;
             break;
-
+        case IQDropDownModeTimePicker:
+            self.inputView = timePicker;
+            break;
+            
         default:
             break;
     }
@@ -106,14 +120,17 @@
 {
     [self setSelectedItem:[dropDownDateFormatter stringFromDate:dPicker.date]];
 }
-
+-(void)timeChanged:(UIDatePicker*)tPicker{
+    
+    [self setSelectedItem:[dropDownTimeFormatter stringFromDate:tPicker.date]];
+}
 -(void)setItemList:(NSArray *)itemList
 {
     _itemList = itemList;
     
     if ([self.text length] == 0 && [_itemList count] > 0)
     {
-//        [self setText:[_itemList objectAtIndex:0]];
+        //        [self setText:[_itemList objectAtIndex:0]];
     }
     
     [pickerView reloadAllComponents];
@@ -151,6 +168,22 @@
             {
                 NSLog(@"Invalid date or date format:%@",selectedItem);
             }
+        }
+        case IQDropDownModeTimePicker:
+        {
+            
+            NSDate *date = [dropDownTimeFormatter dateFromString:selectedItem];
+            if (date)
+            {
+                _selectedItem = selectedItem;
+                [self setText:selectedItem];
+                [datePicker setDate:date animated:YES];
+            }
+            else
+            {
+                NSLog(@"Invalid time or time format:%@",selectedItem);
+            }
+            
         }
             
             break;
