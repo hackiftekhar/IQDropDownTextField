@@ -168,6 +168,7 @@
             {
                 NSLog(@"Invalid date or date format:%@",selectedItem);
             }
+            break;
         }
         case IQDropDownModeTimePicker:
         {
@@ -183,10 +184,8 @@
             {
                 NSLog(@"Invalid time or time format:%@",selectedItem);
             }
-            
-        }
-            
             break;
+        }
     }
 }
 
