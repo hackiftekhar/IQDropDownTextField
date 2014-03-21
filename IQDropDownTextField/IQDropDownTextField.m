@@ -20,6 +20,10 @@
     NSDateFormatter *dropDownTimeFormatter;
 }
 
+- (CGRect)caretRectForPosition:(UITextPosition *)position {
+    return CGRectZero;
+}
+
 -(void)initialize
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
