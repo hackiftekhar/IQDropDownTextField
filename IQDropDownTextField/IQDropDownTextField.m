@@ -154,7 +154,8 @@
             if ([_itemList containsObject:selectedItem])
             {
                 _selectedItem = selectedItem;
-                [self setText:selectedItem];
+                self.text = @"";
+                [self insertText:selectedItem];
                 [pickerView selectRow:[_itemList indexOfObject:selectedItem] inComponent:0 animated:YES];
             }
             break;
@@ -165,7 +166,8 @@
             if (date)
             {
                 _selectedItem = selectedItem;
-                [self setText:selectedItem];
+                self.text = @"";
+                [self insertText:selectedItem];
                 [datePicker setDate:date animated:YES];
             }
             else
@@ -181,7 +183,8 @@
             if (date)
             {
                 _selectedItem = selectedItem;
-                [self setText:selectedItem];
+                self.text = @"";
+                [self insertText:selectedItem];
                 [datePicker setDate:date animated:YES];
             }
             else
