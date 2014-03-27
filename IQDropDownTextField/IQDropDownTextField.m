@@ -224,4 +224,10 @@
     }
 }
 
+- (void)setDatePickerMaximumDate:(NSDate*)date
+{
+    if (_dropDownMode == IQDropDownModeDatePicker)
+        datePicker.maximumDate = [NSDate date];
+}
+
 @end
