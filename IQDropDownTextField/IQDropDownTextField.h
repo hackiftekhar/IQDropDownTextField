@@ -28,5 +28,6 @@ typedef enum IQDropDownMode
 
 @property(nonatomic, strong) NSString *selectedItem;
 
+- (void)setDatePickerMaximumDate:(NSDate*)date;
 
 @end
