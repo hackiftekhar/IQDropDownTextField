@@ -24,6 +24,7 @@ typedef enum IQDropDownMode
 
 //For IQdropDownModeDatePicker
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
+- (void)setDateFormatter:(NSDateFormatter *)userDateFormatter;
 @property(nonatomic) UIDatePickerMode datePickerMode;             // default is UIDatePickerModeDate
 
 @property(nonatomic, strong) NSString *selectedItem;

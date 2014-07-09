@@ -149,6 +149,10 @@
 {
     [self setSelectedItem:[dropDownDateFormatter stringFromDate:date]];
 }
+- (void)setDateFormatter:(NSDateFormatter *)userDateFormatter {
+    dropDownDateFormatter = userDateFormatter;
+    [datePicker setLocale:dropDownDateFormatter.locale];
+}
 
 
 -(void)setSelectedItem:(NSString *)selectedItem
