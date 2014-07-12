@@ -2,7 +2,7 @@
 //  IQDropDownTextField.h
 //
 //  Created by Iftekhar on 19/10/13.
-//  Copyright (c) 2013 Canopus. All rights reserved.
+//  Copyright (c) 2013 Iftekhar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
