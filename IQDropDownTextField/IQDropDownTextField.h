@@ -7,12 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum IQDropDownMode
-{
+typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
-    IQDropDownModeDatePicker,
-}IQDropDownMode;
+    IQDropDownModeDatePicker
+};
 
 /*Do not modify it's delegate*/
 @interface IQDropDownTextField : UITextField
