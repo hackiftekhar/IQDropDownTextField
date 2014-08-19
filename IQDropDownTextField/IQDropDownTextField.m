@@ -199,7 +199,7 @@
                 _selectedItem = selectedItem;
                 self.text = @"";
                 [self insertText:selectedItem];
-                [datePicker setDate:date animated:YES];
+                [timePicker setDate:date animated:YES];
             }
             else
             {
