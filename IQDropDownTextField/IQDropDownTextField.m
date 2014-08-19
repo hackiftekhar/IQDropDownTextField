@@ -154,6 +154,11 @@
     [datePicker setLocale:dropDownDateFormatter.locale];
 }
 
+- (void)setTimeFormatter:(NSDateFormatter *)userTimeFormatter
+{
+    dropDownTimeFormatter = userTimeFormatter;
+    [timePicker setLocale:self.dropDownTimeFormatter.locale];
+}
 
 -(void)setSelectedItem:(NSString *)selectedItem
 {
