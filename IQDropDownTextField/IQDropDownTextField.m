@@ -7,53 +7,50 @@
 
 #import "IQDropDownTextField.h"
 
-@interface IQDropDownTextField ()<UITextFieldDelegate,UIPickerViewDelegate, UIPickerViewDataSource>
+@interface IQDropDownTextField () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (nonatomic, strong) UIPickerView *pickerView;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIDatePicker *timePicker;
+@property (nonatomic, strong) NSDateFormatter *dropDownDateFormatter;
+@property (nonatomic, strong) NSDateFormatter *dropDownTimeFormatter;
 
 @end
 
 @implementation IQDropDownTextField
-{
-    UIPickerView *pickerView;
-    UIDatePicker *datePicker;
-    UIDatePicker *timePicker;
-    NSDateFormatter *dropDownDateFormatter;
-    NSDateFormatter *dropDownTimeFormatter;
-}
 
-- (CGRect)caretRectForPosition:(UITextPosition *)position {
-    return CGRectZero;
-}
+#pragma mark - Initialization
 
--(void)initialize
+- (void)initialize
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [self setBorderStyle:UITextBorderStyleRoundedRect];
     [self setDelegate:self];
     
-    dropDownDateFormatter = [[NSDateFormatter alloc] init];
-    [dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
+    [self.dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [self.dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
     
-    dropDownTimeFormatter = [[NSDateFormatter alloc] init];
-    [dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
-    [dropDownTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    self.dropDownTimeFormatter = [[NSDateFormatter alloc] init];
+    [self.dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
+    [self.dropDownTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
     
-    pickerView = [[UIPickerView alloc] init];
-    [pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-    [pickerView setShowsSelectionIndicator:YES];
-    [pickerView setDelegate:self];
-    [pickerView setDataSource:self];
+    self.pickerView = [[UIPickerView alloc] init];
+    [self.pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    [self.pickerView setShowsSelectionIndicator:YES];
+    [self.pickerView setDelegate:self];
+    [self.pickerView setDataSource:self];
     
-    datePicker = [[UIDatePicker alloc] init];
-    [datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-    [datePicker setDatePickerMode:UIDatePickerModeDate];
-    [datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+    self.datePicker = [[UIDatePicker alloc] init];
+    [self.datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    [self.datePicker setDatePickerMode:UIDatePickerModeDate];
+    [self.datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
     
-    timePicker = [[UIDatePicker alloc] init];
-    [timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-    [timePicker setDatePickerMode:UIDatePickerModeTime];
-    [timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
+    self.timePicker = [[UIDatePicker alloc] init];
+    [self.timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+    [self.timePicker setDatePickerMode:UIDatePickerModeTime];
+    [self.timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
     
     [self setDropDownMode:IQDropDownModeTextPicker];
 }
@@ -68,7 +65,7 @@
     return self;
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self)
@@ -78,27 +75,14 @@
     return self;
 }
 
--(void)setDropDownMode:(IQDropDownMode)dropDownMode
+#pragma mark - UITextField overrides
+
+- (CGRect)caretRectForPosition:(UITextPosition *)position
 {
-    _dropDownMode = dropDownMode;
-    
-    switch (_dropDownMode)
-    {
-        case IQDropDownModeTextPicker:
-            self.inputView = pickerView;
-            break;
-            
-        case IQDropDownModeDatePicker:
-            self.inputView = datePicker;
-            break;
-        case IQDropDownModeTimePicker:
-            self.inputView = timePicker;
-            break;
-            
-        default:
-            break;
-    }
+    return CGRectZero;
 }
+
+#pragma mark - UIPickerView data source
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -110,7 +94,9 @@
     return _itemList.count;
 }
 
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+#pragma mark UIPickerView delegate
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel *labelText = [[UILabel alloc] init];
     labelText.font = [UIFont boldSystemFontOfSize:20.0];
@@ -125,76 +111,104 @@
     [self setSelectedItem:[_itemList objectAtIndex:row]];
 }
 
--(void)dateChanged:(UIDatePicker*)dPicker
+#pragma mark - UIDatePicker delegate
+
+- (void)dateChanged:(UIDatePicker *)dPicker
 {
-    [self setSelectedItem:[dropDownDateFormatter stringFromDate:dPicker.date]];
+    [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:dPicker.date]];
 }
--(void)timeChanged:(UIDatePicker*)tPicker{
-    
-    [self setSelectedItem:[dropDownTimeFormatter stringFromDate:tPicker.date]];
+
+- (void)timeChanged:(UIDatePicker *)tPicker
+{
+    [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:tPicker.date]];
 }
--(void)setItemList:(NSArray *)itemList
+
+#pragma mark - Setters
+
+- (void)setDropDownMode:(IQDropDownMode)dropDownMode
+{
+    _dropDownMode = dropDownMode;
+
+    switch (_dropDownMode)
+    {
+        case IQDropDownModeTextPicker:
+            self.inputView = self.pickerView;
+            break;
+        case IQDropDownModeDatePicker:
+            self.inputView = self.datePicker;
+            break;
+        case IQDropDownModeTimePicker:
+            self.inputView = self.timePicker;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)setItemList:(NSArray *)itemList
 {
     _itemList = itemList;
     
     if ([self.text length] == 0 && [_itemList count] > 0)
     {
-        //        [self setText:[_itemList objectAtIndex:0]];
+//        [self setText:[_itemList objectAtIndex:0]];
     }
-    
-    [pickerView reloadAllComponents];
+    [self.pickerView reloadAllComponents];
 }
 
 - (void)setDate:(NSDate *)date animated:(BOOL)animated
 {
-    [self setSelectedItem:[dropDownDateFormatter stringFromDate:date]];
-}
-- (void)setDateFormatter:(NSDateFormatter *)userDateFormatter {
-    dropDownDateFormatter = userDateFormatter;
-    [datePicker setLocale:dropDownDateFormatter.locale];
+    [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:date]];
 }
 
-
--(void)setSelectedItem:(NSString *)selectedItem
+- (void)setDateFormatter:(NSDateFormatter *)userDateFormatter
 {
-    switch (_dropDownMode)
-    {
+    self.dropDownDateFormatter = userDateFormatter;
+    [self.datePicker setLocale:self.dropDownDateFormatter.locale];
+}
+
+- (void)setTimeFormatter:(NSDateFormatter *)userTimeFormatter
+{
+    self.dropDownTimeFormatter = userTimeFormatter;
+    [self.timePicker setLocale:self.dropDownTimeFormatter.locale];
+}
+
+- (void)setSelectedItem:(NSString *)selectedItem
+{
+    switch (_dropDownMode) {
         case IQDropDownModeTextPicker:
             if ([_itemList containsObject:selectedItem])
             {
                 _selectedItem = selectedItem;
                 self.text = @"";
                 [self insertText:selectedItem];
-                [pickerView selectRow:[_itemList indexOfObject:selectedItem] inComponent:0 animated:YES];
+                [self.pickerView selectRow:[_itemList indexOfObject:selectedItem] inComponent:0 animated:YES];
             }
             break;
-            
         case IQDropDownModeDatePicker:
         {
-            NSDate *date = [dropDownDateFormatter dateFromString:selectedItem];
+            NSDate *date = [self.dropDownDateFormatter dateFromString:selectedItem];
             if (date)
             {
                 _selectedItem = selectedItem;
                 self.text = @"";
                 [self insertText:selectedItem];
-                [datePicker setDate:date animated:YES];
+                [self.datePicker setDate:date animated:YES];
             }
-            else
-            {
+            else {
                 NSLog(@"Invalid date or date format:%@",selectedItem);
             }
             break;
         }
         case IQDropDownModeTimePicker:
         {
-            
-            NSDate *date = [dropDownTimeFormatter dateFromString:selectedItem];
+            NSDate *date = [self.dropDownTimeFormatter dateFromString:selectedItem];
             if (date)
             {
                 _selectedItem = selectedItem;
                 self.text = @"";
                 [self insertText:selectedItem];
-                [datePicker setDate:date animated:YES];
+                [self.timePicker setDate:date animated:YES];
             }
             else
             {
@@ -205,29 +219,29 @@
     }
 }
 
--(void)setDatePickerMode:(UIDatePickerMode)datePickerMode
+- (void)setDatePickerMode:(UIDatePickerMode)datePickerMode
 {
     if (_dropDownMode == IQDropDownModeDatePicker)
     {
         _datePickerMode = datePickerMode;
-        [datePicker setDatePickerMode:datePickerMode];
+        [self.datePicker setDatePickerMode:datePickerMode];
         
         switch (datePickerMode) {
             case UIDatePickerModeCountDownTimer:
-                [dropDownDateFormatter setDateStyle:NSDateFormatterNoStyle];
-                [dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+                [self.dropDownDateFormatter setDateStyle:NSDateFormatterNoStyle];
+                [self.dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
                 break;
             case UIDatePickerModeDate:
-                [dropDownDateFormatter setDateStyle:NSDateFormatterShortStyle];
-                [dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+                [self.dropDownDateFormatter setDateStyle:NSDateFormatterShortStyle];
+                [self.dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
                 break;
             case UIDatePickerModeTime:
-                [dropDownDateFormatter setDateStyle:NSDateFormatterNoStyle];
-                [dropDownDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+                [self.dropDownDateFormatter setDateStyle:NSDateFormatterNoStyle];
+                [self.dropDownDateFormatter setTimeStyle:NSDateFormatterShortStyle];
                 break;
             case UIDatePickerModeDateAndTime:
-                [dropDownDateFormatter setDateStyle:NSDateFormatterShortStyle];
-                [dropDownDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+                [self.dropDownDateFormatter setDateStyle:NSDateFormatterShortStyle];
+                [self.dropDownDateFormatter setTimeStyle:NSDateFormatterShortStyle];
                 break;
         }
     }
@@ -236,7 +250,9 @@
 - (void)setDatePickerMaximumDate:(NSDate*)date
 {
     if (_dropDownMode == IQDropDownModeDatePicker)
-        datePicker.maximumDate = date;
+    {
+        self.datePicker.maximumDate = date;
+    }
 }
 
 @end

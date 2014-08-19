@@ -7,12 +7,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum IQDropDownMode
-{
+typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
-    IQDropDownModeDatePicker,
-}IQDropDownMode;
+    IQDropDownModeDatePicker
+};
 
 /*Do not modify it's delegate*/
 @interface IQDropDownTextField : UITextField
@@ -25,6 +24,8 @@ typedef enum IQDropDownMode
 //For IQdropDownModeDatePicker
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
 - (void)setDateFormatter:(NSDateFormatter *)userDateFormatter;
+- (void)setTimeFormatter:(NSDateFormatter *)userTimeFormatter;
+
 @property(nonatomic) UIDatePickerMode datePickerMode;             // default is UIDatePickerModeDate
 
 @property(nonatomic, strong) NSString *selectedItem;
