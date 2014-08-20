@@ -16,19 +16,20 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /*Do not modify it's delegate*/
 @interface IQDropDownTextField : UITextField
 
-@property(nonatomic, assign) IQDropDownMode dropDownMode;
+@property (nonatomic, assign) IQDropDownMode dropDownMode;
 
 //For IQdropDownModePickerView
-@property(nonatomic, strong) NSArray *itemList;
+@property (nonatomic, strong) NSArray *itemList;
+@property (nonatomic, readonly) NSInteger selectedRow;
 
 //For IQdropDownModeDatePicker
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
 - (void)setDateFormatter:(NSDateFormatter *)userDateFormatter;
 - (void)setTimeFormatter:(NSDateFormatter *)userTimeFormatter;
 
-@property(nonatomic) UIDatePickerMode datePickerMode;             // default is UIDatePickerModeDate
+@property (nonatomic, assign) UIDatePickerMode datePickerMode; // default is UIDatePickerModeDate
 
-@property(nonatomic, strong) NSString *selectedItem;
+@property (nonatomic, strong) NSString *selectedItem;
 
 - (void)setDatePickerMaximumDate:(NSDate*)date;
 

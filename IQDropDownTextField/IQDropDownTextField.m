@@ -255,4 +255,10 @@
     }
 }
 
+#pragma mark - Getter
+
+- (NSInteger)selectedRow {
+    return [self.pickerView selectedRowInComponent:0];
+}
+
 @end
