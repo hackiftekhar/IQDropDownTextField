@@ -175,7 +175,11 @@
 
 - (void)selectRow:(NSInteger)row animated:(BOOL)animated
 {
-    [self.pickerView selectRow:row inComponent:0 animated:animated];
+    if (row < [_itemList count]) {
+        self.text = @"";
+        [self insertText:_itemList[row]];
+        [self.pickerView selectRow:row inComponent:0 animated:animated];
+    }
 }
 
 - (void)setSelectedItem:(NSString *)selectedItem
