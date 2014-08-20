@@ -173,6 +173,11 @@
     [self.timePicker setLocale:self.dropDownTimeFormatter.locale];
 }
 
+- (void)selectRow:(NSInteger)row animated:(BOOL)animated
+{
+    [self.pickerView selectRow:row inComponent:0 animated:animated];
+}
+
 - (void)setSelectedItem:(NSString *)selectedItem
 {
     switch (_dropDownMode) {

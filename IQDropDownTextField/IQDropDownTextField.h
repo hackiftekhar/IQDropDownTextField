@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 @property (nonatomic, strong) NSArray *itemList;
 @property (nonatomic, readonly) NSInteger selectedRow;
 
+- (void)selectRow:(NSInteger)row animated:(BOOL)animated;
+
 //For IQdropDownModeDatePicker
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
 - (void)setDateFormatter:(NSDateFormatter *)userDateFormatter;
