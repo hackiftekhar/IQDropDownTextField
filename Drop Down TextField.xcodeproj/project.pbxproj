@@ -146,7 +146,7 @@
 		E609C85C182ECB1D0058DB63 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Iftekhar;
 			};
 			buildConfigurationList = E609C85F182ECB1D0058DB63 /* Build configuration list for PBXProject "Drop Down TextField" */;
@@ -238,6 +238,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
