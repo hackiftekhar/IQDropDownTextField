@@ -173,6 +173,15 @@
     [self.timePicker setLocale:self.dropDownTimeFormatter.locale];
 }
 
+- (void)selectRow:(NSInteger)row animated:(BOOL)animated
+{
+    if (row < [_itemList count]) {
+        self.text = @"";
+        [self insertText:_itemList[row]];
+        [self.pickerView selectRow:row inComponent:0 animated:animated];
+    }
+}
+
 - (void)setSelectedItem:(NSString *)selectedItem
 {
     switch (_dropDownMode) {
@@ -253,6 +262,12 @@
     {
         self.datePicker.maximumDate = date;
     }
+}
+
+#pragma mark - Getter
+
+- (NSInteger)selectedRow {
+    return [self.pickerView selectedRowInComponent:0];
 }
 
 @end
