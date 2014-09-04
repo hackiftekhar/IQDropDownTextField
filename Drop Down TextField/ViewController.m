@@ -28,8 +28,12 @@
     textFieldDatePicker.inputAccessoryView = toolbar;
     textFieldTextPicker.inputAccessoryView = toolbar;
     textFieldTimePicker.inputAccessoryView = toolbar;
+    textFieldOptionalTextPicker.inputAccessoryView = toolbar;
     
+    textFieldTextPicker.isOptionalDropDown = NO;
     [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+    [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+
     [textFieldDatePicker setDropDownMode:IQDropDownModeDatePicker];
     
     [textFieldTimePicker setDropDownMode:IQDropDownModeTimePicker];
