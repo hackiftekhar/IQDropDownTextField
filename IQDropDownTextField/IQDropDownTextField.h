@@ -29,7 +29,8 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 
 - (void)selectRow:(NSInteger)row animated:(BOOL)animated;
 
-//For IQdropDownModeDatePicker
+
+/*  For IQdropDownModeDatePicker & IQDropDownModeTimePicker */
 @property(nonatomic, strong) NSDate *date; //get/set date.
 @property (nonatomic, retain) NSDate *minimumDate; // specify min/max date range. default is nil. When min > max, the values are ignored. Ignored in countdown timer mode
 @property (nonatomic, retain) NSDate *maximumDate; // default is nil
@@ -40,5 +41,13 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 - (void)setTimeFormatter:(NSDateFormatter *)userTimeFormatter;
 
 @property (nonatomic, assign) UIDatePickerMode datePickerMode; // default is UIDatePickerModeDate
+
+- (NSDateComponents*)dateComponents;
+- (NSInteger)year;
+- (NSInteger)month;
+- (NSInteger)day;
+- (NSInteger)hour;
+- (NSInteger)minute;
+- (NSInteger)second;
 
 @end

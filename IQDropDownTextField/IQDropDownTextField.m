@@ -347,4 +347,17 @@
     }
 }
 
+
+-(NSDateComponents *)dateComponents
+{
+    return [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.date];
+}
+
+- (NSInteger)year   {   return [[self dateComponents] year];    }
+- (NSInteger)month  {   return [[self dateComponents] month];   }
+- (NSInteger)day    {   return [[self dateComponents] day]; }
+- (NSInteger)hour   {   return [[self dateComponents] hour];    }
+- (NSInteger)minute {   return [[self dateComponents] minute];  }
+- (NSInteger)second {   return [[self dateComponents] second];  }
+
 @end
