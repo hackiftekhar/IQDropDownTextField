@@ -1,13 +1,30 @@
 //
 //  IQDropDownTextField.m
+// https://github.com/hackiftekhar/IQDropDownTextField
+// Copyright (c) 2013-14 Iftekhar Qurashi.
 //
-//  Created by Iftekhar on 19/10/13.
-//  Copyright (c) 2013 Iftekhar. All rights reserved.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
 
 #import "IQDropDownTextField.h"
 
-@interface IQDropDownTextField () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface IQDropDownTextField () <UIPickerViewDelegate, UIPickerViewDataSource>
 {
     NSArray *_ItemListsInternal;
 }
@@ -28,8 +45,6 @@
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    [self setBorderStyle:UITextBorderStyleRoundedRect];
-    [self setDelegate:self];
     
     self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
     [self.dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -237,6 +252,9 @@
                 _selectedItem = selectedItem;
                 
                 [self selectRow:[_ItemListsInternal indexOfObject:selectedItem] animated:animated];
+                
+                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                    [self.delegate textField:self didSelectItem:_selectedItem];
             }
             break;
         case IQDropDownModeDatePicker:
@@ -247,6 +265,9 @@
                 _selectedItem = selectedItem;
                 self.text = selectedItem;
                 [self.datePicker setDate:date animated:animated];
+                
+                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                    [self.delegate textField:self didSelectItem:_selectedItem];
             }
             else
             {
@@ -262,6 +283,9 @@
                 _selectedItem = selectedItem;
                 self.text = selectedItem;
                 [self.timePicker setDate:date animated:animated];
+                
+                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                    [self.delegate textField:self didSelectItem:_selectedItem];
             }
             else
             {
@@ -355,7 +379,7 @@
 
 - (NSInteger)year   {   return [[self dateComponents] year];    }
 - (NSInteger)month  {   return [[self dateComponents] month];   }
-- (NSInteger)day    {   return [[self dateComponents] day]; }
+- (NSInteger)day    {   return [[self dateComponents] day];     }
 - (NSInteger)hour   {   return [[self dateComponents] hour];    }
 - (NSInteger)minute {   return [[self dateComponents] minute];  }
 - (NSInteger)second {   return [[self dateComponents] second];  }
