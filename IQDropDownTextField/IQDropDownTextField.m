@@ -74,7 +74,7 @@
     [self setIsOptionalDropDown:YES];
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -84,7 +84,7 @@
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self)
@@ -119,9 +119,9 @@
 {
     UILabel *labelText = [[UILabel alloc] init];
     [labelText setTextAlignment:NSTextAlignmentCenter];
-    [labelText setText:[_ItemListsInternal objectAtIndex:row]];
+    [labelText setText:_ItemListsInternal[row]];
     labelText.backgroundColor = [UIColor clearColor];
-
+    
     if (self.isOptionalDropDown && row == 0)
     {
         labelText.font = [UIFont boldSystemFontOfSize:30.0];
@@ -137,7 +137,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [self setSelectedItem:[_ItemListsInternal objectAtIndex:row]];
+    [self setSelectedItem:_ItemListsInternal[row]];
 }
 
 #pragma mark - UIDatePicker delegate
@@ -152,12 +152,48 @@
     [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:tPicker.date]];
 }
 
+#pragma mark - Selected Row
+
+- (NSInteger)selectedRow
+{
+    if (self.isOptionalDropDown)
+    {
+        return [self.pickerView selectedRowInComponent:0]-1;
+    }
+    else
+    {
+        return [self.pickerView selectedRowInComponent:0];
+    }
+}
+
+-(void)setSelectedRow:(NSInteger)selectedRow
+{
+    [self setSelectedRow:selectedRow animated:NO];
+}
+
+- (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated
+{
+    if (row < [_ItemListsInternal count])
+    {
+        if (self.isOptionalDropDown && row == 0)
+        {
+            self.text = @"";
+        }
+        else
+        {
+            self.text = _ItemListsInternal[row];
+        }
+        
+        [self.pickerView selectRow:row inComponent:0 animated:animated];
+    }
+}
+
 #pragma mark - Setters
 
 - (void)setDropDownMode:(IQDropDownMode)dropDownMode
 {
     _dropDownMode = dropDownMode;
-
+    
     switch (_dropDownMode)
     {
         case IQDropDownModeTextPicker:
@@ -183,9 +219,8 @@
     
     if ([self.text length] == 0)
     {
-        [self selectRow:0 animated:NO];
+        [self setSelectedRow:0 animated:NO];
     }
-
 }
 
 -(NSDate *)date
@@ -220,23 +255,6 @@
     [self.timePicker setLocale:self.dropDownTimeFormatter.locale];
 }
 
-- (void)selectRow:(NSInteger)row animated:(BOOL)animated
-{
-    if (row < [_ItemListsInternal count])
-    {
-        if (self.isOptionalDropDown && row == 0)
-        {
-            self.text = @"";
-        }
-        else
-        {
-            self.text = _ItemListsInternal[row];
-        }
-        
-        [self.pickerView selectRow:row inComponent:0 animated:animated];
-    }
-}
-
 -(void)setSelectedItem:(NSString *)selectedItem
 {
     [self setSelectedItem:selectedItem animated:NO];
@@ -251,7 +269,7 @@
             {
                 _selectedItem = selectedItem;
                 
-                [self selectRow:[_ItemListsInternal indexOfObject:selectedItem] animated:animated];
+                [self setSelectedRow:[_ItemListsInternal indexOfObject:selectedItem] animated:animated];
                 
                 if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
@@ -346,7 +364,7 @@
     
     if (_isOptionalDropDown)
     {
-        NSArray *array = [[NSArray alloc] initWithObjects:@"Select", nil];
+        NSArray *array = @[@"Select"];
         _ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
     }
     else
@@ -358,19 +376,6 @@
 }
 
 #pragma mark - Getter
-
-- (NSInteger)selectedRow
-{
-    if (self.isOptionalDropDown)
-    {
-        return [self.pickerView selectedRowInComponent:0]-1;
-    }
-    else
-    {
-        return [self.pickerView selectedRowInComponent:0];
-    }
-}
-
 
 -(NSDateComponents *)dateComponents
 {
