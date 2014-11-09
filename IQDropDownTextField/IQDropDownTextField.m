@@ -240,7 +240,17 @@
 
 - (void)setDate:(NSDate *)date animated:(BOOL)animated
 {
-    [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:date] animated:animated];
+    switch (_dropDownMode)
+    {
+        case IQDropDownModeDatePicker:
+            [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:date] animated:animated];
+            break;
+        case IQDropDownModeTimePicker:
+            [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:date] animated:animated];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)setDateFormatter:(NSDateFormatter *)userDateFormatter
