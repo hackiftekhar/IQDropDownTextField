@@ -119,7 +119,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /*!
     @property   isOptionalDropDown
  
-    @abstract   If YES then it will add a 'Select' item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
+ @abstract   If YES then it will add a 'Select' item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
  */
 @property (nonatomic, assign) BOOL isOptionalDropDown;
 
@@ -223,7 +223,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
  
     @abstract   Date formatter to show date as text in textField.
  */
-@property (nonatomic, retain) NSDateFormatter *dateFormatter;
+@property (nonatomic, retain) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
 
 
 
@@ -232,7 +232,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /*-------------------------------------------------------*/
 
 /*!
-    @property   timeFormatter
+ @property   timeFormatter
  
     @abstract   Time formatter to show time as text in textField.
  */

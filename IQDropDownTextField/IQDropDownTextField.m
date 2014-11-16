@@ -46,9 +46,18 @@
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     
-    self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
-    [self.dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [self.dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    if ([[[self class] appearance] dateFormatter])
+    {
+        self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
+        self.dropDownDateFormatter = [[[self class] appearance] dateFormatter];
+    }
+    else
+    {
+        self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
+        //        [self.dropDownDateFormatter setDateFormat:@"dd MMM yyyy"];
+        [self.dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [self.dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    }
     
     self.dropDownTimeFormatter = [[NSDateFormatter alloc] init];
     [self.dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
@@ -297,7 +306,7 @@
                 if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
             }
-            else
+            else if ([selectedItem length])
             {
                 NSLog(@"Invalid date or date format:%@",selectedItem);
             }
@@ -315,7 +324,7 @@
                 if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
             }
-            else
+            else if([selectedItem length])
             {
                 NSLog(@"Invalid time or time format:%@",selectedItem);
             }
