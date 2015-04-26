@@ -1,7 +1,7 @@
 //
 //  IQDropDownTextField.h
 // https://github.com/hackiftekhar/IQDropDownTextField
-// Copyright (c) 2013-14 Iftekhar Qurashi.
+// Copyright (c) 2013-15 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,33 +24,45 @@
 
 #import <UIKit/UIKit.h>
 
-/*!
-    @enum IQDropDownMode
+#if !(__has_feature(objc_instancetype))
+#define instancetype id
+#endif
+
+/**
+ Drop Down Mode settings.
+
+ `IQDropDownModeTextPicker`
+ Show pickerView with provided text data.
  
-    @abstract Drop Down Mode settings.
+ `IQDropDownModeTimePicker`
+ Show UIDatePicker to pick time.
  
-    @const IQDropDownModeTextPicker   Show pickerView with provided text data.
- 
-    @const IQDropDownModeTimePicker   Show UIDatePicker to pick time.
- 
-    @const IQDropDownModeDatePicker   Show UIDatePicker to pick date.
+ `IQDropDownModeDatePicker`
+ Show UIDatePicker to pick date.
  */
+#ifndef NS_ENUM
+
+typedef enum IQDropDownMode {
+    IQDropDownModeTextPicker,
+    IQDropDownModeTimePicker,
+    IQDropDownModeDatePicker,
+}IQDropDownMode;
+
+#else
 
 typedef NS_ENUM(NSInteger, IQDropDownMode) {
-    
     IQDropDownModeTextPicker,
-    
     IQDropDownModeTimePicker,
-    
     IQDropDownModeDatePicker,
 };
 
+#endif
+
+
 @class IQDropDownTextField;
 
-/*!
-    @protocol   IQDropDownTextFieldDelegate
- 
-    @abstract   Drop down text field delegate.
+/**
+ Drop down text field delegate.
  */
 @protocol IQDropDownTextFieldDelegate <UITextFieldDelegate>
 
@@ -60,183 +72,141 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 @end
 
 
-/*!
-    @author     Iftekhar Qurashi
- 
-	@related    hack.iftekhar@gmail.com
- 
-    @class      IQDropDownTextField
- 
-	@abstract   Add a UIPickerView as inputView
+/**
+ Add a UIPickerView as inputView
  */
 @interface IQDropDownTextField : UITextField
 
 @property(nonatomic,assign) id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
 
-/*!
-    @property   dropDownMode
- 
-    @abstract   DropDownMode style to show in picker. Default is IQDropDownModeTextPicker.
+/**
+ DropDownMode style to show in picker. Default is IQDropDownModeTextPicker.
  */
 @property (nonatomic, assign) IQDropDownMode dropDownMode;
 
-
-
-/*******************************************/
-
-
-//  Title Selection
-
-/*!
-    @property   selectedItem
- 
-    @abstract   Selected item of pickerView.
+/**
+ If YES then it will add a 'Select' item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
  */
-@property (nonatomic, strong) NSString *selectedItem;
+@property (nonatomic, assign) BOOL isOptionalDropDown;
 
-/*!
-    @method     setSelectedItem:animated
- 
-    @abstract   Set selected item of pickerView.
+
+///----------------------
+/// @name Title Selection
+///----------------------
+
+/**
+ Selected item of pickerView.
+ */
+@property (nonatomic, copy) NSString *selectedItem;
+
+/**
+ Set selected item of pickerView.
  */
 - (void)setSelectedItem:(NSString*)selectedItem animated:(BOOL)animated;
 
 
+///-------------------------------
+/// @name IQDropDownModeTextPicker
+///-------------------------------
 
-/*******************************************/
-
-/*-------------------------------------------------------*/
-/******          IQDropDownModeTextPicker           ******/
-/*-------------------------------------------------------*/
-
-/*!
-    @property   itemList
- 
-    @abstract   Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]
+/**
+ Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]
  */
-@property (nonatomic, strong) NSArray *itemList;
+@property (nonatomic, copy) NSArray *itemList;
 
-/*!
-    @property   isOptionalDropDown
- 
- @abstract   If YES then it will add a 'Select' item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
- */
-@property (nonatomic, assign) BOOL isOptionalDropDown;
-
-/*!
-    @property   selectedRow
- 
-    @abstract   Selected row index of selected item.
+/**
+ Selected row index of selected item.
  */
 @property (nonatomic, assign) NSInteger selectedRow;
 
-/*!
-    @method     setSelectedRow:animated
- 
-    @abstract   Select row index of selected item.
+/**
+ Select row index of selected item.
  */
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated;
 
 
+///--------------------------------------------------------
+/// @name IQdropDownModeDatePicker/IQDropDownModeTimePicker
+///*-------------------------------------------------------
 
-/*-------------------------------------------------------*/
-/*** IQdropDownModeDatePicker/IQDropDownModeTimePicker ***/
-/*-------------------------------------------------------*/
-
-/*!
-    @property   date
- 
-    @abstract   Selected date in UIDatePicker.
+/**
+ Selected date in UIDatePicker.
  */
-@property(nonatomic, strong) NSDate *date;
+@property(nonatomic, copy) NSDate *date;
 
-/*!
-    @method     setDate:animated
- 
-    @abstract   Select date in UIDatePicker.
+/**
+ Select date in UIDatePicker.
  */
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
 
-/*!
-    @property   dateComponents
- 
-    @abstract   DateComponents for date picker.
+/**
+ DateComponents for date picker.
  */
 @property (nonatomic, readonly, copy) NSDateComponents *dateComponents;
 
-/*!
-    @property   year
- 
-    @property   month
- 
-    @property   day
- 
-    @property   hour
- 
-    @property   minute
- 
-    @property   second
- 
-    @abstract   date component individual values.
+/**
+ year
  */
 @property (nonatomic, readonly) NSInteger year;
 
+/**
+ month
+ */
 @property (nonatomic, readonly) NSInteger month;
 
+/**
+ day
+ */
 @property (nonatomic, readonly) NSInteger day;
 
+/**
+ hour
+ */
 @property (nonatomic, readonly) NSInteger hour;
 
+/**
+ minute
+ */
 @property (nonatomic, readonly) NSInteger minute;
 
+/**
+ second
+ */
 @property (nonatomic, readonly) NSInteger second;
 
 
+///-------------------------------
+/// @name IQdropDownModeDatePicker
+///-------------------------------
 
-/*-------------------------------------------------------*/
-/******          IQdropDownModeDatePicker           ******/
-/*-------------------------------------------------------*/
-
-/*!
-    @property   datePickerMode
- 
-    @abstract   Select date in UIDatePicker. Default is UIDatePickerModeDate
+/**
+ Select date in UIDatePicker. Default is UIDatePickerModeDate
  */
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
 
-/*!
-    @property   minimumDate
- 
-    @abstract   Minimum selectable date in UIDatePicker. Default is nil.
+/**
+ Minimum selectable date in UIDatePicker. Default is nil.
  */
 @property (nonatomic, retain) NSDate *minimumDate;
 
-/*!
-    @property   maximumDate
- 
-    @abstract   Maximum selectable date in UIDatePicker. Default is nil.
+/**
+ Maximum selectable date in UIDatePicker. Default is nil.
  */
 @property (nonatomic, retain) NSDate *maximumDate;
 
-/*!
-    @property   dateFormatter
- 
-    @abstract   Date formatter to show date as text in textField.
+/**
+ Date formatter to show date as text in textField.
  */
 @property (nonatomic, retain) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
 
 
+///-------------------------------
+/// @name IQDropDownModeTimePicker
+///-------------------------------
 
-/*-------------------------------------------------------*/
-/******          IQDropDownModeTimePicker           ******/
-/*-------------------------------------------------------*/
-
-/*!
- @property   timeFormatter
- 
-    @abstract   Time formatter to show time as text in textField.
+/**
+ Time formatter to show time as text in textField.
  */
 @property (nonatomic, retain) NSDateFormatter *timeFormatter;
-
 
 @end

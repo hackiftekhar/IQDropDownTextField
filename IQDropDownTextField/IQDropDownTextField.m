@@ -1,7 +1,7 @@
 //
 //  IQDropDownTextField.m
 // https://github.com/hackiftekhar/IQDropDownTextField
-// Copyright (c) 2013-14 Iftekhar Qurashi.
+// Copyright (c) 2013-15 Iftekhar Qurashi.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,11 @@
 
 #import "IQDropDownTextField.h"
 
+#ifndef NSFoundationVersionNumber_iOS_5_1
+#define NSTextAlignmentCenter UITextAlignmentCenter
+#endif
+
+
 @interface IQDropDownTextField () <UIPickerViewDelegate, UIPickerViewDataSource>
 {
     NSArray *_ItemListsInternal;
@@ -35,9 +40,24 @@
 @property (nonatomic, strong) NSDateFormatter *dropDownDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *dropDownTimeFormatter;
 
+- (void)dateChanged:(UIDatePicker *)dPicker;
+- (void)timeChanged:(UIDatePicker *)tPicker;
+
 @end
 
 @implementation IQDropDownTextField
+
+@synthesize dropDownMode = _dropDownMode;
+@synthesize itemList = _itemList;
+@synthesize selectedItem = _selectedItem;
+@synthesize isOptionalDropDown = _isOptionalDropDown;
+@synthesize datePickerMode = _datePickerMode;
+@synthesize minimumDate = _minimumDate;
+@synthesize maximumDate = _maximumDate;
+@synthesize delegate;
+
+@synthesize pickerView,datePicker, timePicker, dropDownDateFormatter,dropDownTimeFormatter;
+@synthesize dateFormatter, timeFormatter;
 
 #pragma mark - Initialization
 
@@ -93,14 +113,10 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
+-(void)awakeFromNib
 {
-    self = [super initWithCoder:aDecoder];
-    if (self)
-    {
-        [self initialize];
-    }
-    return self;
+    [super awakeFromNib];
+    [self initialize];
 }
 
 #pragma mark - UITextField overrides
@@ -128,7 +144,8 @@
 {
     UILabel *labelText = [[UILabel alloc] init];
     [labelText setTextAlignment:NSTextAlignmentCenter];
-    [labelText setText:_ItemListsInternal[row]];
+    [labelText setAdjustsFontSizeToFitWidth:YES];
+    [labelText setText:[_ItemListsInternal objectAtIndex:row]];
     labelText.backgroundColor = [UIColor clearColor];
     
     if (self.isOptionalDropDown && row == 0)
@@ -138,7 +155,7 @@
     }
     else
     {
-        labelText.font = [UIFont boldSystemFontOfSize:20.0];
+        labelText.font = [UIFont boldSystemFontOfSize:18.0];
         labelText.textColor = [UIColor blackColor];
     }
     return labelText;
@@ -146,7 +163,7 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [self setSelectedItem:_ItemListsInternal[row]];
+    [self setSelectedItem:[_ItemListsInternal objectAtIndex:row]];
 }
 
 #pragma mark - UIDatePicker delegate
@@ -190,7 +207,7 @@
         }
         else
         {
-            self.text = _ItemListsInternal[row];
+            self.text = [_ItemListsInternal objectAtIndex:row];
         }
         
         [self.pickerView selectRow:row inComponent:0 animated:animated];
@@ -206,13 +223,30 @@
     switch (_dropDownMode)
     {
         case IQDropDownModeTextPicker:
+        {
             self.inputView = self.pickerView;
+            [self setSelectedRow:self.selectedRow animated:YES];
+        }
             break;
         case IQDropDownModeDatePicker:
+        {
             self.inputView = self.datePicker;
+            
+            if (self.isOptionalDropDown == NO)
+            {
+                [self setDate:self.datePicker.date];
+            }
+        }
             break;
         case IQDropDownModeTimePicker:
+        {
             self.inputView = self.timePicker;
+        
+            if (self.isOptionalDropDown == NO)
+            {
+                [self setDate:self.timePicker.date];
+            }
+        }
             break;
         default:
             break;
@@ -226,18 +260,15 @@
     //Refreshing pickerView
     [self setIsOptionalDropDown:_isOptionalDropDown];
     
-    if ([self.text length] == 0)
-    {
-        [self setSelectedRow:0 animated:NO];
-    }
+    [self setSelectedRow:self.selectedRow];
 }
 
 -(NSDate *)date
 {
     switch (self.dropDownMode)
     {
-        case IQDropDownModeDatePicker:  return  [self.text length]  ?   self.datePicker.date    :   nil;    break;
-        case IQDropDownModeTimePicker:  return  [self.text length]  ?   self.timePicker.date    :   nil;    break;
+        case IQDropDownModeDatePicker:  return  ([self.text length] || self.isOptionalDropDown)  ?   [self.datePicker.date copy]    :   nil;    break;
+        case IQDropDownModeTimePicker:  return  ([self.text length] || self.isOptionalDropDown)  ?   [self.timePicker.date copy]    :   nil;    break;
         default:                        return  nil;                     break;
     }
 }
@@ -383,22 +414,42 @@
     
     if (_isOptionalDropDown)
     {
-        NSArray *array = @[@"Select"];
+        NSArray *array = [NSArray arrayWithObject:@"Select"];
         _ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
+        [self.pickerView reloadAllComponents];
     }
     else
     {
         _ItemListsInternal = [_itemList copy];
+
+        switch (self.dropDownMode)
+        {
+            case IQDropDownModeDatePicker:
+            {
+                [self setDate:self.datePicker.date];
+            }
+                break;
+            case IQDropDownModeTimePicker:
+            {
+                [self setDate:self.timePicker.date];
+            }
+                break;
+                
+            case IQDropDownModeTextPicker:
+            {
+                [self.pickerView reloadAllComponents];
+            }
+            default:
+                break;
+        }
     }
-    
-    [self.pickerView reloadAllComponents];
 }
 
 #pragma mark - Getter
 
 -(NSDateComponents *)dateComponents
 {
-    return [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.date];
+    return [[NSCalendar currentCalendar] components:kCFCalendarUnitDay | kCFCalendarUnitMonth | kCFCalendarUnitYear fromDate:self.date];
 }
 
 - (NSInteger)year   {   return [[self dateComponents] year];    }
