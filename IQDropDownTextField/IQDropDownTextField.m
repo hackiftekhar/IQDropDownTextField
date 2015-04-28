@@ -59,6 +59,13 @@
 @synthesize pickerView,datePicker, timePicker, dropDownDateFormatter,dropDownTimeFormatter;
 @synthesize dateFormatter, timeFormatter;
 
+#pragma mark - NSObject
+
+- (void)dealloc {
+    [self.pickerView setDelegate:nil];
+    [self.pickerView setDataSource:nil];
+}
+
 #pragma mark - Initialization
 
 - (void)initialize
