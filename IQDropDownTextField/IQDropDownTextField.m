@@ -54,7 +54,7 @@
 @synthesize datePickerMode = _datePickerMode;
 @synthesize minimumDate = _minimumDate;
 @synthesize maximumDate = _maximumDate;
-@synthesize delegate;
+@dynamic delegate;
 
 @synthesize pickerView,datePicker, timePicker, dropDownDateFormatter,dropDownTimeFormatter;
 @synthesize dateFormatter, timeFormatter;
