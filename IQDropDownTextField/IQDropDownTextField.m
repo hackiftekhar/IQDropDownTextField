@@ -72,7 +72,9 @@
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    
+	
+	self.optionalItemLabel = NSLocalizedString(@"Select", nil);
+	
     if ([[[self class] appearance] dateFormatter])
     {
         self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
@@ -421,7 +423,7 @@
     
     if (_isOptionalDropDown)
     {
-        NSArray *array = [NSArray arrayWithObject:@"Select"];
+        NSArray *array = [NSArray arrayWithObject:self.optionalItemLabel];
         _ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
         [self.pickerView reloadAllComponents];
     }
