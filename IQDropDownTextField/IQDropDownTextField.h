@@ -85,7 +85,12 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 @property (nonatomic, assign) IQDropDownMode dropDownMode;
 
 /**
- If YES then it will add a 'Select' item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
+ Label for the optional iten if isOptionalDropDown is YES. Default is Select.
+ */
+@property (nonatomic, copy) NSString *optionalItemLabel;
+
+/**
+ If YES then it will add a optionalItemLabel item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
  */
 @property (nonatomic, assign) BOOL isOptionalDropDown;
 

@@ -72,7 +72,9 @@
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    
+	
+	self.optionalItemLabel = NSLocalizedString(@"Select", nil);
+	
     if ([[[self class] appearance] dateFormatter])
     {
         self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
@@ -415,41 +417,52 @@
     self.timePicker.maximumDate = maximumDate;
 }
 
+- (void) setOptionalItemLabel:(NSString *)optionalItemLabel
+{
+	_optionalItemLabel = [optionalItemLabel copy];
+
+	[self _updateOptionsList];
+}
+
 -(void)setIsOptionalDropDown:(BOOL)isOptionalDropDown
 {
     _isOptionalDropDown = isOptionalDropDown;
     
-    if (_isOptionalDropDown)
-    {
-        NSArray *array = [NSArray arrayWithObject:@"Select"];
-        _ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
-        [self.pickerView reloadAllComponents];
-    }
-    else
-    {
-        _ItemListsInternal = [_itemList copy];
+	[self _updateOptionsList];
+}
 
-        switch (self.dropDownMode)
-        {
-            case IQDropDownModeDatePicker:
-            {
-                [self setDate:self.datePicker.date];
-            }
-                break;
-            case IQDropDownModeTimePicker:
-            {
-                [self setDate:self.timePicker.date];
-            }
-                break;
-                
-            case IQDropDownModeTextPicker:
-            {
-                [self.pickerView reloadAllComponents];
-            }
-            default:
-                break;
-        }
-    }
+- (void) _updateOptionsList {
+	if (_isOptionalDropDown)
+	{
+		NSArray *array = [NSArray arrayWithObject:self.optionalItemLabel];
+		_ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
+		[self.pickerView reloadAllComponents];
+	}
+	else
+	{
+		_ItemListsInternal = [_itemList copy];
+		
+		switch (self.dropDownMode)
+		{
+			case IQDropDownModeDatePicker:
+			{
+				[self setDate:self.datePicker.date];
+			}
+				break;
+			case IQDropDownModeTimePicker:
+			{
+				[self setDate:self.timePicker.date];
+			}
+				break;
+				
+			case IQDropDownModeTextPicker:
+			{
+				[self.pickerView reloadAllComponents];
+			}
+			default:
+				break;
+		}
+	}
 }
 
 #pragma mark - Getter
