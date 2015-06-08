@@ -54,9 +54,10 @@
 @synthesize datePickerMode = _datePickerMode;
 @synthesize minimumDate = _minimumDate;
 @synthesize maximumDate = _maximumDate;
-@synthesize delegate;
+@dynamic delegate;
 
-@synthesize pickerView,datePicker, timePicker, dropDownDateFormatter,dropDownTimeFormatter;
+@synthesize pickerView = _pickerView, datePicker = _datePicker, timePicker = _timePicker;
+@synthesize dropDownDateFormatter,dropDownTimeFormatter;
 @synthesize dateFormatter, timeFormatter;
 
 #pragma mark - NSObject
@@ -72,7 +73,9 @@
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-    
+	
+	self.optionalItemLabel = NSLocalizedString(@"Select", nil);
+	
     if ([[[self class] appearance] dateFormatter])
     {
         self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
@@ -89,23 +92,7 @@
     self.dropDownTimeFormatter = [[NSDateFormatter alloc] init];
     [self.dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
     [self.dropDownTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
-    
-    self.pickerView = [[UIPickerView alloc] init];
-    [self.pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-    [self.pickerView setShowsSelectionIndicator:YES];
-    [self.pickerView setDelegate:self];
-    [self.pickerView setDataSource:self];
-    
-    self.datePicker = [[UIDatePicker alloc] init];
-    [self.datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-    [self.datePicker setDatePickerMode:UIDatePickerModeDate];
-    [self.datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    self.timePicker = [[UIDatePicker alloc] init];
-    [self.timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-    [self.timePicker setDatePickerMode:UIDatePickerModeTime];
-    [self.timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
-    
+	
     [self setDropDownMode:IQDropDownModeTextPicker];
     [self setIsOptionalDropDown:YES];
 }
@@ -415,41 +402,52 @@
     self.timePicker.maximumDate = maximumDate;
 }
 
+- (void) setOptionalItemLabel:(NSString *)optionalItemLabel
+{
+	_optionalItemLabel = [optionalItemLabel copy];
+
+	[self _updateOptionsList];
+}
+
 -(void)setIsOptionalDropDown:(BOOL)isOptionalDropDown
 {
     _isOptionalDropDown = isOptionalDropDown;
     
-    if (_isOptionalDropDown)
-    {
-        NSArray *array = [NSArray arrayWithObject:@"Select"];
-        _ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
-        [self.pickerView reloadAllComponents];
-    }
-    else
-    {
-        _ItemListsInternal = [_itemList copy];
+	[self _updateOptionsList];
+}
 
-        switch (self.dropDownMode)
-        {
-            case IQDropDownModeDatePicker:
-            {
-                [self setDate:self.datePicker.date];
-            }
-                break;
-            case IQDropDownModeTimePicker:
-            {
-                [self setDate:self.timePicker.date];
-            }
-                break;
-                
-            case IQDropDownModeTextPicker:
-            {
-                [self.pickerView reloadAllComponents];
-            }
-            default:
-                break;
-        }
-    }
+- (void) _updateOptionsList {
+	if (_isOptionalDropDown)
+	{
+		NSArray *array = [NSArray arrayWithObject:self.optionalItemLabel];
+		_ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
+		[self.pickerView reloadAllComponents];
+	}
+	else
+	{
+		_ItemListsInternal = [_itemList copy];
+		
+		switch (self.dropDownMode)
+		{
+			case IQDropDownModeDatePicker:
+			{
+				[self setDate:self.datePicker.date];
+			}
+				break;
+			case IQDropDownModeTimePicker:
+			{
+				[self setDate:self.timePicker.date];
+			}
+				break;
+				
+			case IQDropDownModeTextPicker:
+			{
+				[self.pickerView reloadAllComponents];
+			}
+			default:
+				break;
+		}
+	}
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
@@ -462,6 +460,44 @@
 }
 
 #pragma mark - Getter
+
+- (UIPickerView *) pickerView {
+	if (!_pickerView)
+	{
+		_pickerView = [[UIPickerView alloc] init];
+		[_pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+		[_pickerView setShowsSelectionIndicator:YES];
+		[_pickerView setDelegate:self];
+		[_pickerView setDataSource:self];
+	}
+	return _pickerView;
+}
+
+- (UIDatePicker *) timePicker
+{
+	if (!_timePicker)
+	{
+		_timePicker = [[UIDatePicker alloc] init];
+		_timePicker = [[UIDatePicker alloc] init];
+		[_timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+		[_timePicker setDatePickerMode:UIDatePickerModeTime];
+		[_timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
+	}
+	return _timePicker;
+}
+
+- (UIDatePicker *) datePicker
+{
+	if (!_datePicker)
+	{
+		_datePicker = [[UIDatePicker alloc] init];
+		[_datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+		[_datePicker setDatePickerMode:UIDatePickerModeDate];
+		[_datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+	}
+	return _datePicker;
+}
+
 
 -(NSDateComponents *)dateComponents
 {
