@@ -452,6 +452,15 @@
     }
 }
 
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    if (action == @selector(paste:) || action == @selector(cut:))
+        return NO;
+
+    
+    return [super canPerformAction:action withSender:sender];
+}
+
 #pragma mark - Getter
 
 -(NSDateComponents *)dateComponents
