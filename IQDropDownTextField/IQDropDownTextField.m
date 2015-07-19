@@ -54,6 +54,8 @@
 @synthesize datePickerMode = _datePickerMode;
 @synthesize minimumDate = _minimumDate;
 @synthesize maximumDate = _maximumDate;
+@synthesize optionalItemText = _optionalItemText;
+
 @dynamic delegate;
 
 @synthesize pickerView = _pickerView, datePicker = _datePicker, timePicker = _timePicker;
@@ -74,7 +76,7 @@
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
 	
-	self.optionalItemLabel = NSLocalizedString(@"Select", nil);
+	self.optionalItemText = NSLocalizedString(@"Select", nil);
 	
     if ([[[self class] appearance] dateFormatter])
     {
@@ -261,8 +263,28 @@
 {
     switch (self.dropDownMode)
     {
-        case IQDropDownModeDatePicker:  return  ([self.text length] || self.isOptionalDropDown)  ?   [self.datePicker.date copy]    :   nil;    break;
-        case IQDropDownModeTimePicker:  return  ([self.text length] || self.isOptionalDropDown)  ?   [self.timePicker.date copy]    :   nil;    break;
+        case IQDropDownModeDatePicker:
+        {
+            if (self.isOptionalDropDown)
+            {
+                return  [self.text length]  ?   [self.datePicker.date copy]    :   nil;    break;
+            }
+            else
+            {
+                return [self.datePicker.date copy];
+            }
+        }
+        case IQDropDownModeTimePicker:
+        {
+            if (self.isOptionalDropDown)
+            {
+                return  [self.text length]  ?   [self.timePicker.date copy]    :   nil;    break;
+            }
+            else
+            {
+                return [self.timePicker.date copy];
+            }
+        }
         default:                        return  nil;                     break;
     }
 }
@@ -402,11 +424,23 @@
     self.timePicker.maximumDate = maximumDate;
 }
 
-- (void) setOptionalItemLabel:(NSString *)optionalItemLabel
+-(NSString *)optionalItemText
 {
-	_optionalItemLabel = [optionalItemLabel copy];
+    if (_optionalItemText.length)
+    {
+        return _optionalItemText;
+    }
+    else
+    {
+        return NSLocalizedString(@"Select", nil);
+    }
+}
 
-	[self _updateOptionsList];
+-(void)setOptionalItemText:(NSString *)optionalItemText
+{
+    _optionalItemText = [optionalItemText copy];
+
+    [self _updateOptionsList];
 }
 
 -(void)setIsOptionalDropDown:(BOOL)isOptionalDropDown
@@ -419,7 +453,7 @@
 - (void) _updateOptionsList {
 	if (_isOptionalDropDown)
 	{
-		NSArray *array = [NSArray arrayWithObject:self.optionalItemLabel];
+		NSArray *array = [NSArray arrayWithObject:self.optionalItemText];
 		_ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
 		[self.pickerView reloadAllComponents];
 	}
