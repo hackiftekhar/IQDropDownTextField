@@ -386,6 +386,10 @@
             }
             break;
         }
+        case IQDropDownModeTextField:{
+            self.text = selectedItem;
+        }
+        break;
     }
 }
 
