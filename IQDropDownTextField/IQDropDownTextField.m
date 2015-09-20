@@ -119,7 +119,11 @@
 
 - (CGRect)caretRectForPosition:(UITextPosition *)position
 {
-    return CGRectZero;
+    if (self.dropDownMode == IQDropDownModeTextField) {
+        return [super caretRectForPosition:position];
+    } else {
+        return CGRectZero;
+    }
 }
 
 #pragma mark - UIPickerView data source
@@ -242,6 +246,11 @@
             {
                 [self setDate:self.timePicker.date];
             }
+        }
+            break;
+        case IQDropDownModeTextField:
+        {
+            self.inputView = nil;
         }
             break;
         default:
@@ -377,6 +386,10 @@
             }
             break;
         }
+        case IQDropDownModeTextField:{
+            self.text = selectedItem;
+        }
+        break;
     }
 }
 
