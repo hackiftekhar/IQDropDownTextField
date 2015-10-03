@@ -127,6 +127,11 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 @property (nonatomic, assign) NSInteger selectedRow;
 
 /**
+ Defines Picker labels fontSizeAdjustment by width. Default is NO
+ */
+@property (nonatomic, assign) BOOL adjustPickerLabelFontSizeWidth;
+
+/**
  Select row index of selected item.
  */
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated;

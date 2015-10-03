@@ -55,6 +55,7 @@
 @synthesize minimumDate = _minimumDate;
 @synthesize maximumDate = _maximumDate;
 @synthesize optionalItemText = _optionalItemText;
+@synthesize adjustPickerLabelFontSizeWidth = _adjustPickerLabelFontSizeWidth;
 
 @dynamic delegate;
 
@@ -97,6 +98,7 @@
 	
     [self setDropDownMode:IQDropDownModeTextPicker];
     [self setIsOptionalDropDown:YES];
+    [self setAdjustPickerLabelFontSizeWidth:NO];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -157,6 +159,7 @@
     {
         labelText.font = [UIFont boldSystemFontOfSize:18.0];
         labelText.textColor = [UIColor blackColor];
+        labelText.adjustsFontSizeToFitWidth = self.adjustPickerLabelFontSizeWidth;
     }
     return labelText;
 }
@@ -453,6 +456,16 @@
 {
     _optionalItemText = [optionalItemText copy];
 
+    [self _updateOptionsList];
+}
+
+-(BOOL)adjustPickerLabelFontSizeWidth {
+    return _adjustPickerLabelFontSizeWidth;
+}
+
+-(void)setAdjustPickerLabelFontSizeWidth:(BOOL)adjustPickerLabelFontSizeWidth {
+    _adjustPickerLabelFontSizeWidth = adjustPickerLabelFontSizeWidth;
+    
     [self _updateOptionsList];
 }
 
