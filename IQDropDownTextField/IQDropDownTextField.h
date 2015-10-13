@@ -67,7 +67,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 @protocol IQDropDownTextFieldDelegate <UITextFieldDelegate>
 
 @optional
--(void)textField:(IQDropDownTextField*)textField didSelectItem:(NSString*)item; //Called when textField changes it's selected item.
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item; //Called when textField changes it's selected item.
 
 @end
 
@@ -77,7 +77,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
  */
 @interface IQDropDownTextField : UITextField
 
-@property(nonatomic,assign) id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
+@property(nullable, nonatomic,assign) id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
 
 /**
  DropDownMode style to show in picker. Default is IQDropDownModeTextPicker.
@@ -87,13 +87,22 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /**
  Label for the optional iten if isOptionalDropDown is YES. Default is Select.
  */
-@property (nonatomic, copy) NSString *optionalItemLabel;
+@property (nullable, nonatomic, copy) NSString *optionalItemLabel;
 
 /**
  If YES then it will add a optionalItemLabel item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
  */
 @property (nonatomic, assign) BOOL isOptionalDropDown;
 
+/**
+ Use selectedItem property to get/set dropdown text.
+ */
+@property(nullable, nonatomic,copy)   NSString               *text NS_DEPRECATED_IOS(3_0, 5_0, "Please use selectedItem property to get/set dropdown selected text instead");
+
+/**
+ attributedText is unavailable in IQDropDownTextField.
+ */
+@property(nullable, nonatomic,copy)   NSAttributedString     *attributedText NS_UNAVAILABLE;
 
 ///----------------------
 /// @name Title Selection
@@ -102,12 +111,12 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /**
  Selected item of pickerView.
  */
-@property (nonatomic, copy) NSString *selectedItem;
+@property (nullable, nonatomic, copy) NSString *selectedItem;
 
 /**
  Set selected item of pickerView.
  */
-- (void)setSelectedItem:(NSString*)selectedItem animated:(BOOL)animated;
+- (void)setSelectedItem:(nullable NSString*)selectedItem animated:(BOOL)animated;
 
 
 ///-------------------------------
@@ -117,7 +126,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /**
  Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]
  */
-@property (nonatomic, copy) NSArray *itemList;
+@property (nonnull, nonatomic, copy) NSArray *itemList;
 
 /**
  Selected row index of selected item.
@@ -137,17 +146,17 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /**
  Selected date in UIDatePicker.
  */
-@property(nonatomic, copy) NSDate *date;
+@property(nullable, nonatomic, copy) NSDate *date;
 
 /**
  Select date in UIDatePicker.
  */
-- (void)setDate:(NSDate *)date animated:(BOOL)animated;
+- (void)setDate:(nullable NSDate *)date animated:(BOOL)animated;
 
 /**
  DateComponents for date picker.
  */
-@property (nonatomic, readonly, copy) NSDateComponents *dateComponents;
+@property (nullable, nonatomic, readonly, copy) NSDateComponents *dateComponents;
 
 /**
  year
@@ -192,17 +201,17 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /**
  Minimum selectable date in UIDatePicker. Default is nil.
  */
-@property (nonatomic, retain) NSDate *minimumDate;
+@property (nullable, nonatomic, retain) NSDate *minimumDate;
 
 /**
  Maximum selectable date in UIDatePicker. Default is nil.
  */
-@property (nonatomic, retain) NSDate *maximumDate;
+@property (nullable, nonatomic, retain) NSDate *maximumDate;
 
 /**
  Date formatter to show date as text in textField.
  */
-@property (nonatomic, retain) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
+@property (nullable, nonatomic, retain) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
 
 
 ///-------------------------------
@@ -212,6 +221,6 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 /**
  Time formatter to show time as text in textField.
  */
-@property (nonatomic, retain) NSDateFormatter *timeFormatter;
+@property (nullable, nonatomic, retain) NSDateFormatter *timeFormatter;
 
 @end
