@@ -77,7 +77,7 @@
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
 	
-	self.optionalItemLabel = NSLocalizedString(@"Select", nil);
+	self.optionalItemText = NSLocalizedString(@"Select", nil);
 	
     if ([[[self class] appearance] dateFormatter])
     {
@@ -120,7 +120,11 @@
 
 - (CGRect)caretRectForPosition:(UITextPosition *)position
 {
-    return CGRectZero;
+    if (self.dropDownMode == IQDropDownModeTextField) {
+        return [super caretRectForPosition:position];
+    } else {
+        return CGRectZero;
+    }
 }
 
 #pragma mark - UIPickerView data source
@@ -244,6 +248,11 @@
             }
         }
             break;
+        case IQDropDownModeTextField:
+        {
+            self.inputView = nil;
+        }
+            break;
         default:
             break;
     }
@@ -357,6 +366,10 @@
             }
             break;
         }
+        case IQDropDownModeTextField:{
+            self.text = selectedItem;
+        }
+        break;
     }
 }
 
@@ -404,11 +417,23 @@
     self.timePicker.maximumDate = maximumDate;
 }
 
-- (void) setOptionalItemLabel:(NSString *)optionalItemLabel
+-(NSString *)optionalItemText
 {
-	_optionalItemLabel = [optionalItemLabel copy];
+    if (_optionalItemText.length)
+    {
+        return _optionalItemText;
+    }
+    else
+    {
+        return NSLocalizedString(@"Select", nil);
+    }
+}
 
-	[self _updateOptionsList];
+-(void)setOptionalItemText:(NSString *)optionalItemText
+{
+    _optionalItemText = [optionalItemText copy];
+
+    [self _updateOptionsList];
 }
 
 -(void)setIsOptionalDropDown:(BOOL)isOptionalDropDown
@@ -421,7 +446,7 @@
 - (void) _updateOptionsList {
 	if (_isOptionalDropDown)
 	{
-		NSArray *array = [NSArray arrayWithObject:self.optionalItemLabel];
+		NSArray *array = [NSArray arrayWithObject:self.optionalItemText];
 		_ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
 		[self.pickerView reloadAllComponents];
 	}

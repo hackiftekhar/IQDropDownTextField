@@ -46,6 +46,7 @@ typedef enum IQDropDownMode {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
     IQDropDownModeDatePicker,
+    IQDropDownModeTextField
 }IQDropDownMode;
 
 #else
@@ -54,6 +55,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
     IQDropDownModeDatePicker,
+    IQDropDownModeTextField
 };
 
 #endif
