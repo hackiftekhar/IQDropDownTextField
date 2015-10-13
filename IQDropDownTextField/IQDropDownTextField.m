@@ -54,6 +54,7 @@
 @synthesize datePickerMode = _datePickerMode;
 @synthesize minimumDate = _minimumDate;
 @synthesize maximumDate = _maximumDate;
+@synthesize optionalItemText = _optionalItemText;
 
 @dynamic delegate;
 @dynamic text;
@@ -272,8 +273,28 @@
 {
     switch (self.dropDownMode)
     {
-        case IQDropDownModeDatePicker:  return  ([super.text length] || self.isOptionalDropDown)  ?   [self.datePicker.date copy]    :   nil;    break;
-        case IQDropDownModeTimePicker:  return  ([super.text length] || self.isOptionalDropDown)  ?   [self.timePicker.date copy]    :   nil;    break;
+        case IQDropDownModeDatePicker:
+        {
+            if (self.isOptionalDropDown)
+            {
+                return  [super.text length]  ?   [self.datePicker.date copy]    :   nil;    break;
+            }
+            else
+            {
+                return [self.datePicker.date copy];
+            }
+        }
+        case IQDropDownModeTimePicker:
+        {
+            if (self.isOptionalDropDown)
+            {
+                return  [super.text length]  ?   [self.timePicker.date copy]    :   nil;    break;
+            }
+            else
+            {
+                return [self.timePicker.date copy];
+            }
+        }
         default:                        return  nil;                     break;
     }
 }
@@ -367,7 +388,7 @@
             break;
         }
         case IQDropDownModeTextField:{
-            self.text = selectedItem;
+            super.text = selectedItem;
         }
         break;
     }
