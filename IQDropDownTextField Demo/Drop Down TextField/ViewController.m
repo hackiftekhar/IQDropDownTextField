@@ -28,6 +28,7 @@
     textFieldDatePicker.inputAccessoryView = toolbar;
     textFieldTextPicker.inputAccessoryView = toolbar;
     textFieldTimePicker.inputAccessoryView = toolbar;
+    textFieldDateTimePicker.inputAccessoryView = toolbar;
     textFieldOptionalTextPicker.inputAccessoryView = toolbar;
     
     textFieldTextPicker.isOptionalDropDown = NO;
@@ -37,6 +38,8 @@
     [textFieldDatePicker setDropDownMode:IQDropDownModeDatePicker];
     
     [textFieldTimePicker setDropDownMode:IQDropDownModeTimePicker];
+    
+    [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 

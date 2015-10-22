@@ -46,6 +46,7 @@ typedef enum IQDropDownMode {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
     IQDropDownModeDatePicker,
+    IQDropDownModeDateTimePicker,
     IQDropDownModeTextField
 }IQDropDownMode;
 
@@ -55,6 +56,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
     IQDropDownModeDatePicker,
+    IQDropDownModeDateTimePicker,
     IQDropDownModeTextField
 };
 
@@ -224,5 +226,7 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
  Time formatter to show time as text in textField.
  */
 @property (nullable, nonatomic, retain) NSDateFormatter *timeFormatter;
+
+@property (nullable, nonatomic, retain) NSDateFormatter *dropDownDateTimeFormater;
 
 @end
