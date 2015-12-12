@@ -50,6 +50,12 @@ typedef enum IQDropDownMode {
     IQDropDownModeTextField
 }IQDropDownMode;
 
+typedef enum IQProposedSelection {
+    IQProposedSelectionBoth,
+    IQProposedSelectionTop,
+    IQProposedSelectionBottom
+}IQDropDownMode;
+
 #else
 
 typedef NS_ENUM(NSInteger, IQDropDownMode) {
@@ -58,6 +64,12 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeDatePicker,
     IQDropDownModeDateTimePicker,
     IQDropDownModeTextField
+};
+
+typedef NS_ENUM(NSInteger, IQProposedSelection) {
+    IQProposedSelectionBoth,
+    IQProposedSelectionAbove,
+    IQProposedSelectionBelow
 };
 
 #endif
@@ -77,11 +89,27 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
 
 
 /**
+ Drop down text field data source. This is only valid for IQDropDownModeTextField mode
+ */
+@protocol IQDropDownTextFieldDataSource <NSObject>
+
+@optional
+-(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nullable NSString*)item;    //Check if an item can be selected by dropdown texField.
+-(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nullable NSString*)item;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
+//IQProposedSelectionAbove: pickerView find the nearest items above the deselected item that can be selected and then selecting that row.
+//IQProposedSelectionBelow: pickerView find the nearest items below the deselected item that can be selected and then selecting that row.
+//IQProposedSelectionBoth: pickerView find the nearest items that can be selected above or below the deselected item and then selecting that row.
+
+@end
+
+
+/**
  Add a UIPickerView as inputView
  */
 @interface IQDropDownTextField : UITextField
 
-@property(nullable, nonatomic,assign) id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
+@property(nullable, nonatomic,weak) id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
+@property(nullable, nonatomic,weak) id<IQDropDownTextFieldDataSource> dataSource;             // default is nil. weak reference
 
 /**
  DropDownMode style to show in picker. Default is IQDropDownModeTextPicker.

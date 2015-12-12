@@ -152,11 +152,20 @@
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    UILabel *labelText = [[UILabel alloc] init];
-    [labelText setTextAlignment:NSTextAlignmentCenter];
-    [labelText setAdjustsFontSizeToFitWidth:YES];
-    [labelText setText:[_ItemListsInternal objectAtIndex:row]];
-    labelText.backgroundColor = [UIColor clearColor];
+    UILabel *labelText = (UILabel*)view;
+    
+    if (labelText == nil)
+    {
+        labelText = [[UILabel alloc] init];
+        [labelText setTextAlignment:NSTextAlignmentCenter];
+        [labelText setAdjustsFontSizeToFitWidth:YES];
+        labelText.backgroundColor = [UIColor clearColor];
+        labelText.backgroundColor = [UIColor clearColor];
+    }
+
+    NSString *text = [_ItemListsInternal objectAtIndex:row];
+    
+    [labelText setText:text];
     
     if (self.isOptionalDropDown && row == 0)
     {
@@ -166,7 +175,23 @@
     else
     {
         labelText.font = [UIFont boldSystemFontOfSize:18.0];
-        labelText.textColor = [UIColor blackColor];
+        
+        BOOL canSelect = YES;
+        
+        if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
+        {
+            canSelect = [self.dataSource textField:self canSelectItem:text];
+        }
+
+        if (canSelect)
+        {
+            labelText.textColor = [UIColor blackColor];
+        }
+        else
+        {
+            labelText.textColor = [UIColor lightGrayColor];
+        }
+        
         labelText.adjustsFontSizeToFitWidth = self.adjustPickerLabelFontSizeWidth;
     }
     return labelText;
@@ -174,7 +199,72 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    [self setSelectedItem:[_ItemListsInternal objectAtIndex:row]];
+    NSString *text = [_ItemListsInternal objectAtIndex:row];
+    
+    BOOL canSelect = YES;
+    
+    if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
+    {
+        canSelect = [self.dataSource textField:self canSelectItem:text];
+    }
+
+    if (canSelect)
+    {
+        [self setSelectedItem:[_ItemListsInternal objectAtIndex:row]];
+    }
+    else
+    {
+        IQProposedSelection proposedSelection = IQProposedSelectionBoth;
+        
+        if ([self.dataSource respondsToSelector:@selector(textField:proposedSelectionModeForItem:)])
+        {
+            proposedSelection = [self.dataSource textField:self proposedSelectionModeForItem:text];
+        }
+        
+        NSInteger aboveIndex = row-1;
+        NSInteger belowIndex = row+1;
+        
+        if (proposedSelection == IQProposedSelectionAbove)
+        {
+            belowIndex = _ItemListsInternal.count;
+        }
+        else if (proposedSelection == IQProposedSelectionBelow)
+        {
+            aboveIndex = -1;
+        }
+
+        
+        while (aboveIndex >= 0 || belowIndex < _ItemListsInternal.count)
+        {
+            if (aboveIndex >= 0)
+            {
+                NSString *aboveText = [_ItemListsInternal objectAtIndex:aboveIndex];
+
+                if ([self.dataSource textField:self canSelectItem:aboveText])
+                {
+                    [self setSelectedItem:aboveText animated:YES];
+                    return;
+                }
+
+                aboveIndex--;
+            }
+            
+            if (belowIndex < _ItemListsInternal.count)
+            {
+                NSString *belowText = [_ItemListsInternal objectAtIndex:aboveIndex];
+
+                if ([self.dataSource textField:self canSelectItem:belowText])
+                {
+                    [self setSelectedItem:belowText animated:YES];
+                    return;
+                }
+
+                belowIndex++;
+            }
+        }
+        
+        return [self setSelectedRow:0 animated:YES];
+    }
 }
 
 #pragma mark - UIDatePicker delegate
