@@ -580,6 +580,7 @@
     
     self.datePicker.minimumDate = minimumDate;
     self.timePicker.minimumDate = minimumDate;
+    self.dateTimePicker.minimumDate = minimumDate;
 }
 
 -(void)setMaximumDate:(NSDate *)maximumDate
@@ -588,6 +589,7 @@
     
     self.datePicker.maximumDate = maximumDate;
     self.timePicker.maximumDate = maximumDate;
+    self.dateTimePicker.maximumDate = maximumDate;
 }
 
 -(NSString *)optionalItemText
@@ -692,7 +694,6 @@
 {
 	if (!_timePicker)
 	{
-		_timePicker = [[UIDatePicker alloc] init];
 		_timePicker = [[UIDatePicker alloc] init];
 		[_timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
 		[_timePicker setDatePickerMode:UIDatePickerModeTime];
