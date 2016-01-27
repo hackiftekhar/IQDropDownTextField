@@ -70,8 +70,8 @@
 #pragma mark - NSObject
 
 - (void)dealloc {
-    [self.pickerView setDelegate:nil];
-    [self.pickerView setDataSource:nil];
+    [_pickerView setDelegate:nil];
+    [_pickerView setDataSource:nil];
 }
 
 #pragma mark - Initialization
