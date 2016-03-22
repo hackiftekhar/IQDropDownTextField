@@ -321,6 +321,18 @@
 }
 
 #pragma mark - Setters
+
+-(void)setText:(NSString *)text
+{
+    //Checking if the set value is available in the options list or not
+    if ([_itemList containsObject:text]) {
+        _selectedItem = text;
+        super.text = text;
+    }
+    else @throw [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"Externally setting  a value  which is not in the item list.Please check the value you are setting %@ in %@", NSStringFromSelector(_cmd),NSStringFromClass([self class])]
+                                     userInfo:nil];
+}
+
 - (void)setDropDownMode:(IQDropDownMode)dropDownMode
 {
     _dropDownMode = dropDownMode;
