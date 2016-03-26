@@ -42,9 +42,6 @@
 @property (nonatomic, strong) NSDateFormatter *dropDownDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *dropDownTimeFormatter;
 
-- (void)dateChanged:(UIDatePicker *)dPicker;
-- (void)timeChanged:(UIDatePicker *)tPicker;
-
 @end
 
 @implementation IQDropDownTextField
@@ -72,6 +69,20 @@
 - (void)dealloc {
     [_pickerView setDelegate:nil];
     [_pickerView setDataSource:nil];
+    [_datePicker removeTarget:nil action:NULL forControlEvents:UIControlEventValueChanged];
+    [_timePicker removeTarget:nil action:NULL forControlEvents:UIControlEventValueChanged];
+    [_dateTimePicker removeTarget:nil action:NULL forControlEvents:UIControlEventValueChanged];
+    _pickerView = nil;
+    _datePicker = nil;
+    _dateTimePicker = nil;
+    dropDownDateFormatter = nil;
+    dropDownTimeFormatter = nil;
+    _ItemListsInternal = nil;
+    self.delegate = nil;
+    _dataSource = nil;
+    _optionalItemText = nil;
+    _selectedItem = nil;
+    _itemList = nil;
 }
 
 #pragma mark - Initialization
@@ -210,7 +221,7 @@
 
     if (canSelect)
     {
-        [self setSelectedItem:[_ItemListsInternal objectAtIndex:row]];
+        [self setSelectedItem:[_ItemListsInternal objectAtIndex:row] animated:NO shouldNotifyDelegate:YES];
     }
     else
     {
@@ -242,7 +253,7 @@
 
                 if ([self.dataSource textField:self canSelectItem:aboveText])
                 {
-                    [self setSelectedItem:aboveText animated:YES];
+                    [self setSelectedItem:aboveText animated:YES shouldNotifyDelegate:YES];
                     return;
                 }
 
@@ -255,7 +266,7 @@
 
                 if ([self.dataSource textField:self canSelectItem:belowText])
                 {
-                    [self setSelectedItem:belowText animated:YES];
+                    [self setSelectedItem:belowText animated:YES shouldNotifyDelegate:YES];
                     return;
                 }
 
@@ -271,17 +282,17 @@
 
 - (void)dateChanged:(UIDatePicker *)dPicker
 {
-    [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:dPicker.date]];
+    [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:dPicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
 - (void)timeChanged:(UIDatePicker *)tPicker
 {
-    [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:tPicker.date]];
+    [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:tPicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
 - (void)dateTimeChanged:(UIDatePicker *)dtPicker
 {
-    [self setSelectedItem:[self.dropDownDateTimeFormater stringFromDate:dtPicker.date]];
+    [self setSelectedItem:[self.dropDownDateTimeFormater stringFromDate:dtPicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
 #pragma mark - Selected Row
@@ -434,13 +445,13 @@
     switch (_dropDownMode)
     {
         case IQDropDownModeDatePicker:
-            [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:date] animated:animated];
+            [self setSelectedItem:[self.dropDownDateFormatter stringFromDate:date] animated:animated shouldNotifyDelegate:NO];
             break;
         case IQDropDownModeTimePicker:
-            [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:date] animated:animated];
+            [self setSelectedItem:[self.dropDownTimeFormatter stringFromDate:date] animated:animated shouldNotifyDelegate:NO];
             break;
         case IQDropDownModeDateTimePicker:
-            [self setSelectedItem:[self.dropDownDateTimeFormater stringFromDate:date] animated:animated];
+            [self setSelectedItem:[self.dropDownDateTimeFormater stringFromDate:date] animated:animated shouldNotifyDelegate:NO];
             break;
         default:
             break;
@@ -467,10 +478,15 @@
 
 -(void)setSelectedItem:(NSString *)selectedItem
 {
-    [self setSelectedItem:selectedItem animated:NO];
+    [self setSelectedItem:selectedItem animated:NO shouldNotifyDelegate:NO];
 }
 
 -(void)setSelectedItem:(NSString *)selectedItem animated:(BOOL)animated
+{
+    [self setSelectedItem:selectedItem animated:animated shouldNotifyDelegate:NO];
+}
+
+-(void)setSelectedItem:(NSString *)selectedItem animated:(BOOL)animated shouldNotifyDelegate:(BOOL)shouldNotifyDelegate
 {
     switch (_dropDownMode)
     {
@@ -481,7 +497,7 @@
                 
                 [self setSelectedRow:[_ItemListsInternal indexOfObject:selectedItem] animated:animated];
                 
-                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
             }
             break;
@@ -494,7 +510,7 @@
                 super.text = selectedItem;
                 [self.datePicker setDate:date animated:animated];
                 
-                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
             }
             else if ([selectedItem length])
@@ -512,7 +528,7 @@
                 super.text = selectedItem;
                 [self.timePicker setDate:date animated:animated];
                 
-                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
             }
             else if([selectedItem length])
@@ -530,7 +546,7 @@
                 super.text = selectedItem;
                 [self.timePicker setDate:date animated:animated];
                 
-                if ([self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
+                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:_selectedItem];
             }
             else if([selectedItem length])

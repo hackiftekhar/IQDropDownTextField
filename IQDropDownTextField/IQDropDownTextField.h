@@ -108,8 +108,8 @@ typedef NS_ENUM(NSInteger, IQProposedSelection) {
  */
 @interface IQDropDownTextField : UITextField
 
-@property(nullable, nonatomic,weak) id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
-@property(nullable, nonatomic,weak) id<IQDropDownTextFieldDataSource> dataSource;             // default is nil. weak reference
+@property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
+@property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDataSource> dataSource;             // default is nil. weak reference
 
 /**
  DropDownMode style to show in picker. Default is IQDropDownModeTextPicker.
@@ -119,12 +119,12 @@ typedef NS_ENUM(NSInteger, IQProposedSelection) {
 /**
  Label for the optional iten if isOptionalDropDown is YES. Default is Select.
  */
-@property (nullable, nonatomic, copy) NSString *optionalItemText;
+@property (nullable, nonatomic, copy) IBInspectable NSString *optionalItemText;
 
 /**
  If YES then it will add a optionalItemLabel item at top of dropDown list. If NO then first field will automatically be selected. Default is YES
  */
-@property (nonatomic, assign) BOOL isOptionalDropDown;
+@property (nonatomic, assign) IBInspectable BOOL isOptionalDropDown;
 
 /**
  Use selectedItem property to get/set dropdown text.
@@ -158,7 +158,7 @@ typedef NS_ENUM(NSInteger, IQProposedSelection) {
 /**
  Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]
  */
-@property (nonnull, nonatomic, copy) NSArray *itemList;
+@property (nonnull, nonatomic, copy) NSArray <NSString*> *itemList;
 
 /**
  Selected row index of selected item.
@@ -168,7 +168,7 @@ typedef NS_ENUM(NSInteger, IQProposedSelection) {
 /**
  Defines Picker labels fontSizeAdjustment by width. Default is NO
  */
-@property (nonatomic, assign) BOOL adjustPickerLabelFontSizeWidth;
+@property (nonatomic, assign) IBInspectable BOOL adjustPickerLabelFontSizeWidth;
 
 /**
  Select row index of selected item.
