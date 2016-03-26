@@ -40,9 +40,6 @@
     [textFieldTimePicker setDropDownMode:IQDropDownModeTimePicker];
     
     [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
-    // For test minimumDate
-    textFieldDateTimePicker.minimumDate = [NSDate date];
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)doneClicked:(UIBarButtonItem*)button
