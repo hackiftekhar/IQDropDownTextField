@@ -74,6 +74,11 @@ typedef NS_ENUM(NSInteger, IQProposedSelection) {
 
 #endif
 
+/**
+ Integer constant to use with `selectedRow` property, this will select `Select` option in optional textField.
+ */
+extern NSInteger const IQOptionalTextFieldIndex;
+
 
 @class IQDropDownTextField;
 

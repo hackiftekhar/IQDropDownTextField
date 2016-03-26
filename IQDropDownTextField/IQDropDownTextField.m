@@ -28,6 +28,7 @@
 #define NSTextAlignmentCenter UITextAlignmentCenter
 #endif
 
+NSInteger const IQOptionalTextFieldIndex =  -1;
 
 @interface IQDropDownTextField () <UIPickerViewDelegate, UIPickerViewDataSource>
 {
@@ -316,18 +317,25 @@
 
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated
 {
-    if (row < [_ItemListsInternal count])
+    if (row < [_itemList count])
     {
-        if (self.isOptionalDropDown && row == 0)
+        if (self.isOptionalDropDown)
         {
-            super.text = @"";
+            if (row == IQOptionalTextFieldIndex)
+            {
+                super.text = @"";
+            }
+            else
+            {
+                super.text = [_itemList objectAtIndex:row];
+            }
+            [self.pickerView selectRow:row+1 inComponent:0 animated:animated];
         }
         else
         {
-            super.text = [_ItemListsInternal objectAtIndex:row];
+            super.text = [_itemList objectAtIndex:row];
+            [self.pickerView selectRow:row inComponent:0 animated:animated];
         }
-        
-        [self.pickerView selectRow:row inComponent:0 animated:animated];
     }
 }
 
