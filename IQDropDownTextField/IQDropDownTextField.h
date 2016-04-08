@@ -161,9 +161,14 @@ extern NSInteger const IQOptionalTextFieldIndex;
 ///-------------------------------
 
 /**
- Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]
+ Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]. This field must be set.
  */
 @property (nonnull, nonatomic, copy) NSArray <NSString*> *itemList;
+
+/**
+ If this is set then we'll show textfield's text from this list instead from regular itemList. This is only for showing different messaging in textfield's text. This itemListUI array must be identical to itemList array.
+ */
+@property (nonnull, nonatomic, copy) NSArray <NSString*> *itemListUI;
 
 /**
  Selected row index of selected item.

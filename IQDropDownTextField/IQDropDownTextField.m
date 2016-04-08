@@ -328,13 +328,13 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             else
             {
                 
-                super.text = (row == 0) ? @"" : [_itemList objectAtIndex:row-1];
+                super.text = (row == 0) ? @"" : [_itemListUI objectAtIndex:row-1];
             }
             [self.pickerView selectRow:row inComponent:0 animated:animated];
         }
         else
         {
-            super.text = [_itemList objectAtIndex:row];
+            super.text = [_itemListUI objectAtIndex:row];
             [self.pickerView selectRow:row inComponent:0 animated:animated];
         }
     }

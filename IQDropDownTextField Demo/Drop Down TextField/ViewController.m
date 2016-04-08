@@ -33,7 +33,9 @@
     
     textFieldTextPicker.isOptionalDropDown = NO;
     [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
-    [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+
+    [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil]];
+    [textFieldOptionalTextPicker setItemListUI:[NSArray arrayWithObjects:@"1 Year Old",@"2 Years Old",@"3 Years Old",@"4 Years Old",@"5 Years Old",@"6 Years Old", nil]];
 
     [textFieldDatePicker setDropDownMode:IQDropDownModeDatePicker];
     
@@ -44,18 +46,18 @@
 
 -(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item
 {
-    NSLog(@"%@: %@",textField,NSStringFromSelector(_cmd));
+    NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
 }
 
 -(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nullable NSString*)item
 {
-    NSLog(@"%@: %@",textField,NSStringFromSelector(_cmd));
+    NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
     return YES;
 }
 
 -(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nullable NSString*)item
 {
-    NSLog(@"%@: %@",textField,NSStringFromSelector(_cmd));
+    NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
     return IQProposedSelectionBoth;
 }
 
