@@ -92,9 +92,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 {
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-	
-	self.optionalItemText = NSLocalizedString(@"Select", nil);
-	
+    
+    self.optionalItemText = NSLocalizedString(@"Select", nil);
+    
     if ([[[self class] appearance] dateFormatter])
     {
         self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
@@ -115,7 +115,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     self.dropDownDateTimeFormater = [[NSDateFormatter alloc] init];
     [self.dropDownDateTimeFormater setDateStyle:NSDateFormatterMediumStyle];
     [self.dropDownDateTimeFormater setTimeStyle:NSDateFormatterShortStyle];
-	
+    
     [self setDropDownMode:IQDropDownModeTextPicker];
     [self setIsOptionalDropDown:YES];
     [self setAdjustPickerLabelFontSizeWidth:NO];
@@ -174,7 +174,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         labelText.backgroundColor = [UIColor clearColor];
         labelText.backgroundColor = [UIColor clearColor];
     }
-
+    
     NSString *text = [_ItemListsInternal objectAtIndex:row];
     
     [labelText setText:text];
@@ -194,7 +194,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         {
             canSelect = [self.dataSource textField:self canSelectItem:text];
         }
-
+        
         if (canSelect)
         {
             labelText.textColor = [UIColor blackColor];
@@ -219,7 +219,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     {
         canSelect = [self.dataSource textField:self canSelectItem:text];
     }
-
+    
     if (canSelect)
     {
         [self setSelectedItem:[_ItemListsInternal objectAtIndex:row] animated:NO shouldNotifyDelegate:YES];
@@ -244,33 +244,33 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         {
             aboveIndex = -1;
         }
-
+        
         
         while (aboveIndex >= 0 || belowIndex < _ItemListsInternal.count)
         {
             if (aboveIndex >= 0)
             {
                 NSString *aboveText = [_ItemListsInternal objectAtIndex:aboveIndex];
-
+                
                 if ([self.dataSource textField:self canSelectItem:aboveText])
                 {
                     [self setSelectedItem:aboveText animated:YES shouldNotifyDelegate:YES];
                     return;
                 }
-
+                
                 aboveIndex--;
             }
             
             if (belowIndex < _ItemListsInternal.count)
             {
                 NSString *belowText = [_ItemListsInternal objectAtIndex:aboveIndex];
-
+                
                 if ([self.dataSource textField:self canSelectItem:belowText])
                 {
                     [self setSelectedItem:belowText animated:YES shouldNotifyDelegate:YES];
                     return;
                 }
-
+                
                 belowIndex++;
             }
         }
@@ -317,7 +317,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated
 {
-    if (row < [_itemList count])
+    if (row < [_itemList count]+1)
     {
         if (self.isOptionalDropDown)
         {
@@ -327,9 +327,10 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             }
             else
             {
-                super.text = [_itemList objectAtIndex:row];
+                
+                super.text = (row == 0) ? @"" : [_itemList objectAtIndex:row-1];
             }
-            [self.pickerView selectRow:row+1 inComponent:0 animated:animated];
+            [self.pickerView selectRow:row inComponent:0 animated:animated];
         }
         else
         {
@@ -365,7 +366,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         case IQDropDownModeTimePicker:
         {
             self.inputView = self.timePicker;
-        
+            
             if (self.isOptionalDropDown == NO)
             {
                 [self setDate:self.timePicker.date];
@@ -566,7 +567,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         case IQDropDownModeTextField:{
             super.text = selectedItem;
         }
-        break;
+            break;
     }
 }
 
@@ -631,7 +632,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 -(void)setOptionalItemText:(NSString *)optionalItemText
 {
     _optionalItemText = [optionalItemText copy];
-
+    
     [self _updateOptionsList];
 }
 
@@ -649,53 +650,53 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 {
     _isOptionalDropDown = isOptionalDropDown;
     
-	[self _updateOptionsList];
+    [self _updateOptionsList];
 }
 
 - (void) _updateOptionsList {
-	if (_isOptionalDropDown)
-	{
-		NSArray *array = [NSArray arrayWithObject:self.optionalItemText];
-		_ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
-		[self.pickerView reloadAllComponents];
-	}
-	else
-	{
-		_ItemListsInternal = [_itemList copy];
-		
-		switch (self.dropDownMode)
-		{
-			case IQDropDownModeDatePicker:
-			{
-				[self setDate:self.datePicker.date];
-			}
-				break;
-			case IQDropDownModeTimePicker:
-			{
-				[self setDate:self.timePicker.date];
-			}
-				break;
+    if (_isOptionalDropDown)
+    {
+        NSArray *array = [NSArray arrayWithObject:self.optionalItemText];
+        _ItemListsInternal = [array arrayByAddingObjectsFromArray:_itemList];
+        [self.pickerView reloadAllComponents];
+    }
+    else
+    {
+        _ItemListsInternal = [_itemList copy];
+        
+        switch (self.dropDownMode)
+        {
+            case IQDropDownModeDatePicker:
+            {
+                [self setDate:self.datePicker.date];
+            }
+                break;
+            case IQDropDownModeTimePicker:
+            {
+                [self setDate:self.timePicker.date];
+            }
+                break;
             case IQDropDownModeDateTimePicker:
             {
                 [self setDate:self.dateTimePicker.date];
             }
                 break;
-				
-			case IQDropDownModeTextPicker:
-			{
-				[self.pickerView reloadAllComponents];
-			}
-			default:
-				break;
-		}
-	}
+                
+            case IQDropDownModeTextPicker:
+            {
+                [self.pickerView reloadAllComponents];
+            }
+            default:
+                break;
+        }
+    }
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if (action == @selector(paste:) || action == @selector(cut:))
         return NO;
-
+    
     
     return [super canPerformAction:action withSender:sender];
 }
@@ -703,27 +704,27 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 #pragma mark - Getter
 
 - (UIPickerView *) pickerView {
-	if (!_pickerView)
-	{
-		_pickerView = [[UIPickerView alloc] init];
-		[_pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-		[_pickerView setShowsSelectionIndicator:YES];
-		[_pickerView setDelegate:self];
-		[_pickerView setDataSource:self];
-	}
-	return _pickerView;
+    if (!_pickerView)
+    {
+        _pickerView = [[UIPickerView alloc] init];
+        [_pickerView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+        [_pickerView setShowsSelectionIndicator:YES];
+        [_pickerView setDelegate:self];
+        [_pickerView setDataSource:self];
+    }
+    return _pickerView;
 }
 
 - (UIDatePicker *) timePicker
 {
-	if (!_timePicker)
-	{
-		_timePicker = [[UIDatePicker alloc] init];
-		[_timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-		[_timePicker setDatePickerMode:UIDatePickerModeTime];
-		[_timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
-	}
-	return _timePicker;
+    if (!_timePicker)
+    {
+        _timePicker = [[UIDatePicker alloc] init];
+        [_timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+        [_timePicker setDatePickerMode:UIDatePickerModeTime];
+        [_timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _timePicker;
 }
 
 - (UIDatePicker *) dateTimePicker
@@ -740,14 +741,14 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (UIDatePicker *) datePicker
 {
-	if (!_datePicker)
-	{
-		_datePicker = [[UIDatePicker alloc] init];
-		[_datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
-		[_datePicker setDatePickerMode:UIDatePickerModeDate];
-		[_datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
-	}
-	return _datePicker;
+    if (!_datePicker)
+    {
+        _datePicker = [[UIDatePicker alloc] init];
+        [_datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
+        [_datePicker setDatePickerMode:UIDatePickerModeDate];
+        [_datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _datePicker;
 }
 
 
