@@ -42,6 +42,33 @@
     [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
 }
 
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item
+{
+    NSLog(@"%@: %@",textField,NSStringFromSelector(_cmd));
+}
+
+-(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nullable NSString*)item
+{
+    NSLog(@"%@: %@",textField,NSStringFromSelector(_cmd));
+    return YES;
+}
+
+-(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nullable NSString*)item
+{
+    NSLog(@"%@: %@",textField,NSStringFromSelector(_cmd));
+    return IQProposedSelectionBoth;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+}
+
 -(void)doneClicked:(UIBarButtonItem*)button
 {
     [self.view endEditing:YES];
