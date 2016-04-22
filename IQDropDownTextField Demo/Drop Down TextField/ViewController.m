@@ -49,6 +49,11 @@
     NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
 }
 
+-(void)textField:(IQDropDownTextField *)textField didSelectDate:(NSDate *)date
+{
+    NSLog(@"%@: %@",NSStringFromSelector(_cmd),date);
+}
+
 -(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nullable NSString*)item
 {
     NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
