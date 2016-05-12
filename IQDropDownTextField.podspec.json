@@ -1,6 +1,6 @@
 {
     "name": "IQDropDownTextField",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "summary": "TextField with DropDown support using UIPickerView",
     "homepage": "https://github.com/hackiftekhar/IQDropDownTextField",
     "license": "MIT",
@@ -12,7 +12,7 @@
     },
     "source": {
         "git": "https://github.com/hackiftekhar/IQDropDownTextField.git",
-        "tag": "v1.0.9"
+        "tag": "v1.1.0"
     },
     "source_files": [
                      "IQDropDownTextField/*.{h,m}"
