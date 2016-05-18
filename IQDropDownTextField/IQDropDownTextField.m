@@ -735,9 +735,10 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
-    if (action == @selector(paste:) || action == @selector(cut:))
+    BOOL isRestrictedAction = (action == @selector(paste:) || action == @selector(cut:));
+    if (isRestrictedAction && self.dropDownMode != IQDropDownModeTextField) {
         return NO;
-    
+    }
     
     return [super canPerformAction:action withSender:sender];
 }
