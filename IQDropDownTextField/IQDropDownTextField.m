@@ -434,7 +434,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             }
             else
             {
-                return [self.timePicker.date copy];
+                return [self.dateTimePicker.date copy];
             }
         }
         default:                        return  nil;                     break;
