@@ -33,6 +33,14 @@
     
     textFieldTextPicker.isOptionalDropDown = NO;
     [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+    
+    /*  
+        Uncomment the following lines to set a custom font or text color for the items, as well as a custom text color for
+        the optional item.
+     */
+//    textFieldTextPicker.font = [UIFont fontWithName:@"Montserrat-Regular" size:16];
+//    textFieldTextPicker.textColor = [UIColor redColor];
+//    textFieldTextPicker.optionalItemTextColor = [UIColor brownColor];
 
     [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil]];
     [textFieldOptionalTextPicker setItemListUI:[NSArray arrayWithObjects:@"1 Year Old",@"2 Years Old",@"3 Years Old",@"4 Years Old",@"5 Years Old",@"6 Years Old", nil]];
