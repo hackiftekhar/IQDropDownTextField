@@ -56,8 +56,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 @synthesize optionalItemText = _optionalItemText;
 @synthesize adjustPickerLabelFontSizeWidth = _adjustPickerLabelFontSizeWidth;
 
-@synthesize font = _font;
-@synthesize textColor = _textColor;
+@synthesize dropDownFont = _dropDownFont;
+@synthesize dropDownTextColor = _dropDownTextColor;
 @synthesize optionalItemTextColor = _optionalItemTextColor;
 
 @dynamic delegate;
@@ -86,8 +86,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     _dataSource = nil;
     _optionalItemText = nil;
     _itemList = nil;
-    _font = nil;
-    _textColor = nil;
+    _dropDownFont = nil;
+    _dropDownTextColor = nil;
     _optionalItemTextColor = nil;
 }
 
@@ -186,11 +186,11 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     
     if (self.isOptionalDropDown && row == 0)
     {
-        if (_font) {
-            if (_font.pointSize < 30) {
-                labelText.font = [_font fontWithSize:30];
+        if (_dropDownFont) {
+            if (_dropDownFont.pointSize < 30) {
+                labelText.font = [_dropDownFont fontWithSize:30];
             } else {
-                labelText.font = _font;
+                labelText.font = _dropDownFont;
             }
         } else {
             labelText.font = [UIFont boldSystemFontOfSize:30.0];
@@ -199,8 +199,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
     else
     {
-        if (_font) {
-            labelText.font = _font;
+        if (_dropDownFont) {
+            labelText.font = _dropDownFont;
         } else {
             labelText.font = [UIFont boldSystemFontOfSize:18.0];
         }
@@ -214,8 +214,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         
         if (canSelect)
         {
-            if (_textColor) {
-                labelText.textColor = _textColor;
+            if (_dropDownTextColor) {
+                labelText.textColor = _dropDownTextColor;
             } else {
                 labelText.textColor = [UIColor blackColor];
             }

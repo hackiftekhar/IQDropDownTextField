@@ -146,12 +146,12 @@ extern NSInteger const IQOptionalTextFieldIndex;
 /**
  Sets a custom font for the IQDropdownTextField items. Default is boldSystemFontOfSize:18.0.
  */
-@property (nullable, strong, nonatomic) UIFont *font;
+@property (nullable, strong, nonatomic) UIFont *dropDownFont;
 
 /**
  Sets a custom color for the IQDropdownTextField items. Default is blackColor.
  */
-@property (nullable, strong, nonatomic) UIColor *textColor;
+@property (nullable, strong, nonatomic) UIColor *dropDownTextColor;
 
 /**
  Sets a custom color for the optional item. Default is lightGrayColor.
