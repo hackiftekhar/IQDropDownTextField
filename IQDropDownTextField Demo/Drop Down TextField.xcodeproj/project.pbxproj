@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39DD82711CFC666A0006FA8E /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39DD82701CFC666A0006FA8E /* Montserrat-Regular.otf */; };
 		9D3D1EE319F0103300884B68 /* IQDropDownTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D3D1EE219F0103300884B68 /* IQDropDownTextField.m */; };
 		E609C86A182ECB1D0058DB63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C869182ECB1D0058DB63 /* UIKit.framework */; };
 		E609C86C182ECB1D0058DB63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C86B182ECB1D0058DB63 /* Foundation.framework */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39DD82701CFC666A0006FA8E /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		9D3D1EE119F0103300884B68 /* IQDropDownTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQDropDownTextField.h; sourceTree = "<group>"; };
 		9D3D1EE219F0103300884B68 /* IQDropDownTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQDropDownTextField.m; sourceTree = "<group>"; };
 		E609C865182ECB1D0058DB63 /* Drop Down TextField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drop Down TextField.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39DD826D1CFC65FE0006FA8E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				39DD82701CFC666A0006FA8E /* Montserrat-Regular.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		9D3D1EE019F0103300884B68 /* IQDropDownTextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +120,7 @@
 		E609C870182ECB1D0058DB63 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39DD826D1CFC65FE0006FA8E /* Fonts */,
 				E609C871182ECB1D0058DB63 /* Drop Down TextField-Info.plist */,
 				E609C872182ECB1D0058DB63 /* InfoPlist.strings */,
 				E609C875182ECB1D0058DB63 /* main.m */,
@@ -177,6 +188,7 @@
 				E609C87E182ECB1D0058DB63 /* Default@2x.png in Resources */,
 				E609C880182ECB1D0058DB63 /* Default-568h@2x.png in Resources */,
 				E609C886182ECB1D0058DB63 /* ViewController.xib in Resources */,
+				39DD82711CFC666A0006FA8E /* Montserrat-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

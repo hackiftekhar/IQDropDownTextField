@@ -56,6 +56,10 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 @synthesize optionalItemText = _optionalItemText;
 @synthesize adjustPickerLabelFontSizeWidth = _adjustPickerLabelFontSizeWidth;
 
+@synthesize dropDownFont = _dropDownFont;
+@synthesize dropDownTextColor = _dropDownTextColor;
+@synthesize optionalItemTextColor = _optionalItemTextColor;
+
 @dynamic delegate;
 @dynamic text;
 @dynamic attributedText;
@@ -82,6 +86,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     _dataSource = nil;
     _optionalItemText = nil;
     _itemList = nil;
+    _dropDownFont = nil;
+    _dropDownTextColor = nil;
+    _optionalItemTextColor = nil;
 }
 
 #pragma mark - Initialization
@@ -179,12 +186,24 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     
     if (self.isOptionalDropDown && row == 0)
     {
-        labelText.font = [UIFont boldSystemFontOfSize:30.0];
-        labelText.textColor = [UIColor lightGrayColor];
+        if (_dropDownFont) {
+            if (_dropDownFont.pointSize < 30) {
+                labelText.font = [_dropDownFont fontWithSize:30];
+            } else {
+                labelText.font = _dropDownFont;
+            }
+        } else {
+            labelText.font = [UIFont boldSystemFontOfSize:30.0];
+        }
+        labelText.textColor = _optionalItemTextColor ? _optionalItemTextColor : [UIColor lightGrayColor];
     }
     else
     {
-        labelText.font = [UIFont boldSystemFontOfSize:18.0];
+        if (_dropDownFont) {
+            labelText.font = _dropDownFont;
+        } else {
+            labelText.font = [UIFont boldSystemFontOfSize:18.0];
+        }
         
         BOOL canSelect = YES;
         
@@ -195,7 +214,11 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         
         if (canSelect)
         {
-            labelText.textColor = [UIColor blackColor];
+            if (_dropDownTextColor) {
+                labelText.textColor = _dropDownTextColor;
+            } else {
+                labelText.textColor = [UIColor blackColor];
+            }
         }
         else
         {

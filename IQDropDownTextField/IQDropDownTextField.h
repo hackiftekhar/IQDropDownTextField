@@ -143,6 +143,22 @@ extern NSInteger const IQOptionalTextFieldIndex;
  */
 @property(nullable, nonatomic,copy)   NSAttributedString     *attributedText NS_UNAVAILABLE;
 
+/**
+ Sets a custom font for the IQDropdownTextField items. Default is boldSystemFontOfSize:18.0.
+ */
+@property (nullable, strong, nonatomic) UIFont *dropDownFont;
+
+/**
+ Sets a custom color for the IQDropdownTextField items. Default is blackColor.
+ */
+@property (nullable, strong, nonatomic) UIColor *dropDownTextColor;
+
+/**
+ Sets a custom color for the optional item. Default is lightGrayColor.
+ */
+@property (nullable, strong, nonatomic) UIColor *optionalItemTextColor;
+
+
 ///----------------------
 /// @name Title Selection
 ///----------------------
