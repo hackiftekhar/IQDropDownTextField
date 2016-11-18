@@ -596,7 +596,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         }
         case IQDropDownModeTimePicker:
         {
-            NSDate *date = [self.dropDownTimeFormatter dateFromString:selectedItem];
+            NSDate *date = [self parseTime: selectedItem];
             if (date)
             {
                 super.text = selectedItem;
@@ -764,6 +764,20 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
     
     return [super canPerformAction:action withSender:sender];
+}
+
+- (NSDate *)parseTime:(NSString *)text {
+	NSDate *day = [NSDate dateWithTimeIntervalSinceNow: 0];
+	NSDate *time = [self.dropDownTimeFormatter dateFromString: text];
+
+	NSDateComponents *componentsDay = [[NSCalendar currentCalendar] components: NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate: day];
+	NSDateComponents *componentsTime = [[NSCalendar currentCalendar] components: NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate: time];
+	componentsDay.hour = componentsTime.hour;
+	componentsDay.minute = componentsTime.minute;
+	componentsDay.second = componentsTime.second;
+
+	return [[NSCalendar currentCalendar] dateFromComponents: componentsDay];
+
 }
 
 #pragma mark - Getter
