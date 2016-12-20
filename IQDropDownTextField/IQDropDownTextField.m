@@ -767,7 +767,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 }
 
 - (NSDate *)parseTime:(NSString *)text {
-	NSDate *day = [NSDate dateWithTimeIntervalSinceNow: 0];
+	NSDate *day = [NSDate dateWithTimeIntervalSinceReferenceDate: 0];
 	NSDate *time = [self.dropDownTimeFormatter dateFromString: text];
 
 	NSDateComponents *componentsDay = [[NSCalendar currentCalendar] components: NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate: day];
