@@ -88,9 +88,9 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @protocol IQDropDownTextFieldDelegate <UITextFieldDelegate>
 
 @optional
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item; //Called when textField changes it's selected item. Supported for IQDropDownModeTextPicker
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nonnull NSString*)item; //Called when textField changes it's selected item. Supported for IQDropDownModeTextPicker
 
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectDate:(nullable NSDate*)date; //Called when textField changes it's selected item. Supported for IQDropDownModeTimePicker, IQDropDownModeDatePicker, IQDropDownModeDateTimePicker
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectDate:(nonnull NSDate*)date; //Called when textField changes it's selected item. Supported for IQDropDownModeTimePicker, IQDropDownModeDatePicker, IQDropDownModeDateTimePicker
 
 @end
 
@@ -101,8 +101,8 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @protocol IQDropDownTextFieldDataSource <NSObject>
 
 @optional
--(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nullable NSString*)item;    //Check if an item can be selected by dropdown texField.
--(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nullable NSString*)item;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
+-(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nonnull NSString*)item;    //Check if an item can be selected by dropdown texField.
+-(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nonnull NSString*)item;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
 //IQProposedSelectionAbove: pickerView find the nearest items above the deselected item that can be selected and then selecting that row.
 //IQProposedSelectionBelow: pickerView find the nearest items below the deselected item that can be selected and then selecting that row.
 //IQProposedSelectionBoth: pickerView find the nearest items that can be selected above or below the deselected item and then selecting that row.
@@ -181,12 +181,17 @@ extern NSInteger const IQOptionalTextFieldIndex;
 /**
  Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]. This field must be set.
  */
-@property (nonnull, nonatomic, copy) NSArray <NSString*> *itemList;
+@property (nullable, nonatomic, copy) NSArray <NSString*> *itemList;
 
 /**
- If this is set then we'll show textfield's text from this list instead from regular itemList. This is only for showing different messaging in textfield's text. This itemListUI array must be identical to itemList array.
+ Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]. This field must be set.
  */
-@property (nonnull, nonatomic, copy) NSArray <NSString*> *itemListUI;
+@property (nullable, nonatomic, copy) NSArray <__kindof UIView*> *itemListView;
+
+/**
+ If this is set then we'll show textfield's text from this list instead from regular itemList. This is only for showing different messaging in textfield's text. This itemListUI array count must be equal to itemList array count.
+ */
+@property (nullable, nonatomic, copy) NSArray <NSString*> *itemListUI;
 
 /**
  Selected row index of selected item.

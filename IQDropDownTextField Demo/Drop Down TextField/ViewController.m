@@ -19,7 +19,7 @@
     [super viewDidLoad];
     
     UIToolbar *toolbar = [[UIToolbar alloc] init];
-    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
+//    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
     [toolbar sizeToFit];
     UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClicked:)];
@@ -32,7 +32,14 @@
     textFieldOptionalTextPicker.inputAccessoryView = toolbar;
     
     textFieldTextPicker.isOptionalDropDown = NO;
-    [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+    
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [indicator startAnimating];
+
+    UISwitch *aSwitch = [[UISwitch alloc] init];
+    
+    [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Mumbai",@"Tokyo",@"Sydney",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+    [textFieldTextPicker setItemListView:@[[NSNull null],indicator,[NSNull null],aSwitch,[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null]]];
     
     /*  
         Uncomment the following lines to set a custom font or text color for the items, as well as a custom text color for
@@ -52,7 +59,7 @@
     [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
 }
 
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nonnull NSString*)item
 {
     NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
 }

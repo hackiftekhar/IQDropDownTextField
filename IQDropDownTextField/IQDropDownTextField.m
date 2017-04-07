@@ -169,65 +169,76 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    UILabel *labelText = (UILabel*)view;
-    
-    if (labelText == nil)
+    if (_itemListView.count > row && [_itemListView[row] isKindOfClass:[UIView class]])
     {
-        labelText = [[UILabel alloc] init];
-        [labelText setTextAlignment:NSTextAlignmentCenter];
-        [labelText setAdjustsFontSizeToFitWidth:YES];
-        labelText.backgroundColor = [UIColor clearColor];
-        labelText.backgroundColor = [UIColor clearColor];
-    }
-    
-    NSString *text = [_ItemListsInternal objectAtIndex:row];
-    
-    [labelText setText:text];
-    
-    if (self.isOptionalDropDown && row == 0)
-    {
-        if (_dropDownFont) {
-            if (_dropDownFont.pointSize < 30) {
-                labelText.font = [_dropDownFont fontWithSize:30];
-            } else {
-                labelText.font = _dropDownFont;
-            }
-        } else {
-            labelText.font = [UIFont boldSystemFontOfSize:30.0];
-        }
-        labelText.textColor = _optionalItemTextColor ? _optionalItemTextColor : [UIColor lightGrayColor];
+        //Archiving and Unarchiving is necessary to copy UIView instance.
+        NSData *viewData = [NSKeyedArchiver archivedDataWithRootObject:_itemListView[row]];
+        UIView *copyOfView = [NSKeyedUnarchiver unarchiveObjectWithData:viewData];
+        
+        return copyOfView;
     }
     else
     {
-        if (_dropDownFont) {
-            labelText.font = _dropDownFont;
-        } else {
-            labelText.font = [UIFont boldSystemFontOfSize:18.0];
+        UILabel *labelText = (UILabel*)view;
+        
+        if (labelText == nil)
+        {
+            labelText = [[UILabel alloc] init];
+            [labelText setTextAlignment:NSTextAlignmentCenter];
+            [labelText setAdjustsFontSizeToFitWidth:YES];
+            labelText.backgroundColor = [UIColor clearColor];
+            labelText.backgroundColor = [UIColor clearColor];
         }
         
-        BOOL canSelect = YES;
+        NSString *text = [_ItemListsInternal objectAtIndex:row];
         
-        if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
-        {
-            canSelect = [self.dataSource textField:self canSelectItem:text];
-        }
+        [labelText setText:text];
         
-        if (canSelect)
+        if (self.isOptionalDropDown && row == 0)
         {
-            if (_dropDownTextColor) {
-                labelText.textColor = _dropDownTextColor;
+            if (_dropDownFont) {
+                if (_dropDownFont.pointSize < 30) {
+                    labelText.font = [_dropDownFont fontWithSize:30];
+                } else {
+                    labelText.font = _dropDownFont;
+                }
             } else {
-                labelText.textColor = [UIColor blackColor];
+                labelText.font = [UIFont boldSystemFontOfSize:30.0];
             }
+            labelText.textColor = _optionalItemTextColor ? _optionalItemTextColor : [UIColor lightGrayColor];
         }
         else
         {
-            labelText.textColor = [UIColor lightGrayColor];
+            if (_dropDownFont) {
+                labelText.font = _dropDownFont;
+            } else {
+                labelText.font = [UIFont boldSystemFontOfSize:18.0];
+            }
+            
+            BOOL canSelect = YES;
+            
+            if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
+            {
+                canSelect = [self.dataSource textField:self canSelectItem:text];
+            }
+            
+            if (canSelect)
+            {
+                if (_dropDownTextColor) {
+                    labelText.textColor = _dropDownTextColor;
+                } else {
+                    labelText.textColor = [UIColor blackColor];
+                }
+            }
+            else
+            {
+                labelText.textColor = [UIColor lightGrayColor];
+            }
+            
+            labelText.adjustsFontSizeToFitWidth = self.adjustPickerLabelFontSizeWidth;
         }
-        
-        labelText.adjustsFontSizeToFitWidth = self.adjustPickerLabelFontSizeWidth;
+        return labelText;
     }
-    return labelText;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
