@@ -115,6 +115,14 @@ extern NSInteger const IQOptionalTextFieldIndex;
  */
 @interface IQDropDownTextField : UITextField
 
+/**
+ These are the picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
+ */
+@property (nonnull, nonatomic, readonly) UIPickerView *pickerView;
+@property (nonnull, nonatomic, readonly) UIDatePicker *datePicker;
+@property (nonnull, nonatomic, readonly) UIDatePicker *timePicker;
+@property (nonnull, nonatomic, readonly) UIDatePicker *dateTimePicker;
+
 @property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
 @property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDataSource> dataSource;             // default is nil. weak reference
 

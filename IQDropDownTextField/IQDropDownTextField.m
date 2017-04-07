@@ -35,11 +35,6 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     NSArray *_ItemListsInternal;
 }
 
-@property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, strong) UIDatePicker *datePicker;
-@property (nonatomic, strong) UIDatePicker *timePicker;
-@property (nonatomic, strong) UIDatePicker *dateTimePicker;
-
 @property (nonatomic, strong) NSDateFormatter *dropDownDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *dropDownTimeFormatter;
 
