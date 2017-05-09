@@ -69,7 +69,7 @@ Any contribution is more than welcome! You can contribute through pull requests 
 
 If you wish to contact me, email at: hack.iftekhar@gmail.com
 
-##LICENSE
+## LICENSE
 
 Copyright (c) 2010-2015
 
