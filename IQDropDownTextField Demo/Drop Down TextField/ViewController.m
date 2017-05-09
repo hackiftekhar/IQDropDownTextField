@@ -38,7 +38,7 @@
 
     UISwitch *aSwitch = [[UISwitch alloc] init];
     
-    [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Mumbai",@"Tokyo",@"Sydney",@"Mumbai",@"Tokyo",@"Sydney", nil]];
+    [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore", nil]];
     [textFieldTextPicker setItemListView:@[[NSNull null],indicator,[NSNull null],aSwitch,[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null]]];
     
     /*  

@@ -93,32 +93,53 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     
-    self.optionalItemText = NSLocalizedString(@"Select", nil);
+    if (self.optionalItemText == nil)
+    {
+        self.optionalItemText = NSLocalizedString(@"Select", nil);
+    }
     
-    if ([[[self class] appearance] dateFormatter])
+    if (self.dropDownDateFormatter == nil && [[[self class] appearance] dateFormatter])
     {
         self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
         self.dropDownDateFormatter = [[[self class] appearance] dateFormatter];
     }
-    else
+    else if (self.dropDownDateFormatter == nil)
     {
         self.dropDownDateFormatter = [[NSDateFormatter alloc] init];
-        //        [self.dropDownDateFormatter setDateFormat:@"dd MMM yyyy"];
         [self.dropDownDateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [self.dropDownDateFormatter setTimeStyle:NSDateFormatterNoStyle];
     }
     
-    self.dropDownTimeFormatter = [[NSDateFormatter alloc] init];
-    [self.dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
-    [self.dropDownTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    if (self.dropDownTimeFormatter == nil)
+    {
+        self.dropDownTimeFormatter = [[NSDateFormatter alloc] init];
+        [self.dropDownTimeFormatter setDateStyle:NSDateFormatterNoStyle];
+        [self.dropDownTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
     
-    self.dropDownDateTimeFormater = [[NSDateFormatter alloc] init];
-    [self.dropDownDateTimeFormater setDateStyle:NSDateFormatterMediumStyle];
-    [self.dropDownDateTimeFormater setTimeStyle:NSDateFormatterShortStyle];
+    if (self.dropDownDateTimeFormater == nil)
+    {
+        self.dropDownDateTimeFormater = [[NSDateFormatter alloc] init];
+        [self.dropDownDateTimeFormater setDateStyle:NSDateFormatterMediumStyle];
+        [self.dropDownDateTimeFormater setTimeStyle:NSDateFormatterShortStyle];
+    }
     
-    [self setDropDownMode:IQDropDownModeTextPicker];
-    [self setIsOptionalDropDown:YES];
-    [self setAdjustPickerLabelFontSizeWidth:NO];
+    //These will update the UI and other components, all the validation added if awakeFromNib for textField is called after custom UIView awakeFromNib call
+    {
+        self.dropDownMode = self.dropDownMode;
+
+        //This condition looks weird at first look, but it's calling setter method to update UI and other variables.
+        if (self.isOptionalDropDown == YES)
+        {
+            self.isOptionalDropDown = YES;
+        }
+
+        //This condition looks weird at first look, but it's calling setter method to update UI and other variables.
+        if (self.adjustPickerLabelFontSizeWidth == NO)
+        {
+            self.adjustPickerLabelFontSizeWidth = NO;
+        }
+    }
 }
 
 - (instancetype)initWithFrame:(CGRect)frame

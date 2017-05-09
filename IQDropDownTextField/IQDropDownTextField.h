@@ -187,12 +187,12 @@ extern NSInteger const IQOptionalTextFieldIndex;
 ///-------------------------------
 
 /**
- Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]. This field must be set.
+ Items to show in pickerView. For example. @[ @"1", @"2", @"3" ]. This field must be set.
  */
 @property (nullable, nonatomic, copy) NSArray <NSString*> *itemList;
 
 /**
- Items to show in pickerView. Please use [ NSArray of NSString ] format for setter method, For example. @[ @"1", @"2", @"3", ]. This field must be set.
+ Items to show in pickerView. For example. @[ view1, view2, view3 ]. This field must be set.
  */
 @property (nullable, nonatomic, copy) NSArray <__kindof UIView*> *itemListView;
 
