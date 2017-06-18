@@ -88,9 +88,9 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @protocol IQDropDownTextFieldDelegate <UITextFieldDelegate>
 
 @optional
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nonnull NSString*)item; //Called when textField changes it's selected item. Supported for IQDropDownModeTextPicker
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item; //Called when textField changes it's selected item. Supported for IQDropDownModeTextPicker
 
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectDate:(nonnull NSDate*)date; //Called when textField changes it's selected item. Supported for IQDropDownModeTimePicker, IQDropDownModeDatePicker, IQDropDownModeDateTimePicker
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectDate:(nullable NSDate*)date; //Called when textField changes it's selected item. Supported for IQDropDownModeTimePicker, IQDropDownModeDatePicker, IQDropDownModeDateTimePicker
 
 @end
 
@@ -275,16 +275,6 @@ extern NSInteger const IQOptionalTextFieldIndex;
  Select date in UIDatePicker. Default is UIDatePickerModeDate
  */
 @property (nonatomic, assign) UIDatePickerMode datePickerMode;
-
-/**
- Minimum selectable date in UIDatePicker. Default is nil.
- */
-@property (nullable, nonatomic, retain) NSDate *minimumDate;
-
-/**
- Maximum selectable date in UIDatePicker. Default is nil.
- */
-@property (nullable, nonatomic, retain) NSDate *maximumDate;
 
 /**
  Date formatter to show date as text in textField.

@@ -59,12 +59,12 @@
     [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
 }
 
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nonnull NSString*)item
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item
 {
     NSLog(@"%@: %@",NSStringFromSelector(_cmd),item);
 }
 
--(void)textField:(IQDropDownTextField *)textField didSelectDate:(NSDate *)date
+-(void)textField:(IQDropDownTextField *)textField didSelectDate:(nullable NSDate *)date
 {
     NSLog(@"%@: %@",NSStringFromSelector(_cmd),date);
 }
