@@ -18,21 +18,12 @@
 {
     [super viewDidLoad];
     
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-//    [toolbar setBarStyle:UIBarStyleBlackTranslucent];
-    [toolbar sizeToFit];
-    UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneClicked:)];
-    
-    [toolbar setItems:[NSArray arrayWithObjects:buttonflexible,buttonDone, nil]];
-    textFieldDatePicker.inputAccessoryView = toolbar;
-    textFieldTextPicker.inputAccessoryView = toolbar;
-    textFieldTimePicker.inputAccessoryView = toolbar;
-    textFieldDateTimePicker.inputAccessoryView = toolbar;
-    textFieldOptionalTextPicker.inputAccessoryView = toolbar;
-    
-    textFieldTextPicker.isOptionalDropDown = NO;
-    
+    textFieldTextPicker.showDismissToolbar = YES;
+    textFieldOptionalTextPicker.showDismissToolbar = YES;
+    textFieldDatePicker.showDismissToolbar = YES;
+    textFieldTimePicker.showDismissToolbar = YES;
+    textFieldDateTimePicker.showDismissToolbar = YES;
+
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [indicator startAnimating];
 
@@ -52,10 +43,11 @@
     [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil]];
     [textFieldOptionalTextPicker setItemListUI:[NSArray arrayWithObjects:@"1 Year Old",@"2 Years Old",@"3 Years Old",@"4 Years Old",@"5 Years Old",@"6 Years Old", nil]];
 
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"EEE MMMM dd yyyy"];
+    [textFieldDatePicker setDateFormatter:formatter];
     [textFieldDatePicker setDropDownMode:IQDropDownModeDatePicker];
-    
     [textFieldTimePicker setDropDownMode:IQDropDownModeTimePicker];
-    
     [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
 }
 

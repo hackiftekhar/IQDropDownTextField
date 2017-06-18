@@ -127,6 +127,11 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDataSource> dataSource;             // default is nil. weak reference
 
 /**
+ If YES then a toolbar will be added at the top to dismiss textfield, if NO then toolbar will be removed. Default to NO.
+ */
+@property (nonatomic, assign) BOOL showDismissToolbar;
+
+/**
  DropDownMode style to show in picker. Default is IQDropDownModeTextPicker.
  */
 @property (nonatomic, assign) IQDropDownMode dropDownMode;

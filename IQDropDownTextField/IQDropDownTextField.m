@@ -33,6 +33,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 @property (nonatomic, strong) NSDateFormatter *dropDownDateFormatter;
 @property (nonatomic, strong) NSDateFormatter *dropDownTimeFormatter;
+@property (nonatomic, strong) UIToolbar *dismissToolbar;
 
 @property BOOL hasSetInitialIsOptional;
 
@@ -352,7 +353,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated
 {
-    if (row < [_itemList count]+1)
+    NSInteger count = ([_itemList count] + 1);
+    if (row < count)
     {
         if (self.isOptionalDropDown)
         {
@@ -372,6 +374,33 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             [self.pickerView selectRow:row inComponent:0 animated:animated];
         }
     }
+}
+
+#pragma mark - Toolbar
+
+-(void)setShowDismissToolbar:(BOOL)showDismissToolbar
+{
+    self.inputAccessoryView = (showDismissToolbar ? self.dismissToolbar : nil);
+}
+
+-(BOOL)showDismissToolbar
+{
+    return (self.inputAccessoryView == _dismissToolbar);
+}
+
+-(UIToolbar *)dismissToolbar
+{
+    if (_dismissToolbar == nil)
+    {
+        _dismissToolbar = [[UIToolbar alloc] init];
+        _dismissToolbar.translucent = YES;
+        [_dismissToolbar sizeToFit];
+        UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resignFirstResponder)];
+        [_dismissToolbar setItems:@[buttonflexible,buttonDone]];
+    }
+    
+    return _dismissToolbar;
 }
 
 #pragma mark - Setters
