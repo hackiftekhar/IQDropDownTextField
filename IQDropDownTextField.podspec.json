@@ -1,6 +1,10 @@
 {
     "name": "IQDropDownTextField",
-    "version": "1.1.0",
+    "version": "1.1.1",
+    "source": {
+        "git": "https://github.com/hackiftekhar/IQDropDownTextField.git",
+        "tag": "v1.1.1"
+    },
     "summary": "TextField with DropDown support using UIPickerView",
     "homepage": "https://github.com/hackiftekhar/IQDropDownTextField",
     "license": "MIT",
@@ -8,14 +12,18 @@
         "Iftekhar Qurashi": "hack.iftekhar@gmail.com"
     },
     "platforms": {
-        "ios": "7.0"
-    },
-    "source": {
-        "git": "https://github.com/hackiftekhar/IQDropDownTextField.git",
-        "tag": "v1.1.0"
+        "ios": "8.0"
     },
     "source_files": [
-                     "IQDropDownTextField/*.{h,m}"
-                     ],
+        "IQDropDownTextField/*.{h,m}"
+    ],
+    "public_header_files": [
+        "IQDropDownTextField/IQDropDownTextField.h"
+    ],
+    "frameworks": [
+        "UIKit",
+        "Foundation",
+        "CoreGraphics"
+    ],
     "requires_arc": true
 }

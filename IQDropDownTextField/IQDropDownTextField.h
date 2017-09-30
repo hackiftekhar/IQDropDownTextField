@@ -24,10 +24,6 @@
 
 #import <UIKit/UIKit.h>
 
-#if !(__has_feature(objc_instancetype))
-#define instancetype id
-#endif
-
 /**
  Drop Down Mode settings.
 
@@ -40,24 +36,6 @@
  `IQDropDownModeDatePicker`
  Show UIDatePicker to pick date.
  */
-#ifndef NS_ENUM
-
-typedef enum IQDropDownMode {
-    IQDropDownModeTextPicker,
-    IQDropDownModeTimePicker,
-    IQDropDownModeDatePicker,
-    IQDropDownModeDateTimePicker,
-    IQDropDownModeTextField
-}IQDropDownMode;
-
-typedef enum IQProposedSelection {
-    IQProposedSelectionBoth,
-    IQProposedSelectionTop,
-    IQProposedSelectionBottom
-}IQDropDownMode;
-
-#else
-
 typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeTextPicker,
     IQDropDownModeTimePicker,
@@ -72,7 +50,6 @@ typedef NS_ENUM(NSInteger, IQProposedSelection) {
     IQProposedSelectionBelow
 };
 
-#endif
 
 /**
  Integer constant to use with `selectedRow` property, this will select `Select` option in optional textField.
@@ -116,12 +93,9 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @interface IQDropDownTextField : UITextField
 
 /**
- These are the picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
+ This is picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
  */
 @property (nonnull, nonatomic, readonly) UIPickerView *pickerView;
-@property (nonnull, nonatomic, readonly) UIDatePicker *datePicker;
-@property (nonnull, nonatomic, readonly) UIDatePicker *timePicker;
-@property (nonnull, nonatomic, readonly) UIDatePicker *dateTimePicker;
 
 @property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDelegate> delegate;             // default is nil. weak reference
 @property(nullable, nonatomic,weak) IBOutlet id<IQDropDownTextFieldDataSource> dataSource;             // default is nil. weak reference
@@ -197,9 +171,9 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @property (nullable, nonatomic, copy) NSArray <NSString*> *itemList;
 
 /**
- Items to show in pickerView. For example. @[ view1, view2, view3 ]. This field must be set.
+ UIView items to show in pickerView. For example. @[ view1, view2, view3 ]. If itemList text needs to be shown then pass [NSNull null] instead of UIView object at appropriate index. This field is optional.
  */
-@property (nullable, nonatomic, copy) NSArray <__kindof UIView*> *itemListView;
+@property (nullable, nonatomic, copy) NSArray <__kindof NSObject*> *itemListView;
 
 /**
  If this is set then we'll show textfield's text from this list instead from regular itemList. This is only for showing different messaging in textfield's text. This itemListUI array count must be equal to itemList array count.
@@ -220,6 +194,19 @@ extern NSInteger const IQOptionalTextFieldIndex;
  Select row index of selected item.
  */
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated;
+
+@end
+
+
+
+@interface IQDropDownTextField (DateTime)
+
+/**
+ These are the picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
+ */
+@property (nonnull, nonatomic, readonly) UIDatePicker *datePicker;
+@property (nonnull, nonatomic, readonly) UIDatePicker *timePicker;
+@property (nonnull, nonatomic, readonly) UIDatePicker *dateTimePicker;
 
 
 ///--------------------------------------------------------
@@ -294,8 +281,8 @@ extern NSInteger const IQOptionalTextFieldIndex;
 /**
  Time formatter to show time as text in textField.
  */
-@property (nullable, nonatomic, retain) NSDateFormatter *timeFormatter;
+@property (nullable, nonatomic, retain) NSDateFormatter *timeFormatter UI_APPEARANCE_SELECTOR;
 
-@property (nullable, nonatomic, retain) NSDateFormatter *dropDownDateTimeFormater;
+@property (nullable, nonatomic, retain) NSDateFormatter *dateTimeFormatter UI_APPEARANCE_SELECTOR;
 
 @end

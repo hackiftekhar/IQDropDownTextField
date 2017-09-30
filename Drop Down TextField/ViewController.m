@@ -29,7 +29,7 @@
 
     UISwitch *aSwitch = [[UISwitch alloc] init];
     
-    [textFieldTextPicker setItemList:[NSArray arrayWithObjects:@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore", nil]];
+    [textFieldTextPicker setItemList:@[@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore"]];
     [textFieldTextPicker setItemListView:@[[NSNull null],indicator,[NSNull null],aSwitch,[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null]]];
     
     /*  
@@ -43,9 +43,9 @@
     [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil]];
     [textFieldOptionalTextPicker setItemListUI:[NSArray arrayWithObjects:@"1 Year Old",@"2 Years Old",@"3 Years Old",@"4 Years Old",@"5 Years Old",@"6 Years Old", nil]];
 
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"EEE MMMM dd yyyy"];
-    [textFieldDatePicker setDateFormatter:formatter];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"EEE MMMM dd yyyy"];
+//    [textFieldDatePicker setDateFormatter:formatter];
     [textFieldDatePicker setDropDownMode:IQDropDownModeDatePicker];
     [textFieldTimePicker setDropDownMode:IQDropDownModeTimePicker];
     [textFieldDateTimePicker setDropDownMode:IQDropDownModeDateTimePicker];
@@ -86,6 +86,28 @@
 -(void)doneClicked:(UIBarButtonItem*)button
 {
     [self.view endEditing:YES];
+
+    NSLog(@"textFieldTextPicker.selectedItem: %@", textFieldTextPicker.selectedItem);
+    NSLog(@"textFieldOptionalTextPicker.selectedItem: %@", textFieldOptionalTextPicker.selectedItem);
+    NSLog(@"textFieldDatePicker.selectedItem: %@", textFieldDatePicker.selectedItem);
+    NSLog(@"textFieldTimePicker.selectedItem: %@", textFieldTimePicker.selectedItem);
+    NSLog(@"textFieldDateTimePicker.selectedItem: %@", textFieldDateTimePicker.selectedItem);
+}
+
+- (IBAction)isOptionalToggle:(UIButton *)sender {
+    textFieldTextPicker.isOptionalDropDown = !textFieldTextPicker.isOptionalDropDown;
+    textFieldOptionalTextPicker.isOptionalDropDown = !textFieldOptionalTextPicker.isOptionalDropDown;
+    textFieldDatePicker.isOptionalDropDown = !textFieldDatePicker.isOptionalDropDown;
+    textFieldTimePicker.isOptionalDropDown = !textFieldTimePicker.isOptionalDropDown;
+    textFieldDateTimePicker.isOptionalDropDown = !textFieldDateTimePicker.isOptionalDropDown;
+}
+
+- (IBAction)resetAction:(UIButton *)sender {
+    textFieldTextPicker.selectedItem = nil;
+    textFieldOptionalTextPicker.selectedItem = nil;
+    textFieldDatePicker.selectedItem = nil;
+    textFieldTimePicker.date = nil;
+    textFieldDateTimePicker.selectedItem = nil;
 }
 
 - (void)didReceiveMemoryWarning
