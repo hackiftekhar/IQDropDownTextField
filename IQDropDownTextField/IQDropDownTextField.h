@@ -90,7 +90,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 /**
  Add a UIPickerView as inputView
  */
-@interface IQDropDownTextField : UITextField
+@interface IQDropDownTextField : MultilineTextField
 
 @property (nonatomic, assign) CGFloat pickerHeight;
 
