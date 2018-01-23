@@ -92,6 +92,8 @@ extern NSInteger const IQOptionalTextFieldIndex;
  */
 @interface IQDropDownTextField : UITextField
 
+@property (nonatomic, assign) CGFloat pickerHeight;
+
 /**
  This is picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
  */

@@ -60,7 +60,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 @dynamic delegate;
 @dynamic text;
 @dynamic attributedText;
-
+@synthesize pickerHeight= _pickerHeight;
 @synthesize pickerView = _pickerView;
 
 #pragma mark - NSObject
@@ -142,7 +142,11 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
-    return 70;
+    
+    if(_pickerHeight == nil) {
+        return 40;
+    }
+    return self.pickerHeight;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
