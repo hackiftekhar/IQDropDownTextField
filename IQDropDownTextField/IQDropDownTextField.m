@@ -367,6 +367,10 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 }
 
 #pragma mark - Setters
+
+- (void ) setPickerHeight:(CGFloat)pickerHeight {
+    _pickerHeight = pickerHeight;
+}
 - (void)setDropDownMode:(IQDropDownMode)dropDownMode
 {
     _dropDownMode = dropDownMode;
