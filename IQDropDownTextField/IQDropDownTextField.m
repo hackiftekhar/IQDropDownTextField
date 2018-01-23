@@ -143,7 +143,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
     
-    if(_pickerHeight == nil) {
+    if(_pickerHeight == 0) {
         return 40;
     }
     return self.pickerHeight;
