@@ -140,6 +140,11 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 #pragma mark UIPickerView delegate
 
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 70;
+}
+
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     if (_itemListView.count > row && [_itemListView[row] isKindOfClass:[UIView class]])
@@ -159,6 +164,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             labelText = [[UILabel alloc] init];
             [labelText setTextAlignment:NSTextAlignmentCenter];
             [labelText setAdjustsFontSizeToFitWidth:YES];
+            [labelText setLineBreakMode: NSLineBreakByWordWrapping];
+            [labelText setNumberOfLines:0];
             labelText.backgroundColor = [UIColor clearColor];
             labelText.backgroundColor = [UIColor clearColor];
         }
