@@ -316,7 +316,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             }
             else
             {
-                super.text = (row == 0) ? @"" : [_itemListUI?:_itemList objectAtIndex:row-1];
+                super.text = (row == 0) ? @"" : [_itemListUI?:_itemList objectAtIndex:row];
             }
             [self.pickerView selectRow:row inComponent:0 animated:animated];
         }
