@@ -93,7 +93,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     //These will update the UI and other components, all the validation added if awakeFromNib for textField is called after custom UIView awakeFromNib call
     {
         self.dropDownMode = self.dropDownMode;
-
+        
         self.isOptionalDropDown = self.hasSetInitialIsOptional?self.isOptionalDropDown:YES;
         self.adjustPickerLabelFontSizeWidth = self.adjustPickerLabelFontSizeWidth;
     }
@@ -288,14 +288,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (NSInteger)selectedRow
 {
-    if (self.isOptionalDropDown)
-    {
-        return [self.pickerView selectedRowInComponent:0]-1;
-    }
-    else
-    {
-        return [self.pickerView selectedRowInComponent:0];
-    }
+    
+    return [self.pickerView selectedRowInComponent:0];
 }
 
 -(void)setSelectedRow:(NSInteger)selectedRow
@@ -526,7 +520,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
     
     [self.pickerView reloadAllComponents];
-
+    
     switch (_dropDownMode)
     {
         case IQDropDownModeDatePicker:
@@ -554,7 +548,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         }
         case IQDropDownModeTextPicker:
         {
-//            [self setSelectedRow:self.selectedRow];
+            //            [self setSelectedRow:self.selectedRow];
         }
             break;
         default:
@@ -985,3 +979,4 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 }
 
 @end
+
