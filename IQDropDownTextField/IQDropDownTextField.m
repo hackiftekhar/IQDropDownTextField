@@ -38,8 +38,6 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 @interface IQDropDownTextField (Internal)
 
-@property(nonatomic, strong) NSArray *internalItemList;
-
 -(void)_setSelectedItem:(NSString *)selectedItem animated:(BOOL)animated shouldNotifyDelegate:(BOOL)shouldNotifyDelegate;
 
 @end
@@ -135,23 +133,16 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.internalItemList.count;
+    return self.itemList.count + (self.isOptionalDropDown ? 1 : 0);
 }
 
 #pragma mark UIPickerView delegate
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
-    if (_itemListView.count > row && [_itemListView[row] isKindOfClass:[UIView class]])
-    {
-        //Archiving and Unarchiving is necessary to copy UIView instance.
-        NSData *viewData = [NSKeyedArchiver archivedDataWithRootObject:_itemListView[row]];
-        UIView *copyOfView = [NSKeyedUnarchiver unarchiveObjectWithData:viewData];
-        
-        return copyOfView;
-    }
-    else
-    {
+    row = row - (self.isOptionalDropDown ? 1 : 0);
+    
+    if (row == IQOptionalTextFieldIndex) {
         UILabel *labelText = (UILabel*)view;
         
         if (labelText == nil)
@@ -162,125 +153,156 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             labelText.backgroundColor = [UIColor clearColor];
             labelText.backgroundColor = [UIColor clearColor];
         }
-        
-        NSString *text = [self.internalItemList objectAtIndex:row];
-        
-        [labelText setText:text];
-        
-        if (self.isOptionalDropDown && row == 0)
-        {
-            if (_dropDownFont) {
-                if (_dropDownFont.pointSize < 30) {
-                    labelText.font = [_dropDownFont fontWithSize:30];
-                } else {
-                    labelText.font = _dropDownFont;
-                }
+
+        if (_dropDownFont) {
+            if (_dropDownFont.pointSize < 30) {
+                labelText.font = [_dropDownFont fontWithSize:30];
             } else {
-                labelText.font = [UIFont boldSystemFontOfSize:30.0];
+                labelText.font = _dropDownFont;
             }
-            labelText.textColor = _optionalItemTextColor ? _optionalItemTextColor : [UIColor lightGrayColor];
+        } else {
+            labelText.font = [UIFont boldSystemFontOfSize:30.0];
+        }
+        
+        labelText.textColor = _optionalItemTextColor ? _optionalItemTextColor : [UIColor lightGrayColor];
+        labelText.text = self.optionalItemText;
+
+        return labelText;
+
+    } else {
+        if (_itemListView.count > row && [_itemListView[row] isKindOfClass:[UIView class]])
+        {
+            //Archiving and Unarchiving is necessary to copy UIView instance.
+            NSData *viewData = [NSKeyedArchiver archivedDataWithRootObject:_itemListView[row]];
+            UIView *copyOfView = [NSKeyedUnarchiver unarchiveObjectWithData:viewData];
+            
+            return copyOfView;
         }
         else
         {
+            UILabel *labelText = (UILabel*)view;
+            
+            if (labelText == nil)
+            {
+                labelText = [[UILabel alloc] init];
+                [labelText setTextAlignment:NSTextAlignmentCenter];
+                [labelText setAdjustsFontSizeToFitWidth:YES];
+                labelText.backgroundColor = [UIColor clearColor];
+                labelText.backgroundColor = [UIColor clearColor];
+            }
+
             if (_dropDownFont) {
                 labelText.font = _dropDownFont;
             } else {
                 labelText.font = [UIFont boldSystemFontOfSize:18.0];
             }
+
+            NSString *text = [self.itemList objectAtIndex:row];
             
-            BOOL canSelect = YES;
+            [labelText setText:text];
             
-            if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
             {
-                canSelect = [self.dataSource textField:self canSelectItem:text];
-            }
-            
-            if (canSelect)
-            {
-                if (_dropDownTextColor) {
-                    labelText.textColor = _dropDownTextColor;
-                } else {
-                    labelText.textColor = [UIColor blackColor];
+                BOOL canSelect = YES;
+                
+                if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
+                {
+                    canSelect = [self.dataSource textField:self canSelectItem:text];
                 }
+                
+                if (canSelect)
+                {
+                    if (_dropDownTextColor) {
+                        labelText.textColor = _dropDownTextColor;
+                    } else {
+                        labelText.textColor = [UIColor blackColor];
+                    }
+                }
+                else
+                {
+                    labelText.textColor = [UIColor lightGrayColor];
+                }
+                
+                labelText.adjustsFontSizeToFitWidth = self.adjustPickerLabelFontSizeWidth;
             }
-            else
-            {
-                labelText.textColor = [UIColor lightGrayColor];
-            }
-            
-            labelText.adjustsFontSizeToFitWidth = self.adjustPickerLabelFontSizeWidth;
+            return labelText;
         }
-        return labelText;
     }
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSString *text = [self.internalItemList objectAtIndex:row];
-    
-    BOOL canSelect = YES;
-    
-    if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
-    {
-        canSelect = [self.dataSource textField:self canSelectItem:text];
-    }
-    
-    if (canSelect)
-    {
-        [self _setSelectedItem:[self.internalItemList objectAtIndex:row] animated:NO shouldNotifyDelegate:YES];
-    }
-    else
-    {
-        IQProposedSelection proposedSelection = IQProposedSelectionBoth;
+    row = row - (self.isOptionalDropDown ? 1 : 0);
+
+    if (row == IQOptionalTextFieldIndex) {
+        [self _setSelectedItem:nil animated:NO shouldNotifyDelegate:YES];
+    } else {
+
+        NSString *text = [self.itemList objectAtIndex:row];
         
-        if ([self.dataSource respondsToSelector:@selector(textField:proposedSelectionModeForItem:)])
+        BOOL canSelect = YES;
+        
+        if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
         {
-            proposedSelection = [self.dataSource textField:self proposedSelectionModeForItem:text];
+            canSelect = [self.dataSource textField:self canSelectItem:text];
         }
         
-        NSInteger aboveIndex = row-1;
-        NSInteger belowIndex = row+1;
-        
-        if (proposedSelection == IQProposedSelectionAbove)
+        if (canSelect)
         {
-            belowIndex = self.internalItemList.count;
+            [self _setSelectedItem:text animated:NO shouldNotifyDelegate:YES];
         }
-        else if (proposedSelection == IQProposedSelectionBelow)
+        else
         {
-            aboveIndex = -1;
-        }
-        
-        
-        while (aboveIndex >= 0 || belowIndex < self.internalItemList.count)
-        {
-            if (aboveIndex >= 0)
+            IQProposedSelection proposedSelection = IQProposedSelectionBoth;
+            
+            if ([self.dataSource respondsToSelector:@selector(textField:proposedSelectionModeForItem:)])
             {
-                NSString *aboveText = [self.internalItemList objectAtIndex:aboveIndex];
-                
-                if ([self.dataSource textField:self canSelectItem:aboveText])
-                {
-                    [self _setSelectedItem:aboveText animated:YES shouldNotifyDelegate:YES];
-                    return;
-                }
-                
-                aboveIndex--;
+                proposedSelection = [self.dataSource textField:self proposedSelectionModeForItem:text];
             }
             
-            if (belowIndex < self.internalItemList.count)
+            NSInteger aboveIndex = row-1;
+            NSInteger belowIndex = row+1;
+            
+            if (proposedSelection == IQProposedSelectionAbove)
             {
-                NSString *belowText = [self.internalItemList objectAtIndex:aboveIndex];
-                
-                if ([self.dataSource textField:self canSelectItem:belowText])
+                belowIndex = self.itemList.count;
+            }
+            else if (proposedSelection == IQProposedSelectionBelow)
+            {
+                aboveIndex = -1;
+            }
+            
+            
+            while (aboveIndex >= 0 || belowIndex < self.itemList.count)
+            {
+                if (aboveIndex >= 0)
                 {
-                    [self _setSelectedItem:belowText animated:YES shouldNotifyDelegate:YES];
-                    return;
+                    NSString *aboveText = [self.itemList objectAtIndex:aboveIndex];
+                    
+                    if ([self.dataSource textField:self canSelectItem:aboveText])
+                    {
+                        [self _setSelectedItem:aboveText animated:YES shouldNotifyDelegate:YES];
+                        return;
+                    }
+                    
+                    aboveIndex--;
                 }
                 
-                belowIndex++;
+                if (belowIndex < self.itemList.count)
+                {
+                    NSString *belowText = [self.itemList objectAtIndex:aboveIndex];
+                    
+                    if ([self.dataSource textField:self canSelectItem:belowText])
+                    {
+                        [self _setSelectedItem:belowText animated:YES shouldNotifyDelegate:YES];
+                        return;
+                    }
+                    
+                    belowIndex++;
+                }
             }
+            
+            return [self setSelectedRow:0 animated:YES];
         }
-        
-        return [self setSelectedRow:0 animated:YES];
     }
 }
 
@@ -288,14 +310,10 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (NSInteger)selectedRow
 {
-    if (self.isOptionalDropDown)
-    {
-        return [self.pickerView selectedRowInComponent:0]-1;
-    }
-    else
-    {
-        return [self.pickerView selectedRowInComponent:0];
-    }
+    NSInteger pickerViewSelectedRow = [self.pickerView selectedRowInComponent:0];   //It may return -1
+    pickerViewSelectedRow = MAX(pickerViewSelectedRow, 0);
+    
+    return pickerViewSelectedRow - (self.isOptionalDropDown ? 1 : 0);
 }
 
 -(void)setSelectedRow:(NSInteger)selectedRow
@@ -305,27 +323,18 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (void)setSelectedRow:(NSInteger)row animated:(BOOL)animated
 {
-    NSInteger count = ([_itemList count] + 1);
-    if (row < count)
-    {
-        if (self.isOptionalDropDown)
-        {
-            if (row == IQOptionalTextFieldIndex)
-            {
-                super.text = @"";
-            }
-            else
-            {
-                super.text = (row == 0) ? @"" : [_itemListUI?:_itemList objectAtIndex:row-1];
-            }
-            [self.pickerView selectRow:row inComponent:0 animated:animated];
+    if (row == IQOptionalTextFieldIndex) {
+        if (self.isOptionalDropDown) {
+            super.text = @"";
+        } else if (_itemList.count > 0) {
+            super.text = [_itemListUI?:_itemList objectAtIndex:0];
         }
-        else
-        {
-            super.text = [_itemListUI?:_itemList objectAtIndex:row];
-            [self.pickerView selectRow:row inComponent:0 animated:animated];
-        }
+    } else {
+        super.text = [_itemListUI?:_itemList objectAtIndex:row];
     }
+
+    NSInteger pickerViewRow = row + (self.isOptionalDropDown ? 1 : 0);
+    [self.pickerView selectRow:pickerViewRow inComponent:0 animated:animated];
 }
 
 #pragma mark - Toolbar
@@ -345,7 +354,6 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     if (_dismissToolbar == nil)
     {
         _dismissToolbar = [[UIToolbar alloc] init];
-        _dismissToolbar.translucent = YES;
         [_dismissToolbar sizeToFit];
         UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resignFirstResponder)];
@@ -424,16 +432,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     {
         case IQDropDownModeTextPicker:
         {
-            NSInteger selectedRow = -1;
-            if (self.isOptionalDropDown)
-            {
-                selectedRow = [self.pickerView selectedRowInComponent:0]-1;
-            }
-            else
-            {
-                selectedRow = [self.pickerView selectedRowInComponent:0];
-            }
-            
+            NSInteger selectedRow = self.selectedRow;
+
             if (selectedRow >= 0)
             {
                 return [_itemList objectAtIndex:selectedRow];
@@ -489,76 +489,18 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
 }
 
--(void)setOptionalItemText:(NSString *)optionalItemText
-{
-    _optionalItemText = [optionalItemText copy];
-    
-    [self _updateOptionsList];
-}
-
--(BOOL)adjustPickerLabelFontSizeWidth {
-    return _adjustPickerLabelFontSizeWidth;
-}
-
--(void)setAdjustPickerLabelFontSizeWidth:(BOOL)adjustPickerLabelFontSizeWidth {
-    _adjustPickerLabelFontSizeWidth = adjustPickerLabelFontSizeWidth;
-    
-    [self _updateOptionsList];
-}
-
 -(void)setIsOptionalDropDown:(BOOL)isOptionalDropDown
 {
+    NSInteger previousSelectedRow = self.selectedRow;
+
     _isOptionalDropDown = isOptionalDropDown;
     _hasSetInitialIsOptional = YES;
     
-    [self _updateOptionsList];
-}
-
-- (void) _updateOptionsList {
-    if (_isOptionalDropDown)
-    {
-        NSArray *array = [NSArray arrayWithObject:self.optionalItemText];
-        self.internalItemList = [array arrayByAddingObjectsFromArray:_itemList];
-    }
-    else
-    {
-        self.internalItemList = [_itemList copy];
-    }
-    
     [self.pickerView reloadAllComponents];
 
-    switch (_dropDownMode)
+    if (_dropDownMode == IQDropDownModeTextPicker)
     {
-        case IQDropDownModeDatePicker:
-        {
-            if (self.isOptionalDropDown == NO)
-            {
-                [self setDate:self.datePicker.date];
-            }
-        }
-            break;
-        case IQDropDownModeTimePicker:
-        {
-            if (self.isOptionalDropDown == NO)
-            {
-                [self setDate:self.timePicker.date];
-            }
-        }
-            break;
-        case IQDropDownModeDateTimePicker:
-        {
-            if (self.isOptionalDropDown == NO)
-            {
-                [self setDate:self.dateTimePicker.date];
-            }
-        }
-        case IQDropDownModeTextPicker:
-        {
-//            [self setSelectedRow:self.selectedRow];
-        }
-            break;
-        default:
-            break;
+        [self setSelectedRow:previousSelectedRow];
     }
 }
 
@@ -587,8 +529,6 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 }
 
 @end
-
-
 
 @implementation IQDropDownTextField (DateTime)
 
@@ -872,25 +812,15 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 @implementation IQDropDownTextField (Internal)
 
--(NSArray *)internalItemList
-{
-    return objc_getAssociatedObject(self, @selector(internalItemList));
-}
-
--(void)setInternalItemList:(NSArray *)internalItemList
-{
-    objc_setAssociatedObject(self, @selector(internalItemList), internalItemList, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 -(void)_setSelectedItem:(NSString *)selectedItem animated:(BOOL)animated shouldNotifyDelegate:(BOOL)shouldNotifyDelegate
 {
     switch (self.dropDownMode)
     {
         case IQDropDownModeTextPicker:
         {
-            if ([self.internalItemList containsObject:selectedItem])
+            if ([self.itemList containsObject:selectedItem])
             {
-                [self setSelectedRow:[self.internalItemList indexOfObject:selectedItem] animated:animated];
+                [self setSelectedRow:[self.itemList indexOfObject:selectedItem] animated:animated];
                 
                 if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
                     [self.delegate textField:self didSelectItem:selectedItem];
