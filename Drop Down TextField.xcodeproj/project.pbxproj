@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		39DD82711CFC666A0006FA8E /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39DD82701CFC666A0006FA8E /* Montserrat-Regular.otf */; };
+		3BE186634F95E6EE545F02C9 /* libPods-DropDownTextFieldSwift.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 916EF0C1C29D185BE582A26E /* libPods-DropDownTextFieldSwift.a */; };
 		4C3457961F8022210029E345 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3457951F8022210029E345 /* Images.xcassets */; };
 		4CC1D5D41F7FA732007595D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CC1D5D31F7FA732007595D9 /* Main.storyboard */; };
 		4CC1D5D61F7FA748007595D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CC1D5D51F7FA748007595D9 /* LaunchScreen.storyboard */; };
+		C0D8418B24FD12DA008277C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8418A24FD12DA008277C2 /* AppDelegate.swift */; };
+		C0D8418D24FD12DA008277C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8418C24FD12DA008277C2 /* SceneDelegate.swift */; };
+		C0D8418F24FD12DA008277C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8418E24FD12DA008277C2 /* ViewController.swift */; };
+		C0D8419224FD12DA008277C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0D8419024FD12DA008277C2 /* Main.storyboard */; };
+		C0D8419424FD12DB008277C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0D8419324FD12DB008277C2 /* Assets.xcassets */; };
+		C0D8419724FD12DB008277C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0D8419524FD12DB008277C2 /* LaunchScreen.storyboard */; };
 		D3A7ADD111D13D3943EF8427 /* libPods-Drop Down TextField.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 29978649642B5301CDC5867E /* libPods-Drop Down TextField.a */; };
 		E609C86A182ECB1D0058DB63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C869182ECB1D0058DB63 /* UIKit.framework */; };
 		E609C86C182ECB1D0058DB63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C86B182ECB1D0058DB63 /* Foundation.framework */; };
@@ -28,7 +35,18 @@
 		4CC1D5D31F7FA732007595D9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4CC1D5D51F7FA748007595D9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6460E5DE651B507CCBE4D3CA /* Pods-Drop Down TextField.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drop Down TextField.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField.release.xcconfig"; sourceTree = "<group>"; };
+		7E311CE637B446D65AF7A19E /* Pods-DropDownTextFieldSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropDownTextFieldSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drop Down TextField.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField.debug.xcconfig"; sourceTree = "<group>"; };
+		916EF0C1C29D185BE582A26E /* libPods-DropDownTextFieldSwift.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DropDownTextFieldSwift.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9535106CDC87E5A0E1923001 /* Pods-DropDownTextFieldSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropDownTextFieldSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift.release.xcconfig"; sourceTree = "<group>"; };
+		C0D8418824FD12DA008277C2 /* DropDownTextFieldSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropDownTextFieldSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0D8418A24FD12DA008277C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C0D8418C24FD12DA008277C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C0D8418E24FD12DA008277C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C0D8419124FD12DA008277C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C0D8419324FD12DB008277C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C0D8419624FD12DB008277C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C0D8419824FD12DB008277C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E609C865182ECB1D0058DB63 /* Drop Down TextField.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drop Down TextField.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E609C869182ECB1D0058DB63 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E609C86B182ECB1D0058DB63 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,6 +62,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C0D8418524FD12DA008277C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BE186634F95E6EE545F02C9 /* libPods-DropDownTextFieldSwift.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E609C862182ECB1D0058DB63 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,6 +89,8 @@
 			children = (
 				81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */,
 				6460E5DE651B507CCBE4D3CA /* Pods-Drop Down TextField.release.xcconfig */,
+				7E311CE637B446D65AF7A19E /* Pods-DropDownTextFieldSwift.debug.xcconfig */,
+				9535106CDC87E5A0E1923001 /* Pods-DropDownTextFieldSwift.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -75,10 +103,25 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		C0D8418924FD12DA008277C2 /* DropDownTextFieldSwift */ = {
+			isa = PBXGroup;
+			children = (
+				C0D8418A24FD12DA008277C2 /* AppDelegate.swift */,
+				C0D8418C24FD12DA008277C2 /* SceneDelegate.swift */,
+				C0D8418E24FD12DA008277C2 /* ViewController.swift */,
+				C0D8419024FD12DA008277C2 /* Main.storyboard */,
+				C0D8419324FD12DB008277C2 /* Assets.xcassets */,
+				C0D8419524FD12DB008277C2 /* LaunchScreen.storyboard */,
+				C0D8419824FD12DB008277C2 /* Info.plist */,
+			);
+			path = DropDownTextFieldSwift;
+			sourceTree = "<group>";
+		};
 		E609C85A182ECB1D0058DB63 = {
 			isa = PBXGroup;
 			children = (
 				E609C86F182ECB1D0058DB63 /* Drop Down TextField */,
+				C0D8418924FD12DA008277C2 /* DropDownTextFieldSwift */,
 				E609C868182ECB1D0058DB63 /* Frameworks */,
 				E609C866182ECB1D0058DB63 /* Products */,
 				333F617DB57059517F9EE832 /* Pods */,
@@ -89,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				E609C865182ECB1D0058DB63 /* Drop Down TextField.app */,
+				C0D8418824FD12DA008277C2 /* DropDownTextFieldSwift.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +144,7 @@
 				E609C86B182ECB1D0058DB63 /* Foundation.framework */,
 				E609C86D182ECB1D0058DB63 /* CoreGraphics.framework */,
 				29978649642B5301CDC5867E /* libPods-Drop Down TextField.a */,
+				916EF0C1C29D185BE582A26E /* libPods-DropDownTextFieldSwift.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -134,6 +179,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C0D8418724FD12DA008277C2 /* DropDownTextFieldSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0D8419B24FD12DB008277C2 /* Build configuration list for PBXNativeTarget "DropDownTextFieldSwift" */;
+			buildPhases = (
+				7866AF9520B7EB087B62EAB5 /* [CP] Check Pods Manifest.lock */,
+				C0D8418424FD12DA008277C2 /* Sources */,
+				C0D8418524FD12DA008277C2 /* Frameworks */,
+				C0D8418624FD12DA008277C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DropDownTextFieldSwift;
+			productName = DropDownTextFieldSwift;
+			productReference = C0D8418824FD12DA008277C2 /* DropDownTextFieldSwift.app */;
+			productType = "com.apple.product-type.application";
+		};
 		E609C864182ECB1D0058DB63 /* Drop Down TextField */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E609C889182ECB1D0058DB63 /* Build configuration list for PBXNativeTarget "Drop Down TextField" */;
@@ -142,8 +205,6 @@
 				E609C861182ECB1D0058DB63 /* Sources */,
 				E609C862182ECB1D0058DB63 /* Frameworks */,
 				E609C863182ECB1D0058DB63 /* Resources */,
-				665DBA6A8DD32666478CA767 /* [CP] Embed Pods Frameworks */,
-				ED95046204F081BE8CC835B9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,15 +221,25 @@
 		E609C85C182ECB1D0058DB63 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Iftekhar;
+				TargetAttributes = {
+					C0D8418724FD12DA008277C2 = {
+						CreatedOnToolsVersion = 11.5;
+						DevelopmentTeam = 7UUTF6T5P9;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = E609C85F182ECB1D0058DB63 /* Build configuration list for PBXProject "Drop Down TextField" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
+				Base,
 			);
 			mainGroup = E609C85A182ECB1D0058DB63;
 			productRefGroup = E609C866182ECB1D0058DB63 /* Products */;
@@ -176,11 +247,22 @@
 			projectRoot = "";
 			targets = (
 				E609C864182ECB1D0058DB63 /* Drop Down TextField */,
+				C0D8418724FD12DA008277C2 /* DropDownTextFieldSwift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C0D8418624FD12DA008277C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0D8419724FD12DB008277C2 /* LaunchScreen.storyboard in Resources */,
+				C0D8419424FD12DB008277C2 /* Assets.xcassets in Resources */,
+				C0D8419224FD12DA008277C2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E609C863182ECB1D0058DB63 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,19 +278,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		665DBA6A8DD32666478CA767 /* [CP] Embed Pods Frameworks */ = {
+		7866AF9520B7EB087B62EAB5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DropDownTextFieldSwift-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		89A727410623A194787EFC80 /* [CP] Check Pods Manifest.lock */ = {
@@ -229,24 +318,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ED95046204F081BE8CC835B9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C0D8418424FD12DA008277C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0D8418F24FD12DA008277C2 /* ViewController.swift in Sources */,
+				C0D8418B24FD12DA008277C2 /* AppDelegate.swift in Sources */,
+				C0D8418D24FD12DA008277C2 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E609C861182ECB1D0058DB63 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -260,6 +344,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		C0D8419024FD12DA008277C2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0D8419124FD12DA008277C2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C0D8419524FD12DB008277C2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C0D8419624FD12DB008277C2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		E609C872182ECB1D0058DB63 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -271,6 +371,79 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C0D8419924FD12DB008277C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E311CE637B446D65AF7A19E /* Pods-DropDownTextFieldSwift.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 7UUTF6T5P9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DropDownTextFieldSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iftekhar.DropDownTextFieldSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C0D8419A24FD12DB008277C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9535106CDC87E5A0E1923001 /* Pods-DropDownTextFieldSwift.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 7UUTF6T5P9;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DropDownTextFieldSwift/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iftekhar.DropDownTextFieldSwift;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E609C887182ECB1D0058DB63 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */;
@@ -395,6 +568,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C0D8419B24FD12DB008277C2 /* Build configuration list for PBXNativeTarget "DropDownTextFieldSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0D8419924FD12DB008277C2 /* Debug */,
+				C0D8419A24FD12DB008277C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E609C85F182ECB1D0058DB63 /* Build configuration list for PBXProject "Drop Down TextField" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

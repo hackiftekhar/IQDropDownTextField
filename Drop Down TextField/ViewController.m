@@ -10,6 +10,8 @@
 
 @interface ViewController ()<IQDropDownTextFieldDelegate>
 
+@property IQDropDownTextField *dropDown;
+
 @end
 
 @implementation ViewController
@@ -17,6 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.dropDown = [[IQDropDownTextField alloc] init];
+    [self.dropDown setItemList:@[@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore"]];
+    self.dropDown.dropDownMode = IQDropDownModeTextField;
+    self.dropDown.isOptionalDropDown = YES;
+    [self.view addSubview:self.dropDown];
     
     textFieldTextPicker.showDismissToolbar = YES;
     textFieldOptionalTextPicker.showDismissToolbar = YES;
@@ -100,6 +108,7 @@
     textFieldDatePicker.isOptionalDropDown = !textFieldDatePicker.isOptionalDropDown;
     textFieldTimePicker.isOptionalDropDown = !textFieldTimePicker.isOptionalDropDown;
     textFieldDateTimePicker.isOptionalDropDown = !textFieldDateTimePicker.isOptionalDropDown;
+    self.dropDown.isOptionalDropDown = !self.dropDown.isOptionalDropDown;
 }
 
 - (IBAction)resetAction:(UIButton *)sender {
@@ -108,6 +117,7 @@
     textFieldDatePicker.selectedItem = nil;
     textFieldTimePicker.date = nil;
     textFieldDateTimePicker.selectedItem = nil;
+    self.dropDown.selectedItem = nil;
 }
 
 - (void)didReceiveMemoryWarning
