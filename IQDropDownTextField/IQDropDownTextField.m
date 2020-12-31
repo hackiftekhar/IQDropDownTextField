@@ -235,7 +235,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
     if (row == IQOptionalTextFieldIndex) {
         [self _setSelectedItem:nil animated:NO shouldNotifyDelegate:YES];
-    } else {
+    } else if (row >= 0) {
 
         NSString *text = [self.itemList objectAtIndex:row];
         
@@ -354,6 +354,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     if (_dismissToolbar == nil)
     {
         _dismissToolbar = [[UIToolbar alloc] init];
+        _dismissToolbar.translucent = YES;
         [_dismissToolbar sizeToFit];
         UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resignFirstResponder)];
@@ -489,18 +490,74 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
 }
 
+-(void)setOptionalItemText:(NSString *)optionalItemText
+{
+    _optionalItemText = [optionalItemText copy];
+
+    [self _updateOptionsList];
+}
+
+-(BOOL)adjustPickerLabelFontSizeWidth {
+    return _adjustPickerLabelFontSizeWidth;
+}
+-(void)setAdjustPickerLabelFontSizeWidth:(BOOL)adjustPickerLabelFontSizeWidth {
+    _adjustPickerLabelFontSizeWidth = adjustPickerLabelFontSizeWidth;
+
+    [self _updateOptionsList];
+}
+
 -(void)setIsOptionalDropDown:(BOOL)isOptionalDropDown
 {
-    NSInteger previousSelectedRow = self.selectedRow;
-
-    _isOptionalDropDown = isOptionalDropDown;
-    _hasSetInitialIsOptional = YES;
-    
-    [self.pickerView reloadAllComponents];
-
-    if (_dropDownMode == IQDropDownModeTextPicker)
+    if (_hasSetInitialIsOptional == NO || _isOptionalDropDown != isOptionalDropDown)
     {
-        [self setSelectedRow:previousSelectedRow];
+        NSInteger previousSelectedRow = self.selectedRow;
+
+        _isOptionalDropDown = isOptionalDropDown;
+        _hasSetInitialIsOptional = YES;
+
+        if (_hasSetInitialIsOptional == YES && self.dropDownMode == IQDropDownModeTextPicker)
+        {
+            [self.pickerView reloadAllComponents];
+
+            [self setSelectedRow:previousSelectedRow];
+        }
+    }
+}
+
+- (void) _updateOptionsList {
+
+    switch (_dropDownMode)
+    {
+        case IQDropDownModeDatePicker:
+        {
+            if (self.isOptionalDropDown == NO)
+            {
+                [self setDate:self.datePicker.date];
+            }
+        }
+            break;
+        case IQDropDownModeTimePicker:
+        {
+            if (self.isOptionalDropDown == NO)
+            {
+                [self setDate:self.timePicker.date];
+            }
+        }
+            break;
+        case IQDropDownModeDateTimePicker:
+        {
+            if (self.isOptionalDropDown == NO)
+            {
+                [self setDate:self.dateTimePicker.date];
+            }
+        }
+        case IQDropDownModeTextPicker:
+        {
+            [self.pickerView reloadAllComponents];
+        }
+            break;
+        default:
+            break;
     }
 }
 
@@ -540,6 +597,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         _timePicker = [[UIDatePicker alloc] init];
         [_timePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
         [_timePicker setDatePickerMode:UIDatePickerModeTime];
+        if (@available(iOS 13.4, *)) {
+            [_timePicker setPreferredDatePickerStyle:UIDatePickerStyleWheels];
+        }
         [_timePicker addTarget:self action:@selector(timeChanged:) forControlEvents:UIControlEventValueChanged];
         objc_setAssociatedObject(self, _cmd, _timePicker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -556,6 +616,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         _dateTimePicker = [[UIDatePicker alloc] init];
         [_dateTimePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
         [_dateTimePicker setDatePickerMode:UIDatePickerModeDateAndTime];
+        if (@available(iOS 13.4, *)) {
+            [_dateTimePicker setPreferredDatePickerStyle:UIDatePickerStyleWheels];
+        }
         [_dateTimePicker addTarget:self action:@selector(dateTimeChanged:) forControlEvents:UIControlEventValueChanged];
         objc_setAssociatedObject(self, _cmd, _dateTimePicker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -571,6 +634,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         _datePicker = [[UIDatePicker alloc] init];
         [_datePicker setAutoresizingMask:(UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight)];
         [_datePicker setDatePickerMode:UIDatePickerModeDate];
+        if (@available(iOS 13.4, *)) {
+            [_datePicker setPreferredDatePickerStyle:UIDatePickerStyleWheels];
+        }
         [_datePicker addTarget:self action:@selector(dateChanged:) forControlEvents:UIControlEventValueChanged];
         objc_setAssociatedObject(self, _cmd, _datePicker, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -661,7 +727,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 -(NSDateComponents *)dateComponents
 {
-    return [[NSCalendar currentCalendar] components:kCFCalendarUnitDay | kCFCalendarUnitMonth | kCFCalendarUnitYear fromDate:self.date];
+    return [[NSCalendar currentCalendar] components: kCFCalendarUnitSecond | kCFCalendarUnitMinute | kCFCalendarUnitHour | kCFCalendarUnitDay | kCFCalendarUnitMonth | kCFCalendarUnitYear | kCFCalendarUnitEra fromDate:self.date];
 }
 
 - (NSInteger)year   {   return [[self dateComponents] year];    }

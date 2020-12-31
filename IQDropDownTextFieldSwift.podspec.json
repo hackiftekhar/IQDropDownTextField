@@ -1,5 +1,5 @@
 {
-    "name": "IQDropDownTextField",
+    "name": "IQDropDownTextFieldSwift",
     "version": "2.0.1",
     "source": {
         "git": "https://github.com/hackiftekhar/IQDropDownTextField.git",
@@ -15,10 +15,13 @@
         "ios": "8.0"
     },
     "source_files": [
-        "IQDropDownTextField/*.{h,m}"
+        "IQDropDownTextFieldSwift/*.{swift}"
     ],
-    "public_header_files": [
-        "IQDropDownTextField/IQDropDownTextField.h"
+    "swift_versions": [
+      "5.0",
+      "5.1",
+      "5.2",
+      "5.3"
     ],
     "frameworks": [
         "UIKit",

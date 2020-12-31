@@ -95,8 +95,8 @@
 }
 
 - (IBAction)isOptionalToggle:(UIButton *)sender {
-    textFieldTextPicker.isOptionalDropDown = !textFieldTextPicker.isOptionalDropDown;
     textFieldOptionalTextPicker.isOptionalDropDown = !textFieldOptionalTextPicker.isOptionalDropDown;
+    textFieldTextPicker.isOptionalDropDown = !textFieldTextPicker.isOptionalDropDown;
     textFieldDatePicker.isOptionalDropDown = !textFieldDatePicker.isOptionalDropDown;
     textFieldTimePicker.isOptionalDropDown = !textFieldTimePicker.isOptionalDropDown;
     textFieldDateTimePicker.isOptionalDropDown = !textFieldDateTimePicker.isOptionalDropDown;
