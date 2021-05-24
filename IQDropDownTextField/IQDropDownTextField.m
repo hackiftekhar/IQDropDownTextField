@@ -204,9 +204,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
             {
                 BOOL canSelect = YES;
                 
-                if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
+                if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:row:)])
                 {
-                    canSelect = [self.dataSource textField:self canSelectItem:text];
+                    canSelect = [self.dataSource textField:self canSelectItem:text row:row];
                 }
                 
                 if (canSelect)
@@ -241,9 +241,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         
         BOOL canSelect = YES;
         
-        if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:)])
+        if ([self.dataSource respondsToSelector:@selector(textField:canSelectItem:row:)])
         {
-            canSelect = [self.dataSource textField:self canSelectItem:text];
+            canSelect = [self.dataSource textField:self canSelectItem:text row:row];
         }
         
         if (canSelect)
@@ -254,9 +254,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         {
             IQProposedSelection proposedSelection = IQProposedSelectionBoth;
             
-            if ([self.dataSource respondsToSelector:@selector(textField:proposedSelectionModeForItem:)])
+            if ([self.dataSource respondsToSelector:@selector(textField:proposedSelectionModeForItem:row:)])
             {
-                proposedSelection = [self.dataSource textField:self proposedSelectionModeForItem:text];
+                proposedSelection = [self.dataSource textField:self proposedSelectionModeForItem:text row:row];
             }
             
             NSInteger aboveIndex = row-1;
@@ -278,7 +278,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
                 {
                     NSString *aboveText = [self.itemList objectAtIndex:aboveIndex];
                     
-                    if ([self.dataSource textField:self canSelectItem:aboveText])
+                    if ([self.dataSource textField:self canSelectItem:aboveText row:aboveIndex])
                     {
                         [self _setSelectedItem:aboveText animated:YES shouldNotifyDelegate:YES];
                         return;
@@ -289,9 +289,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
                 
                 if (belowIndex < self.itemList.count)
                 {
-                    NSString *belowText = [self.itemList objectAtIndex:aboveIndex];
+                    NSString *belowText = [self.itemList objectAtIndex:belowIndex];
                     
-                    if ([self.dataSource textField:self canSelectItem:belowText])
+                    if ([self.dataSource textField:self canSelectItem:belowText row:belowIndex])
                     {
                         [self _setSelectedItem:belowText animated:YES shouldNotifyDelegate:YES];
                         return;
@@ -563,12 +563,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
-    BOOL isRestrictedAction = (action == @selector(paste:) || action == @selector(cut:));
-    if (isRestrictedAction && self.dropDownMode != IQDropDownModeTextField) {
-        return NO;
-    }
-    
-    return [super canPerformAction:action withSender:sender];
+    BOOL isAllowedAction = (action == @selector(copy:));
+    return isAllowedAction;
 }
 
 #pragma mark - Getter
@@ -886,17 +882,18 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         {
             if ([self.itemList containsObject:selectedItem])
             {
-                [self setSelectedRow:[self.itemList indexOfObject:selectedItem] animated:animated];
+                NSInteger index = [self.itemList indexOfObject:selectedItem];
+                [self setSelectedRow:index animated:animated];
                 
-                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
-                    [self.delegate textField:self didSelectItem:selectedItem];
+                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:row:)])
+                    [self.delegate textField:self didSelectItem:selectedItem row:index];
             }
             else if (self.isOptionalDropDown)
             {
                 [self setSelectedRow:IQOptionalTextFieldIndex animated:animated];
                 
-                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:)])
-                    [self.delegate textField:self didSelectItem:nil];
+                if (shouldNotifyDelegate && [self.delegate respondsToSelector:@selector(textField:didSelectItem:row:)])
+                    [self.delegate textField:self didSelectItem:nil row:IQOptionalTextFieldIndex];
             }
         }
             break;

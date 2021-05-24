@@ -1,6 +1,6 @@
 PODS:
-  - IQDropDownTextField (2.0)
-  - IQDropDownTextFieldSwift (1.1.1)
+  - IQDropDownTextField (2.0.1)
+  - IQDropDownTextFieldSwift (2.0.1)
 
 DEPENDENCIES:
   - IQDropDownTextField (from `.`)
@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  IQDropDownTextField: 79293d19042b6f2ee6f02decf4a0e68e59e4f327
-  IQDropDownTextFieldSwift: 704ff133f882cc6f8276d949e8d0bd157e0788ce
+  IQDropDownTextField: 1afad4825d80089a1b0907e8a8d73a49248a2508
+  IQDropDownTextFieldSwift: 1ad17a2e3fa36ecb7c1672a4b5d457ac07bae64a
 
 PODFILE CHECKSUM: 08a9af29db025dae10f8390be96ddf1c0131324d
 
