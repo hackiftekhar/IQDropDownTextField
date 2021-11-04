@@ -11,11 +11,6 @@ let package = Package(
         .library(
             name: "IQDropDownTextField",
             targets: ["IQDropDownTextField"]),
-        
-        // Uncomment when Swift version is available.
-//        .library(
-//            name: "IQDropDownTextFieldSwift",
-//            targets: ["IQDropDownTextFieldSwift"]),
     ],
     dependencies: [],
     targets: [
@@ -23,10 +18,5 @@ let package = Package(
             name: "IQDropDownTextField",
             path: "IQDropDownTextField",
             publicHeadersPath: "."),
-        
-        // Uncomment when Swift version is available.
-//        .target(
-//            name: "IQDropDownTextFieldSwift",
-//            path: "IQDropDownTextFieldSwift"),
     ]
 )
