@@ -10,7 +10,7 @@
 
 @interface ViewController ()<IQDropDownTextFieldDelegate>
 
-@property IQDropDownTextField *dropDown;
+//@property IQDropDownTextField *dropDown;
 
 @end
 
@@ -20,11 +20,11 @@
 {
     [super viewDidLoad];
     
-    self.dropDown = [[IQDropDownTextField alloc] init];
-    [self.dropDown setItemList:@[@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore"]];
-    self.dropDown.dropDownMode = IQDropDownModeTextField;
-    self.dropDown.isOptionalDropDown = YES;
-    [self.view addSubview:self.dropDown];
+//    self.dropDown = [[IQDropDownTextField alloc] init];
+//    [self.dropDown setItemList:@[@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore"]];
+//    self.dropDown.dropDownMode = IQDropDownModeTextField;
+//    self.dropDown.isOptionalDropDown = YES;
+//    [self.view addSubview:self.dropDown];
     
     textFieldTextPicker.showDismissToolbar = YES;
     textFieldOptionalTextPicker.showDismissToolbar = YES;
@@ -38,6 +38,7 @@
     UISwitch *aSwitch = [[UISwitch alloc] init];
     
     [textFieldTextPicker setItemList:@[@"London",@"Johannesburg",@"Moscow",@"Mumbai",@"Tokyo",@"Sydney",@"Paris",@"Bangkok",@"New York",@"Istanbul",@"Dubai",@"Singapore"]];
+    textFieldTextPicker.selectedRow = 2;
     [textFieldTextPicker setItemListView:@[[NSNull null],indicator,[NSNull null],aSwitch,[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null],[NSNull null]]];
     
     /*  
@@ -49,6 +50,7 @@
 //    textFieldTextPicker.optionalItemTextColor = [UIColor brownColor];
 
     [textFieldOptionalTextPicker setItemList:[NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6", nil]];
+    textFieldOptionalTextPicker.selectedRow = 3;
     [textFieldOptionalTextPicker setItemListUI:[NSArray arrayWithObjects:@"1 Year Old",@"2 Years Old",@"3 Years Old",@"4 Years Old",@"5 Years Old",@"6 Years Old", nil]];
 
 //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -108,7 +110,7 @@
     textFieldDatePicker.isOptionalDropDown = !textFieldDatePicker.isOptionalDropDown;
     textFieldTimePicker.isOptionalDropDown = !textFieldTimePicker.isOptionalDropDown;
     textFieldDateTimePicker.isOptionalDropDown = !textFieldDateTimePicker.isOptionalDropDown;
-    self.dropDown.isOptionalDropDown = !self.dropDown.isOptionalDropDown;
+//    self.dropDown.isOptionalDropDown = !self.dropDown.isOptionalDropDown;
 }
 
 - (IBAction)resetAction:(UIButton *)sender {
@@ -117,7 +119,7 @@
     textFieldDatePicker.selectedItem = nil;
     textFieldTimePicker.date = nil;
     textFieldDateTimePicker.selectedItem = nil;
-    self.dropDown.selectedItem = nil;
+//    self.dropDown.selectedItem = nil;
 }
 
 - (void)didReceiveMemoryWarning

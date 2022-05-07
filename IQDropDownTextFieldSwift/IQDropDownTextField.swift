@@ -340,7 +340,9 @@ open class IQDropDownTextField: UITextField {
     // MARK: - UIView overrides
     open override func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
-        _pickerView.selectRow(_pickerSelectedRow, inComponent:0, animated:false)
+        if _pickerSelectedRow >= 0 {
+            _pickerView.selectRow(_pickerSelectedRow, inComponent:0, animated:false)
+        }
         return result
     }
 

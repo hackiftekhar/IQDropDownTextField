@@ -32,6 +32,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 @property (nonatomic, strong) UIToolbar *dismissToolbar;
 
 @property BOOL hasSetInitialIsOptional;
+@property NSInteger pickerSelectedRow;
 
 @end
 
@@ -95,6 +96,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         self.isOptionalDropDown = self.hasSetInitialIsOptional?self.isOptionalDropDown:YES;
         self.adjustPickerLabelFontSizeWidth = self.adjustPickerLabelFontSizeWidth;
     }
+    _pickerSelectedRow = -1;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -111,6 +113,16 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 {
     [super awakeFromNib];
     [self initialize];
+}
+
+- (BOOL)becomeFirstResponder
+{
+    BOOL result = [super becomeFirstResponder];
+    if (_pickerSelectedRow >= 0) {
+        [_pickerView selectRow:_pickerSelectedRow inComponent:0 animated:NO];
+    }
+
+    return  result;
 }
 
 #pragma mark - UITextField overrides
@@ -229,6 +241,8 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    _pickerSelectedRow = row;
+
     row = row - (self.isOptionalDropDown ? 1 : 0);
 
     if (row == IQOptionalTextFieldIndex) {
@@ -307,7 +321,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 - (NSInteger)selectedRow
 {
-    NSInteger pickerViewSelectedRow = [self.pickerView selectedRowInComponent:0];   //It may return -1
+    NSInteger pickerViewSelectedRow = _pickerSelectedRow;   //It may return -1
     pickerViewSelectedRow = MAX(pickerViewSelectedRow, 0);
 
     return pickerViewSelectedRow - (self.isOptionalDropDown ? 1 : 0);
@@ -333,6 +347,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
 
     NSInteger pickerViewRow = row + (self.isOptionalDropDown ? 1 : 0);
+    _pickerSelectedRow = pickerViewRow;
     [self.pickerView selectRow:pickerViewRow inComponent:0 animated:animated];
 }
 
