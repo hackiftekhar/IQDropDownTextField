@@ -623,7 +623,7 @@ extension IQDropDownTextField: UIPickerViewDelegate {
                     }
 
                     if belowIndex < self.itemList.count {
-                        let belowText:String = self.itemList[aboveIndex]
+                        let belowText:String = self.itemList[belowIndex]
 
                         if let result = dataSource?.textField(textField: self, canSelectItem: belowText), result == true {
                             self._setSelectedItem(selectedItem: belowText, animated:true, shouldNotifyDelegate:true)
