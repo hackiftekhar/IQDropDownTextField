@@ -13,12 +13,9 @@ Install using [cocoapods](http://cocoapods.org). Add in your `Podfile`:
 pod 'IQDropDownTextField'
 ```
 
-### Swift Projects
-
-Add the `.h` file in your [bridging header](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html) 
-
-```objective-c
-#import "IQDropDownTextField.h"
+Or below for Swift version
+```
+pod 'IQDropDownTextFieldSwift'
 ```
 
 ## How to Use
@@ -49,8 +46,10 @@ Nothing more easy than it!
 It's very simple to setup your `IQDropDownTextField`. The sample below shows you how to:
 
 ```swift
+import IQDropDownTextFieldSwift
+
 class MyController : UIViewController {
-  @IBOutlet weak var occupationTextField: IQDropDownTextField!
+  @IBOutlet var occupationTextField: IQDropDownTextField!
   
   override func viewDidLoad() {
     occupationTextField.isOptionalDropDown = false
