@@ -11,7 +11,7 @@ import IQDropDownTextFieldSwift
 
 class ViewController: UIViewController {
 
-    @IBOutlet var mainStackView: UIStackView!
+//    @IBOutlet var mainStackView: UIStackView!
 
     @IBOutlet var textFieldTextPicker: IQDropDownTextField!
     @IBOutlet var textFieldOptionalTextPicker: IQDropDownTextField!
@@ -19,16 +19,16 @@ class ViewController: UIViewController {
     @IBOutlet var textFieldTimePicker: IQDropDownTextField!
     @IBOutlet var textFieldDateTimePicker: IQDropDownTextField!
 
-    private var dropDown: IQDropDownTextField = IQDropDownTextField()
+//    private var dropDown: IQDropDownTextField = IQDropDownTextField()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.dropDown.itemList = ["London","Johannesburg","Moscow","Mumbai","Tokyo","Sydney","Paris","Bangkok","New York","Istanbul","Dubai","Singapore"]
+//        self.dropDown.itemList = ["London","Johannesburg","Moscow","Mumbai","Tokyo","Sydney","Paris","Bangkok","New York","Istanbul","Dubai","Singapore"]
 //        self.dropDown.dropDownMode = .list
-        self.dropDown.selectedRow = 2
-        self.dropDown.isOptionalDropDown = true
-        self.mainStackView.addArrangedSubview(self.dropDown)
+//        self.dropDown.selectedRow = 2
+//        self.dropDown.isOptionalDropDown = true
+//        self.mainStackView.addArrangedSubview(self.dropDown)
 
         textFieldTextPicker.showDismissToolbar = true
         textFieldOptionalTextPicker.showDismissToolbar = true
@@ -80,8 +80,8 @@ class ViewController: UIViewController {
         textFieldDateTimePicker.delegate = self
         textFieldDateTimePicker.dataSource = self
 
-        dropDown.delegate = self
-        dropDown.dataSource = self
+//        dropDown.delegate = self
+//        dropDown.dataSource = self
     }
 
     func textField(textField:IQDropDownTextField, didSelectItem item:String?) {
@@ -130,7 +130,7 @@ class ViewController: UIViewController {
         textFieldDatePicker.isOptionalDropDown = !textFieldDatePicker.isOptionalDropDown
         textFieldTimePicker.isOptionalDropDown = !textFieldTimePicker.isOptionalDropDown
         textFieldDateTimePicker.isOptionalDropDown = !textFieldDateTimePicker.isOptionalDropDown
-        self.dropDown.isOptionalDropDown = !self.dropDown.isOptionalDropDown
+//        self.dropDown.isOptionalDropDown = !self.dropDown.isOptionalDropDown
     }
 
     @IBAction func resetAction(_ sender:UIButton) {
@@ -139,7 +139,7 @@ class ViewController: UIViewController {
         textFieldDatePicker.selectedItem = nil
         textFieldTimePicker.date = nil
         textFieldDateTimePicker.selectedItem = nil
-        self.dropDown.selectedItem = nil
+//        self.dropDown.selectedItem = nil
     }
 }
 

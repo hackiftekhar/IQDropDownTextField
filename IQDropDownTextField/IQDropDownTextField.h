@@ -44,6 +44,16 @@ typedef NS_ENUM(NSInteger, IQDropDownMode) {
     IQDropDownModeTextField
 };
 
+/**
+ `IQProposedSelectionAbove`
+ pickerView find the nearest items above the deselected item that can be selected and then selecting that row.
+
+ `IQProposedSelectionBelow`
+ pickerView find the nearest items below the deselected item that can be selected and then selecting that row.
+
+ `IQProposedSelectionBoth`
+ pickerView find the nearest items that can be selected above or below the deselected item and then selecting that row.
+ */
 typedef NS_ENUM(NSInteger, IQProposedSelection) {
     IQProposedSelectionBoth,
     IQProposedSelectionAbove,
@@ -65,7 +75,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @protocol IQDropDownTextFieldDelegate <UITextFieldDelegate>
 
 @optional
--(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item; //Called when textField changes it's selected item. Supported for IQDropDownModeTextPicker
+-(void)textField:(nonnull IQDropDownTextField*)textField didSelectItem:(nullable NSString*)item row:(NSInteger)row; //Called when textField changes it's selected item. Supported for IQDropDownModeTextPicker
 
 -(void)textField:(nonnull IQDropDownTextField*)textField didSelectDate:(nullable NSDate*)date; //Called when textField changes it's selected item. Supported for IQDropDownModeTimePicker, IQDropDownModeDatePicker, IQDropDownModeDateTimePicker
 
@@ -78,11 +88,8 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @protocol IQDropDownTextFieldDataSource <NSObject>
 
 @optional
--(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nonnull NSString*)item;    //Check if an item can be selected by dropdown texField.
--(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nonnull NSString*)item;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
-//IQProposedSelectionAbove: pickerView find the nearest items above the deselected item that can be selected and then selecting that row.
-//IQProposedSelectionBelow: pickerView find the nearest items below the deselected item that can be selected and then selecting that row.
-//IQProposedSelectionBoth: pickerView find the nearest items that can be selected above or below the deselected item and then selecting that row.
+-(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nonnull NSString*)item row:(NSInteger)row;    //Check if an item can be selected by dropdown texField.
+-(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nonnull NSString*)item row:(NSInteger)row;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
 
 @end
 

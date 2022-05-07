@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRl-Ae-7la">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="4da-38-bmK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sRl-Ae-7la" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j74-it-ySc">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="opo-0h-AeO" kind="relationship" relationship="rootViewController" id="fxi-A5-281"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DlH-Ba-IHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-353" y="199"/>
+        </scene>
+        <!--IQDropDownTextField-->
+        <scene sceneID="LQq-Dp-gVT">
+            <objects>
+                <viewController id="opo-0h-AeO" customClass="ViewController" customModule="DropDownTextFieldSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q8j-7a-cth">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IrQ-zv-Iga">
+                                <rect key="frame" x="20" y="98" width="374" height="778"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="c14-dH-K5u">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="57.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDG-UA-rhP">
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="57.5"/>
+                                                <state key="normal" title="isOptional Toggle"/>
+                                                <connections>
+                                                    <action selector="isOptionalToggle:" destination="opo-0h-AeO" eventType="touchUpInside" id="tOn-sU-3W4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2c-cj-Aow">
+                                                <rect key="frame" x="191" y="0.0" width="183" height="57.5"/>
+                                                <state key="normal" title="Reset"/>
+                                                <connections>
+                                                    <action selector="resetAction:" destination="opo-0h-AeO" eventType="touchUpInside" id="QTy-oX-ydY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="6Qu-jI-QZT">
+                                        <rect key="frame" x="0.0" y="65.5" width="374" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZKF-do-HNo" customClass="IQDropDownTextField">
+                                        <rect key="frame" x="0.0" y="131" width="374" height="57.5"/>
+                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="rdx-3C-fLr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="opo-0h-AeO" id="jYm-VB-3wN"/>
+                                            <outlet property="delegate" destination="opo-0h-AeO" id="f6n-7X-Zu8"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3Xp-4g-iaY">
+                                        <rect key="frame" x="0.0" y="196.5" width="374" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rGN-Q3-aHv" customClass="IQDropDownTextField">
+                                        <rect key="frame" x="0.0" y="262" width="374" height="57.5"/>
+                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isOptionalDropDown" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="opo-0h-AeO" id="6w8-FU-p7K"/>
+                                            <outlet property="delegate" destination="opo-0h-AeO" id="nja-N0-k45"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8of-Ve-pWZ">
+                                        <rect key="frame" x="0.0" y="327.5" width="374" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XhU-vf-Y1H" customClass="IQDropDownTextField">
+                                        <rect key="frame" x="0.0" y="393" width="374" height="57.5"/>
+                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isOptionalDropDown" value="NO"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="opo-0h-AeO" id="YOY-hs-KH2"/>
+                                            <outlet property="delegate" destination="opo-0h-AeO" id="pqX-th-Wag"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zi6-zj-9cD">
+                                        <rect key="frame" x="0.0" y="458.5" width="374" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FJl-Me-Ogb" customClass="IQDropDownTextField">
+                                        <rect key="frame" x="0.0" y="524" width="374" height="57.5"/>
+                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isOptionalDropDown" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="opo-0h-AeO" id="hiB-8o-IoQ"/>
+                                            <outlet property="delegate" destination="opo-0h-AeO" id="hiR-yK-QSZ"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="phm-kw-eWU">
+                                        <rect key="frame" x="0.0" y="589.5" width="374" height="57.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SJ1-nf-3Nu" customClass="IQDropDownTextField">
+                                        <rect key="frame" x="0.0" y="655" width="374" height="57.5"/>
+                                        <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="opo-0h-AeO" id="JEh-04-qat"/>
+                                            <outlet property="delegate" destination="opo-0h-AeO" id="g6J-b6-6Xp"/>
+                                        </connections>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZG-IQ-Wjd">
+                                        <rect key="frame" x="0.0" y="720.5" width="374" height="57.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="phm-kw-eWU" firstAttribute="height" secondItem="6Qu-jI-QZT" secondAttribute="height" id="86J-gH-QMX"/>
+                                    <constraint firstItem="8of-Ve-pWZ" firstAttribute="height" secondItem="6Qu-jI-QZT" secondAttribute="height" id="Bz9-Vi-02b"/>
+                                    <constraint firstItem="SJ1-nf-3Nu" firstAttribute="height" secondItem="ZKF-do-HNo" secondAttribute="height" id="D9w-m4-KaN"/>
+                                    <constraint firstItem="FJl-Me-Ogb" firstAttribute="height" secondItem="ZKF-do-HNo" secondAttribute="height" id="N2p-1u-zQh"/>
+                                    <constraint firstItem="3Xp-4g-iaY" firstAttribute="height" secondItem="6Qu-jI-QZT" secondAttribute="height" id="pAv-XG-joC"/>
+                                    <constraint firstItem="zi6-zj-9cD" firstAttribute="height" secondItem="6Qu-jI-QZT" secondAttribute="height" id="phK-6A-YmX"/>
+                                    <constraint firstItem="XhU-vf-Y1H" firstAttribute="height" secondItem="ZKF-do-HNo" secondAttribute="height" id="rEk-SD-aCx"/>
+                                    <constraint firstItem="rGN-Q3-aHv" firstAttribute="height" secondItem="ZKF-do-HNo" secondAttribute="height" id="tzm-H0-3Va"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="frc-ec-WNp"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IrQ-zv-Iga" secondAttribute="trailing" constant="20" symbolic="YES" id="Aha-O2-gOF"/>
+                            <constraint firstItem="IrQ-zv-Iga" firstAttribute="top" secondItem="frc-ec-WNp" secondAttribute="top" constant="10" id="CZp-38-Jwv"/>
+                            <constraint firstItem="IrQ-zv-Iga" firstAttribute="leading" secondItem="Q8j-7a-cth" secondAttribute="leading" constant="20" symbolic="YES" id="f6r-nI-TMQ"/>
+                            <constraint firstAttribute="bottom" secondItem="IrQ-zv-Iga" secondAttribute="bottom" constant="20" symbolic="YES" id="rrR-xH-Atm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="IQDropDownTextField" id="AlL-8F-lSr"/>
+                    <connections>
+                        <outlet property="textFieldDatePicker" destination="XhU-vf-Y1H" id="Z0y-wd-KwF"/>
+                        <outlet property="textFieldDateTimePicker" destination="SJ1-nf-3Nu" id="t5j-Cl-n1h"/>
+                        <outlet property="textFieldOptionalTextPicker" destination="ZKF-do-HNo" id="Mw6-U7-XXF"/>
+                        <outlet property="textFieldTextPicker" destination="rGN-Q3-aHv" id="D6F-Rl-jyZ"/>
+                        <outlet property="textFieldTimePicker" destination="FJl-Me-Ogb" id="eCE-cd-H7s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w2V-aX-j8Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="422" y="186"/>
+        </scene>
+    </scenes>
+</document>

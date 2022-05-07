@@ -14,10 +14,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:@"dd"];
-//    [[IQDropDownTextField appearance] setDateFormatter:formatter];
-    
     return YES;
 }
 
