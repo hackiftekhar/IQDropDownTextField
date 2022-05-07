@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oXV-Wr-hOJ">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -14,24 +14,24 @@
             <objects>
                 <viewController id="KdE-C4-cxl" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AFs-D4-wh7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2H8-gb-O1Z">
-                                <rect key="frame" x="20" y="54" width="335" height="593"/>
+                                <rect key="frame" x="20" y="98" width="374" height="778"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6kH-i6-lG8">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="57.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rY-wT-yFH">
-                                                <rect key="frame" x="0.0" y="0.0" width="163.5" height="42"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="183" height="57.5"/>
                                                 <state key="normal" title="isOptional Toggle"/>
                                                 <connections>
                                                     <action selector="isOptionalToggle:" destination="KdE-C4-cxl" eventType="touchUpInside" id="F8m-um-3Tw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOG-cF-a5B">
-                                                <rect key="frame" x="171.5" y="0.0" width="163.5" height="42"/>
+                                                <rect key="frame" x="191" y="0.0" width="183" height="57.5"/>
                                                 <state key="normal" title="Reset"/>
                                                 <connections>
                                                     <action selector="resetAction:" destination="KdE-C4-cxl" eventType="touchUpInside" id="9Ox-go-tyl"/>
@@ -40,13 +40,13 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nqB-Nv-xa7">
-                                        <rect key="frame" x="0.0" y="50" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="65.5" width="374" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oxc-ng-Fhd" customClass="IQDropDownTextField">
-                                        <rect key="frame" x="0.0" y="100" width="335" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="131" width="374" height="57.5"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="WwJ-ur-JEA"/>
@@ -59,13 +59,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Text Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4gQ-pG-HWu">
-                                        <rect key="frame" x="0.0" y="150.5" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="196.5" width="374" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGU-0S-bSx" customClass="IQDropDownTextField">
-                                        <rect key="frame" x="0.0" y="200.5" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="262" width="374" height="57.5"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -78,13 +78,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-Vc-jqS">
-                                        <rect key="frame" x="0.0" y="250.5" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="327.5" width="374" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JT5-LI-gB4" customClass="IQDropDownTextField">
-                                        <rect key="frame" x="0.0" y="300.5" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="393" width="374" height="57.5"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -97,13 +97,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="laH-Ch-1LA">
-                                        <rect key="frame" x="0.0" y="350.5" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="458.5" width="374" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AHY-aZ-COr" customClass="IQDropDownTextField">
-                                        <rect key="frame" x="0.0" y="400.5" width="335" height="42.5"/>
+                                        <rect key="frame" x="0.0" y="524" width="374" height="57.5"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -116,13 +116,13 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date Time Picker Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4hz-bf-Rg1">
-                                        <rect key="frame" x="0.0" y="451" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="589.5" width="374" height="57.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jFM-gA-5GI" customClass="IQDropDownTextField">
-                                        <rect key="frame" x="0.0" y="501" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="655" width="374" height="57.5"/>
                                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -132,18 +132,14 @@
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7rT-lA-lvu">
-                                        <rect key="frame" x="0.0" y="551" width="335" height="42"/>
+                                        <rect key="frame" x="0.0" y="720.5" width="374" height="57.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="4hz-bf-Rg1" firstAttribute="height" secondItem="nqB-Nv-xa7" secondAttribute="height" id="5ZD-6Z-IKA"/>
                                     <constraint firstItem="JT5-LI-gB4" firstAttribute="height" secondItem="Oxc-ng-Fhd" secondAttribute="height" id="Kwx-CU-GeG"/>
-                                    <constraint firstItem="laH-Ch-1LA" firstAttribute="height" secondItem="nqB-Nv-xa7" secondAttribute="height" id="Opl-CC-fAs"/>
                                     <constraint firstItem="IGU-0S-bSx" firstAttribute="height" secondItem="Oxc-ng-Fhd" secondAttribute="height" id="P4B-cA-zuX"/>
                                     <constraint firstItem="jFM-gA-5GI" firstAttribute="height" secondItem="Oxc-ng-Fhd" secondAttribute="height" id="dDP-Xf-1FZ"/>
-                                    <constraint firstItem="Oe8-Vc-jqS" firstAttribute="height" secondItem="nqB-Nv-xa7" secondAttribute="height" id="miK-L6-isi"/>
-                                    <constraint firstItem="4gQ-pG-HWu" firstAttribute="height" secondItem="nqB-Nv-xa7" secondAttribute="height" id="qmS-c7-g4I"/>
                                     <constraint firstItem="AHY-aZ-COr" firstAttribute="height" secondItem="Oxc-ng-Fhd" secondAttribute="height" id="sTq-AT-RUN"/>
                                 </constraints>
                             </stackView>
@@ -176,8 +172,9 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oXV-Wr-hOJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="not-hM-8r3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
