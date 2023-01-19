@@ -36,7 +36,13 @@ class ViewController: UIViewController {
         textFieldTimePicker.showDismissToolbar = true
         textFieldDateTimePicker.showDismissToolbar = true
 
-        let indicator:UIActivityIndicatorView! = UIActivityIndicatorView(style:.medium)
+        let indicator:UIActivityIndicatorView! = {
+            if #available(iOS 13.0, *) {
+                return UIActivityIndicatorView(style:.medium)
+            } else {
+                return UIActivityIndicatorView(style:.gray)
+            }
+        }()
         indicator.startAnimating()
 
         let aSwitch:UISwitch = UISwitch()
