@@ -15,16 +15,29 @@ class ViewController: UIViewController {
 
     @IBOutlet var textFieldTextPicker: IQDropDownTextField!
     @IBOutlet var textFieldOptionalTextPicker: IQDropDownTextField!
+    @IBOutlet var textFieldMultiListTextPicker: IQDropDownTextField!
     @IBOutlet var textFieldDatePicker: IQDropDownTextField!
     @IBOutlet var textFieldTimePicker: IQDropDownTextField!
     @IBOutlet var textFieldDateTimePicker: IQDropDownTextField!
 
 //    private var dropDown: IQDropDownTextField = IQDropDownTextField()
 
+    // swiftlint:disable function_body_length
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.dropDown.itemList = ["London","Johannesburg","Moscow","Mumbai","Tokyo","Sydney","Paris","Bangkok","New York","Istanbul","Dubai","Singapore"]
+//        self.dropDown.itemList = ["London",
+//                                  "Johannesburg",
+//                                  "Moscow",
+//                                  "Mumbai",
+//                                  "Tokyo",
+//                                  "Sydney",
+//                                  "Paris",
+//                                  "Bangkok",
+//                                  "New York",
+//                                  "Istanbul",
+//                                  "Dubai",
+//                                  "Singapore"]
 //        self.dropDown.dropDownMode = .list
 //        self.dropDown.selectedRow = 2
 //        self.dropDown.isOptionalDropDown = true
@@ -32,37 +45,97 @@ class ViewController: UIViewController {
 
         textFieldTextPicker.showDismissToolbar = true
         textFieldOptionalTextPicker.showDismissToolbar = true
+        textFieldMultiListTextPicker.showDismissToolbar = true
         textFieldDatePicker.showDismissToolbar = true
         textFieldTimePicker.showDismissToolbar = true
         textFieldDateTimePicker.showDismissToolbar = true
 
-        let indicator:UIActivityIndicatorView! = {
+        let indicator: UIActivityIndicatorView! = {
             if #available(iOS 13.0, *) {
-                return UIActivityIndicatorView(style:.medium)
+                return UIActivityIndicatorView(style: .medium)
             } else {
-                return UIActivityIndicatorView(style:.gray)
+                return UIActivityIndicatorView(style: .gray)
             }
         }()
         indicator.startAnimating()
 
-        let aSwitch:UISwitch = UISwitch()
+        let aSwitch: UISwitch = UISwitch()
 
-        textFieldTextPicker.itemList = ["London","Johannesburg","Moscow","Mumbai","Tokyo","Sydney","Paris","Bangkok","New York","Istanbul","Dubai","Singapore"]
+        textFieldTextPicker.itemList = ["London",
+                                        "Johannesburg",
+                                        "Moscow",
+                                        "Mumbai",
+                                        "Tokyo",
+                                        "Sydney",
+                                        "Paris",
+                                        "Bangkok",
+                                        "New York",
+                                        "Istanbul",
+                                        "Dubai",
+                                        "Singapore"]
+
+//        textFieldTextPicker.itemList = ["Thomas Jefferson High School for Science and Technology",
+//                                        "Gwinnett School of Mathematics, Science and Technology",
+//                                        "California Academy of Mathematics and Science",
+//                                        "Loveless Academic Magnet Program High School",
+//                                        "Irma Lerma Rangel Young Women's Leadership School",
+//                                        "Middlesex County Academy for Science, Mathematics and Engineering Technologies",
+//                                        "Queens High School for the Sciences at York College"]
+//        textFieldTextPicker.adjustsFontSizeToFitWidth = false
+
         textFieldTextPicker.selectedRow = 2
-        let viewList: [Any] = [NSNull(),indicator as Any,NSNull(),aSwitch,NSNull(),NSNull(),NSNull(),NSNull(),NSNull(),NSNull(),NSNull(),NSNull(),NSNull()]
+        let viewList: [UIView?] = [nil, indicator, nil, aSwitch]
         textFieldTextPicker.itemListView = viewList
 
         /*
-            Uncomment the following lines to set a custom font or text color for the items, as well as a custom text color for
-            the optional item.
+            Uncomment the following lines to set a custom font or text color for the items,
+            as well as a custom text color for the optional item.
          */
     //    textFieldTextPicker.font = [UIFont fontWithName:@"Montserrat-Regular" size:16];
     //    textFieldTextPicker.textColor = [UIColor redColor];
     //    textFieldTextPicker.optionalItemTextColor = [UIColor brownColor];
 
-        textFieldOptionalTextPicker.itemList = ["1","2","3","4","5","6"]
+        textFieldOptionalTextPicker.itemList = ["1", "2", "3", "4", "5", "6"]
         textFieldOptionalTextPicker.selectedRow = 3
-        textFieldOptionalTextPicker.itemListUI = ["1 Year Old","2 Years Old","3 Years Old","4 Years Old","5 Years Old","6 Years Old"]
+        textFieldOptionalTextPicker.itemListUI = ["1 Year Old",
+                                                  "2 Years Old",
+                                                  "3 Years Old",
+                                                  "4 Years Old",
+                                                  "5 Years Old", "6 Years Old"]
+
+        textFieldMultiListTextPicker.dropDownMode = .multiList
+        let heightFeetUI: [String] = ["Not Sure", "4'", "5'", "6'", "7'", "8'"]
+        let heightInchesUI: [String] = ["0\"",
+                                        "1\"",
+                                        "2\"",
+                                        "3\"",
+                                        "4\"",
+                                        "5\"",
+                                        "6\"",
+                                        "7\"",
+                                        "8\"",
+                                        "9\"",
+                                        "10\"",
+                                        "11\""]
+        let heightFeet: [String] = ["Not Sure", "4", "5", "6", "7", "8"]
+        let heightInches: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
+
+//        textFieldMultiListTextPicker.widthsForComponents = [100, 150]
+//        textFieldMultiListTextPicker.heightsForComponents = [30, 100]
+        textFieldMultiListTextPicker.isOptionalDropDowns = [true, false]
+        textFieldMultiListTextPicker.multiItemList = [heightFeet, heightInches]
+        textFieldMultiListTextPicker.multiItemListUI = [heightFeetUI, heightInchesUI]
+        textFieldMultiListTextPicker.multilistSelectionFormatterHandler = { (selectedItems, selectedIndexes) in
+
+            if selectedIndexes.first == 0 {
+                return "Not Sure"
+            } else if let first = selectedItems.first, let first = first,
+                        let last = selectedItems.last, let last = last {
+                return "\(first) \(last)"
+            } else {
+                return ""
+            }
+        }
 
     //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     //    [formatter setDateFormat:@"EEE MMMM dd yyyy"];
@@ -89,38 +162,39 @@ class ViewController: UIViewController {
 //        dropDown.delegate = self
 //        dropDown.dataSource = self
     }
+    // swiftlint:enable function_body_length
 
-    func textField(textField:IQDropDownTextField, didSelectItem item:String?) {
+    func textField(textField: IQDropDownTextField, didSelectItem item: String?) {
         print(#function)
 //        print(item)
     }
 
-    func textField(textField:IQDropDownTextField!, didSelectDate date:NSDate?) {
+    func textField(textField: IQDropDownTextField!, didSelectDate date: NSDate?) {
         print(#function)
 //        print(date)
     }
 
-    func textField(textField:IQDropDownTextField, canSelectItem item:String?) -> Bool {
+    func textField(textField: IQDropDownTextField, canSelectItem item: String?) -> Bool {
         print(#function)
 //        print(item)
         return true
     }
 
-    func textField(textField:IQDropDownTextField, proposedSelectionModeForItem item:String?) -> IQProposedSelection {
+    func textField(textField: IQDropDownTextField, proposedSelectionModeForItem item: String?) -> IQProposedSelection {
         print(#function)
 //        print(item)
         return .both
     }
 
-    func textFieldDidBeginEditing(textField:UITextField) {
+    func textFieldDidBeginEditing(textField: UITextField) {
         print(#function)
     }
 
-    func textFieldDidEndEditing(textField:UITextField) {
+    func textFieldDidEndEditing(textField: UITextField) {
         print(#function)
     }
 
-    func doneClicked(button:UIBarButtonItem!) {
+    func doneClicked(button: UIBarButtonItem!) {
         self.view.endEditing(true)
 
 //        print("textFieldTextPicker.selectedItem: \(textFieldTextPicker.selectedItem)")
@@ -130,18 +204,20 @@ class ViewController: UIViewController {
 //        print("textFieldDateTimePicker.selectedItem: \(textFieldDateTimePicker.selectedItem)")
     }
 
-    @IBAction func isOptionalToggle(_ sender:UIButton) {
+    @IBAction func isOptionalToggle(_ sender: UIButton) {
         textFieldTextPicker.isOptionalDropDown = !textFieldTextPicker.isOptionalDropDown
         textFieldOptionalTextPicker.isOptionalDropDown = !textFieldOptionalTextPicker.isOptionalDropDown
+        textFieldMultiListTextPicker.isOptionalDropDown = !textFieldMultiListTextPicker.isOptionalDropDown
         textFieldDatePicker.isOptionalDropDown = !textFieldDatePicker.isOptionalDropDown
         textFieldTimePicker.isOptionalDropDown = !textFieldTimePicker.isOptionalDropDown
         textFieldDateTimePicker.isOptionalDropDown = !textFieldDateTimePicker.isOptionalDropDown
 //        self.dropDown.isOptionalDropDown = !self.dropDown.isOptionalDropDown
     }
 
-    @IBAction func resetAction(_ sender:UIButton) {
+    @IBAction func resetAction(_ sender: UIButton) {
         textFieldTextPicker.selectedItem = nil
         textFieldOptionalTextPicker.selectedItem = nil
+        textFieldMultiListTextPicker.selectedItem = nil
         textFieldDatePicker.selectedItem = nil
         textFieldTimePicker.date = nil
         textFieldDateTimePicker.selectedItem = nil
@@ -150,6 +226,9 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
+    func textField(textField: IQDropDownTextField, didSelectItems items: [String?]) {
+    }
+
     func textField(textField: IQDropDownTextField, didSelectDate date: Date?) {
     }
 

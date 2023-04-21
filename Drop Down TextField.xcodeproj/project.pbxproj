@@ -187,6 +187,7 @@
 				C0D8418424FD12DA008277C2 /* Sources */,
 				C0D8418524FD12DA008277C2 /* Frameworks */,
 				C0D8418624FD12DA008277C2 /* Resources */,
+				C0F8370529F25C1A00D04EED /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -222,7 +223,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = Iftekhar;
 				TargetAttributes = {
 					C0D8418724FD12DA008277C2 = {
@@ -316,6 +317,24 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C0F8370529F25C1A00D04EED /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -542,7 +561,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Drop Down TextField/Drop Down TextField-Prefix.pch";
 				INFOPLIST_FILE = "Drop Down TextField/Drop Down TextField-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iftekhar.dropdowntextfield;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -560,7 +579,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Drop Down TextField/Drop Down TextField-Prefix.pch";
 				INFOPLIST_FILE = "Drop Down TextField/Drop Down TextField-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iftekhar.dropdowntextfield;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -3,7 +3,12 @@ IQDropDownTextField
 
 TextField with DropDown support using UIPickerView
 
-![Sample](http://i.imgur.com/KeuZ8Sx.png)
+[![Simple](https://raw.githubusercontent.com/hackiftekhar/IQDropDownTextField/master/Images/simple.png)]
+[![Large Text](https://raw.githubusercontent.com/hackiftekhar/IQDropDownTextField/master/Images/large_text.png)]
+[![Multi List](https://raw.githubusercontent.com/hackiftekhar/IQDropDownTextField/master/Images/multi_list.png)]
+[![Date](https://raw.githubusercontent.com/hackiftekhar/IQDropDownTextField/master/Images/date.png)]
+[![Time](https://raw.githubusercontent.com/hackiftekhar/IQDropDownTextField/master/Images/time.png)]
+[![Date Time](https://raw.githubusercontent.com/hackiftekhar/IQDropDownTextField/master/Images/date_time)]
 
 ## Installing
 

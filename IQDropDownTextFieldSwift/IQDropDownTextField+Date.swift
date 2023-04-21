@@ -1,9 +1,25 @@
 //
 //  IQDropDownTextField+Date.swift
-//  IQDropDownTextFieldSwift
+// https://github.com/hackiftekhar/IQDropDownTextField
+// Copyright (c) 2020-21 Iftekhar Qurashi.
 //
-//  Created by Iftekhar on 18/12/21.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 import UIKit
 
@@ -11,79 +27,103 @@ extension IQDropDownTextField {
 
     // MARK: - UIDatePicker delegate
 
-    @objc func dateChanged(_ picker:UIDatePicker) {
-        self._setSelectedItem(selectedItem: self.dateFormatter.string(from: picker.date), animated:false, shouldNotifyDelegate:true)
+    @objc internal func dateChanged(_ picker: UIDatePicker) {
+        let selectedItem: String = dateFormatter.string(from: picker.date)
+        privateSetSelectedItems(selectedItems: [selectedItem], animated: false, shouldNotifyDelegate: true)
     }
 
-    @objc func timeChanged(_ picker:UIDatePicker) {
-        self._setSelectedItem(selectedItem: self.timeFormatter.string(from: picker.date), animated:false, shouldNotifyDelegate:true)
+    @objc internal func timeChanged(_ picker: UIDatePicker) {
+        let selectedItem: String = timeFormatter.string(from: picker.date)
+        privateSetSelectedItems(selectedItems: [selectedItem], animated: false, shouldNotifyDelegate: true)
     }
 
-    @objc func dateTimeChanged(_ picker:UIDatePicker) {
-        self._setSelectedItem(selectedItem: self.dateTimeFormatter.string(from: picker.date), animated:false, shouldNotifyDelegate:true)
+    @objc internal func dateTimeChanged(_ picker: UIDatePicker) {
+        let selectedItem: String = dateTimeFormatter.string(from: picker.date)
+        privateSetSelectedItems(selectedItems: [selectedItem], animated: false, shouldNotifyDelegate: true)
     }
 
-    public var date: Date? {
+    @objc open var datePickerMode: UIDatePicker.Mode {
         get {
-            switch (self.dropDownMode)
-            {
+            return datePicker.datePickerMode
+        }
+        set {
+            if dropDownMode == .date {
+                datePicker.datePickerMode = newValue
+                switch newValue {
+                case .countDownTimer:
+                    dateFormatter.dateStyle = .none
+                    dateFormatter.timeStyle = .none
                 case .date:
-
-                    if isOptionalDropDown {
-                        return  (super.text?.isEmpty ?? true)  ?  nil : self.datePicker.date
-                    } else {
-                        return self.datePicker.date
-                    }
-
+                    dateFormatter.dateStyle = .short
+                    dateFormatter.timeStyle = .none
                 case .time:
+                    timeFormatter.dateStyle = .none
+                    timeFormatter.timeStyle = .short
+                case .dateAndTime:
+                    dateTimeFormatter.dateStyle = .short
+                    dateTimeFormatter.timeStyle = .short
+                @unknown default:
+                    break
+                }
+            }
+        }
+    }
 
-                    if isOptionalDropDown {
-                        return  (super.text?.isEmpty ?? true)  ?  nil : self.timePicker.date
-                    } else {
-                        return self.timePicker.date
-                    }
-
-                case .dateTime:
-
-                    if isOptionalDropDown {
-                        return  (super.text?.isEmpty ?? true)  ?  nil : self.dateTimePicker.date
-                    } else {
-                        return self.dateTimePicker.date
-                    }
-            case .list, .textField:
+    @objc open var date: Date? {
+        get {
+            switch dropDownMode {
+            case .date:
+                if isOptionalDropDown {
+                    return  (super.text?.isEmpty ?? true)  ?  nil : datePicker.date
+                } else {
+                    return datePicker.date
+                }
+            case .time:
+                if isOptionalDropDown {
+                    return  (super.text?.isEmpty ?? true)  ?  nil : timePicker.date
+                } else {
+                    return timePicker.date
+                }
+            case .dateTime:
+                if isOptionalDropDown {
+                    return  (super.text?.isEmpty ?? true)  ?  nil : dateTimePicker.date
+                } else {
+                    return dateTimePicker.date
+                }
+            case .list, .textField, .multiList:
                 return nil
             }
         }
         set {
-            self.setDate(date: newValue ?? Date(), animated:false)
+            setDate(date: newValue ?? Date(), animated: false)
         }
     }
 
-    public func setDate(date: Date, animated:Bool) {
-        switch (self.dropDownMode)
-        {
-            case .date:
-                self._setSelectedItem(selectedItem: self.dateFormatter.string(from: date), animated:animated, shouldNotifyDelegate:false)
-                break
-            case .time:
-                self._setSelectedItem(selectedItem: self.timeFormatter.string(from: date), animated:animated, shouldNotifyDelegate:false)
-                break
-            case .dateTime:
-                self._setSelectedItem(selectedItem: self.dateTimeFormatter.string(from: date), animated:animated, shouldNotifyDelegate:false)
-                break
-            default:
-                break
+    @objc open func setDate(date: Date, animated: Bool) {
+        switch dropDownMode {
+        case .date:
+            let selectedItem: String = dateFormatter.string(from: date)
+            privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
+        case .time:
+            let selectedItem: String = timeFormatter.string(from: date)
+            privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
+        case .dateTime:
+            let selectedItem: String = dateTimeFormatter.string(from: date)
+            privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
+        default:
+            break
         }
     }
 
     public var dateComponents: DateComponents {
-        return Calendar.current.dateComponents([.second,.minute,.hour,.day,.month,.year,.era], from: date ?? Date())
+        let components: Set<Calendar.Component> = [.second, .minute, .hour, .day, .month, .year, .era]
+        return Calendar.current.dateComponents(components, from: date ?? Date())
     }
 
-    public var year: Int {   return self.dateComponents.year ?? 0 }
-    public var month: Int {   return self.dateComponents.month ?? 0 }
-    public var day: Int {   return self.dateComponents.day ?? 0 }
-    public var hour: Int {   return self.dateComponents.hour ?? 0 }
-    public var minute: Int {   return self.dateComponents.minute ?? 0 }
-    public var second: Int {   return self.dateComponents.second ?? 0 }
+    public var year: Int {   return dateComponents.year ?? 0 }
+    public var month: Int {   return dateComponents.month ?? 0 }
+    public var day: Int {   return dateComponents.day ?? 0 }
+    public var hour: Int {   return dateComponents.hour ?? 0 }
+    public var minute: Int {   return dateComponents.minute ?? 0 }
+    public var second: Int {   return dateComponents.second ?? 0 }
 }

@@ -1,5 +1,5 @@
 //
-//  IQDropDownTextFieldConstants.swift
+//  IQDropDownTextFieldDelegate.swift
 // https://github.com/hackiftekhar/IQDropDownTextField
 // Copyright (c) 2020-21 Iftekhar Qurashi.
 //
@@ -21,19 +21,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+import UIKit
 
-public enum IQDropDownMode {
-    case list
-    case multiList
-    case time
-    case date
-    case dateTime
-    case textField
+public protocol IQDropDownTextFieldDelegate: UITextFieldDelegate {
+
+    // Called when textField changes it's selected item. Supported for list mode
+    func textField(textField: IQDropDownTextField, didSelectItem item: String?)
+
+    // Called when textField changes it's selected item. Supported for multiList mode
+    func textField(textField: IQDropDownTextField, didSelectItems items: [String?])
+
+    // Called when textField changes it's selected item. Supported for time, date, dateTime mode
+    func textField(textField: IQDropDownTextField, didSelectDate date: Date?)
 }
 
-public enum IQProposedSelection {
-    case both
-    case above
-    case below
+extension IQDropDownTextFieldDelegate {
+
+    func textField(textField: IQDropDownTextField, didSelectItem item: String?) { }
+
+    func textField(textField: IQDropDownTextField, didSelectItems items: [String?]) { }
+
+    func textField(textField: IQDropDownTextField, didSelectDate date: Date?) { }
 }

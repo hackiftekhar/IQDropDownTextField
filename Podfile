@@ -7,5 +7,6 @@ target 'Drop Down TextField' do
 end
 
 target 'DropDownTextFieldSwift' do
-    pod "IQDropDownTextFieldSwift", :path => "."
+  pod "IQDropDownTextFieldSwift", :path => "."
+  pod "SwiftLint"
 end
