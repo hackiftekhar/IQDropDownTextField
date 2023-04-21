@@ -97,26 +97,25 @@ class ViewController: UIViewController {
 
         textFieldOptionalTextPicker.itemList = ["1", "2", "3", "4", "5", "6"]
         textFieldOptionalTextPicker.selectedRow = 3
-        textFieldOptionalTextPicker.itemListUI = ["1 Year Old",
-                                                  "2 Years Old",
-                                                  "3 Years Old",
-                                                  "4 Years Old",
-                                                  "5 Years Old", "6 Years Old"]
+//        textFieldOptionalTextPicker.itemListUI = ["1 Year Old",
+//                                                  "2 Years Old",
+//                                                  "3 Years Old",
+//                                                  "4 Years Old",
+//                                                  "5 Years Old", "6 Years Old"]
 
+        textFieldOptionalTextPicker.selectionFormatHandler = { (selectedItem, selectedIndex) in
+
+            if let selectedItem = selectedItem {
+                if selectedItem == "1" {
+                    return selectedItem + " Year Old"
+                } else {
+                    return selectedItem + " Years Old"
+                }
+            } else {
+                return ""
+            }
+        }
         textFieldMultiListTextPicker.dropDownMode = .multiList
-        let heightFeetUI: [String] = ["Not Sure", "4'", "5'", "6'", "7'", "8'"]
-        let heightInchesUI: [String] = ["0\"",
-                                        "1\"",
-                                        "2\"",
-                                        "3\"",
-                                        "4\"",
-                                        "5\"",
-                                        "6\"",
-                                        "7\"",
-                                        "8\"",
-                                        "9\"",
-                                        "10\"",
-                                        "11\""]
         let heightFeet: [String] = ["Not Sure", "4", "5", "6", "7", "8"]
         let heightInches: [String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
@@ -124,14 +123,13 @@ class ViewController: UIViewController {
 //        textFieldMultiListTextPicker.heightsForComponents = [30, 100]
         textFieldMultiListTextPicker.isOptionalDropDowns = [true, false]
         textFieldMultiListTextPicker.multiItemList = [heightFeet, heightInches]
-        textFieldMultiListTextPicker.multiItemListUI = [heightFeetUI, heightInchesUI]
-        textFieldMultiListTextPicker.multilistSelectionFormatterHandler = { (selectedItems, selectedIndexes) in
+        textFieldMultiListTextPicker.multilistSelectionFormatHandler = { (selectedItems, selectedIndexes) in
 
             if selectedIndexes.first == 0 {
                 return "Not Sure"
             } else if let first = selectedItems.first, let first = first,
                         let last = selectedItems.last, let last = last {
-                return "\(first) \(last)"
+                return "\(first)' \(last)\""
             } else {
                 return ""
             }

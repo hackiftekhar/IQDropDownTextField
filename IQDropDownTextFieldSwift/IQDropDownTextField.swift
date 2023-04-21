@@ -216,10 +216,20 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open var multilistSelectionFormatterHandler: ((_ selectedItems: [String?], _ selectedIndexes: [Int]) -> String)? {
+    open var multilistSelectionFormatHandler: ((_ selectedItems: [String?], _ selectedIndexes: [Int]) -> String)? {
         didSet {
-            if let handler = multilistSelectionFormatterHandler {
+            if let handler = multilistSelectionFormatHandler {
                 super.text = handler(selectedItems, selectedRows)
+            } else {
+                super.text = selectedItems.compactMap({ $0 }).joined(separator: ", ")
+            }
+        }
+    }
+
+    open var selectionFormatHandler: ((_ selectedItem: String?, _ selectedIndex: Int) -> String)? {
+        didSet {
+            if let handler = selectionFormatHandler {
+                super.text = handler(selectedItem, selectedRow)
             } else {
                 super.text = selectedItems.compactMap({ $0 }).joined(separator: ", ")
             }
@@ -255,14 +265,6 @@ open class IQDropDownTextField: UITextField {
             multiItemListView = [newValue]
         }
     }
-    open var itemListUI: [String]? {
-        get {
-            multiItemListUI.first ?? []
-        }
-        set {
-            multiItemListUI = [newValue]
-        }
-    }
 
     open var multiItemList: [[String]] = [] {
         didSet {
@@ -274,14 +276,6 @@ open class IQDropDownTextField: UITextField {
     }
 
     open var multiItemListView: [[UIView?]] = [] {
-        didSet {
-            //Refreshing pickerView
-            isOptionalDropDowns = privateIsOptionalDropDowns
-            let selectedRows = selectedRows
-            self.selectedRows = selectedRows
-        }
-    }
-    open var multiItemListUI: [[String]?] = [] {
         didSet {
             //Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
@@ -428,13 +422,7 @@ open class IQDropDownTextField: UITextField {
         var finalResults: [String?] = []
         for (index, row) in rows.enumerated() {
 
-            let itemList: [String]
-            if index < multiItemListUI.count,
-               let itemListUI = multiItemListUI[index] {
-                itemList = itemListUI
-            } else {
-                itemList = multiItemList[index]
-            }
+            let itemList: [String] = multiItemList[index]
 
             let isOptionalDropDown: Bool
             if index < isOptionalDropDowns.count {
@@ -465,8 +453,12 @@ open class IQDropDownTextField: UITextField {
             pickerView.selectRow(pickerViewRow, inComponent: index, animated: animated)
         }
 
-        if let multilistSelectionFormatterHandler = multilistSelectionFormatterHandler {
-            super.text = multilistSelectionFormatterHandler(finalResults, rows)
+        if let multilistSelectionFormatHandler = multilistSelectionFormatHandler {
+            super.text = multilistSelectionFormatHandler(finalResults, rows)
+        } else if let selectionFormatHandler = selectionFormatHandler,
+                  let selectedItem = finalResults.first,
+                  let selectedRow = rows.first {
+            super.text = selectionFormatHandler(selectedItem, selectedRow)
         } else {
             super.text = finalResults.compactMap({ $0 }).joined(separator: ", ")
         }
