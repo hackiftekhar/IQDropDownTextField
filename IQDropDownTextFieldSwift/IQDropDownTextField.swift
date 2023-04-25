@@ -422,7 +422,13 @@ open class IQDropDownTextField: UITextField {
         var finalResults: [String?] = []
         for (index, row) in rows.enumerated() {
 
-            let itemList: [String] = multiItemList[index]
+            let itemList: [String]
+
+            if index < multiItemList.count {
+                itemList = multiItemList[index]
+            } else {
+                itemList = []
+            }
 
             let isOptionalDropDown: Bool
             if index < isOptionalDropDowns.count {
@@ -493,7 +499,7 @@ open class IQDropDownTextField: UITextField {
             case .list, .multiList:
                 var finalSelection: [String?] = []
                 for (index, selectedRow) in selectedRows.enumerated() {
-                    if 0 <= selectedRow {
+                    if 0 <= selectedRow, index < multiItemList.count {
                         finalSelection.append(multiItemList[index][selectedRow])
                     } else {
                         finalSelection.append(nil)
@@ -570,7 +576,9 @@ internal extension IQDropDownTextField {
 
             for (index, selectedItem) in selectedItems.enumerated() {
 
-                if let selectedItem = selectedItem, let index = multiItemList[index].firstIndex(of: selectedItem) {
+                if let selectedItem = selectedItem,
+                   index < multiItemList.count,
+                   let index = multiItemList[index].firstIndex(of: selectedItem) {
                     finalIndexes.append(index)
                     finalSelection.append(selectedItem)
 
