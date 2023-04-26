@@ -266,7 +266,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open var multiItemList: [[String]] = [] {
+    open var multiItemList: [[String]] = [[]] {
         didSet {
             //Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
@@ -275,7 +275,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open var multiItemListView: [[UIView?]] = [] {
+    open var multiItemListView: [[UIView?]] = [[]] {
         didSet {
             //Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
