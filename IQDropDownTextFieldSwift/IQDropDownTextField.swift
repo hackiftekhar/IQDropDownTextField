@@ -197,7 +197,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    private var privateIsOptionalDropDowns: [Bool] = [true]
+    private var privateIsOptionalDropDowns: [Bool] = []
     open var isOptionalDropDowns: [Bool] {
         get { return privateIsOptionalDropDowns }
         set {
@@ -266,7 +266,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open var multiItemList: [[String]] = [[]] {
+    open var multiItemList: [[String]] = [] {
         didSet {
             //Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
@@ -275,7 +275,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open var multiItemListView: [[UIView?]] = [[]] {
+    open var multiItemListView: [[UIView?]] = [] {
         didSet {
             //Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
@@ -456,7 +456,9 @@ open class IQDropDownTextField: UITextField {
 
             let pickerViewRow: Int = row + (isOptionalDropDown ? 1 : 0)
             privatePickerSelectedRows[index] = pickerViewRow
-            pickerView.selectRow(pickerViewRow, inComponent: index, animated: animated)
+            if index < pickerView.numberOfComponents {
+                pickerView.selectRow(pickerViewRow, inComponent: index, animated: animated)
+            }
         }
 
         if let multilistSelectionFormatHandler = multilistSelectionFormatHandler {
