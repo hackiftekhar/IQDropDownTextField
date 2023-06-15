@@ -93,6 +93,8 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
+    internal let privateMenuButton: UIButton = UIButton()
+
     // Sets a custom font for the IQDropdownTextField items. Default is boldSystemFontOfSize:18.0.
     open var dropDownFont: UIFont?
 
@@ -160,6 +162,9 @@ open class IQDropDownTextField: UITextField {
                 }
             case .textField:
                 inputView = nil
+            }
+            if #available(iOS 15.0, *) {
+                reconfigureMenu()
             }
         }
     }
@@ -323,6 +328,10 @@ open class IQDropDownTextField: UITextField {
 
         dateTimeFormatter.dateStyle = .medium
         dateTimeFormatter.timeStyle = .short
+
+        if #available(iOS 15.0, *) {
+            initializeMenu()
+        }
     }
 
     override init(frame: CGRect) {

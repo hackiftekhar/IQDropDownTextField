@@ -1,6 +1,7 @@
 project 'Drop Down TextField.xcodeproj'
 
-platform :ios, '8.0'
+platform :ios, '11.0'
+use_frameworks!
 
 target 'Drop Down TextField' do
     pod "IQDropDownTextField", :path => "."

@@ -1,6 +1,6 @@
 PODS:
-  - IQDropDownTextField (3.0.2)
-  - IQDropDownTextFieldSwift (3.0.2)
+  - IQDropDownTextField (4.0.1)
+  - IQDropDownTextFieldSwift (4.0.1)
   - SwiftLint (0.40.3)
 
 DEPENDENCIES:
@@ -19,10 +19,10 @@ EXTERNAL SOURCES:
     :path: "."
 
 SPEC CHECKSUMS:
-  IQDropDownTextField: 5c04df9e294f3aead74f4c39d087fde233b557e3
-  IQDropDownTextFieldSwift: bbdb1b48360156e0e13b93a9e5885343ac2cce94
+  IQDropDownTextField: c3a149deb3c6c4bba5edd85d88b6e83e90e08f63
+  IQDropDownTextFieldSwift: a194ca9853f29cb90c19af31fabe7d899b0049ca
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
 
-PODFILE CHECKSUM: fead137ff4bb7049441d22e348b10c56ce4fc903
+PODFILE CHECKSUM: c45ef6dbf4032cdb8f2212b9067a426ee589b296
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

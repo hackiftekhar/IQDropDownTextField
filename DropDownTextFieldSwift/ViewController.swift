@@ -97,11 +97,6 @@ class ViewController: UIViewController {
 
         textFieldOptionalTextPicker.itemList = ["1", "2", "3", "4", "5", "6"]
         textFieldOptionalTextPicker.selectedRow = 3
-//        textFieldOptionalTextPicker.itemListUI = ["1 Year Old",
-//                                                  "2 Years Old",
-//                                                  "3 Years Old",
-//                                                  "4 Years Old",
-//                                                  "5 Years Old", "6 Years Old"]
 
         textFieldOptionalTextPicker.selectionFormatHandler = { (selectedItem, selectedIndex) in
 
@@ -122,6 +117,7 @@ class ViewController: UIViewController {
 //        textFieldMultiListTextPicker.widthsForComponents = [100, 150]
 //        textFieldMultiListTextPicker.heightsForComponents = [30, 100]
         textFieldMultiListTextPicker.isOptionalDropDowns = [true, false]
+        textFieldMultiListTextPicker.optionalItemTexts = ["Select Feet", "Select Inches"]
         textFieldMultiListTextPicker.multiItemList = [heightFeet, heightInches]
         textFieldMultiListTextPicker.multilistSelectionFormatHandler = { (selectedItems, selectedIndexes) in
 
@@ -138,6 +134,7 @@ class ViewController: UIViewController {
     //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     //    [formatter setDateFormat:@"EEE MMMM dd yyyy"];
     //    [textFieldDatePicker setDateFormatter:formatter];
+
         textFieldDatePicker.dropDownMode = .date
         textFieldTimePicker.dropDownMode = .time
         textFieldDateTimePicker.dropDownMode = .dateTime
@@ -156,6 +153,15 @@ class ViewController: UIViewController {
 
         textFieldDateTimePicker.delegate = self
         textFieldDateTimePicker.dataSource = self
+
+        if #available(iOS 15.0, *) {
+            textFieldTextPicker.showMenuButton = true
+            textFieldOptionalTextPicker.showMenuButton = true
+            textFieldMultiListTextPicker.showMenuButton = true
+            textFieldDatePicker.showMenuButton = true
+            textFieldTimePicker.showMenuButton = true
+            textFieldDateTimePicker.showMenuButton = true
+        }
 
 //        dropDown.delegate = self
 //        dropDown.dataSource = self
