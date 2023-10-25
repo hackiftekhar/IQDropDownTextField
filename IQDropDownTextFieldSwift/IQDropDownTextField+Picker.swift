@@ -24,6 +24,7 @@
 import UIKit
 
 // MARK: - UIPickerView data source
+@MainActor
 extension IQDropDownTextField: UIPickerViewDataSource {
 
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -45,6 +46,7 @@ extension IQDropDownTextField: UIPickerViewDataSource {
 }
 
 // MARK: UIPickerView delegate
+@MainActor
 extension IQDropDownTextField: UIPickerViewDelegate {
 
     public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -64,7 +66,7 @@ extension IQDropDownTextField: UIPickerViewDelegate {
             return widthsForComponents[component]
         }
 
-        //Else calculating it's size.
+        // else calculating it's size.
         let availableWidth = (pickerView.bounds.width - 20) - 2 * CGFloat(multiItemList.count - 1)
         return availableWidth / CGFloat(multiItemList.count)
     }

@@ -11,14 +11,13 @@
 		4C3457961F8022210029E345 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3457951F8022210029E345 /* Images.xcassets */; };
 		4CC1D5D41F7FA732007595D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CC1D5D31F7FA732007595D9 /* Main.storyboard */; };
 		4CC1D5D61F7FA748007595D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CC1D5D51F7FA748007595D9 /* LaunchScreen.storyboard */; };
-		B985F059E7C196AF8A0C3F8B /* Pods_Drop_Down_TextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB983DEE84AEE73FC0FE622 /* Pods_Drop_Down_TextField.framework */; };
 		C0D8418B24FD12DA008277C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8418A24FD12DA008277C2 /* AppDelegate.swift */; };
 		C0D8418D24FD12DA008277C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8418C24FD12DA008277C2 /* SceneDelegate.swift */; };
 		C0D8418F24FD12DA008277C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D8418E24FD12DA008277C2 /* ViewController.swift */; };
 		C0D8419424FD12DB008277C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0D8419324FD12DB008277C2 /* Assets.xcassets */; };
 		C0D8419724FD12DB008277C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0D8419524FD12DB008277C2 /* LaunchScreen.storyboard */; };
 		C0F314CE2826670E00A1F13D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F314CD2826670E00A1F13D /* Main.storyboard */; };
-		DDF0034801ECCF3FBB97BB77 /* Pods_DropDownTextFieldSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5BCD22A26666D475A80DF98 /* Pods_DropDownTextFieldSwift.framework */; };
+		D1F1B6CF7650199713932BBC /* Pods_DropDownTextFieldSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D04FE3589AB7AD273ADC09 /* Pods_DropDownTextFieldSwift.framework */; };
 		E609C86A182ECB1D0058DB63 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C869182ECB1D0058DB63 /* UIKit.framework */; };
 		E609C86C182ECB1D0058DB63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C86B182ECB1D0058DB63 /* Foundation.framework */; };
 		E609C86E182ECB1D0058DB63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E609C86D182ECB1D0058DB63 /* CoreGraphics.framework */; };
@@ -26,19 +25,20 @@
 		E609C876182ECB1D0058DB63 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E609C875182ECB1D0058DB63 /* main.m */; };
 		E609C87A182ECB1D0058DB63 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E609C879182ECB1D0058DB63 /* AppDelegate.m */; };
 		E609C883182ECB1D0058DB63 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E609C882182ECB1D0058DB63 /* ViewController.m */; };
+		FB22E28168BE39BC90590401 /* Pods_Drop_Down_TextField.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 623A6714BE755C6BB7CA5BFC /* Pods_Drop_Down_TextField.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1CB983DEE84AEE73FC0FE622 /* Pods_Drop_Down_TextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drop_Down_TextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20D04FE3589AB7AD273ADC09 /* Pods_DropDownTextFieldSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DropDownTextFieldSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		39DD82701CFC666A0006FA8E /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
+		3A036CEC0781388FA9018B5A /* Pods-Drop Down TextField.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drop Down TextField.release.xcconfig"; path = "Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField.release.xcconfig"; sourceTree = "<group>"; };
+		4B1DAD11DEB0FA86B88CF907 /* Pods-DropDownTextFieldSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropDownTextFieldSwift.release.xcconfig"; path = "Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift.release.xcconfig"; sourceTree = "<group>"; };
 		4C3457951F8022210029E345 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CC1D5D31F7FA732007595D9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		4CC1D5D51F7FA748007595D9 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6460E5DE651B507CCBE4D3CA /* Pods-Drop Down TextField.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drop Down TextField.release.xcconfig"; path = "Pods/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField.release.xcconfig"; sourceTree = "<group>"; };
-		7E311CE637B446D65AF7A19E /* Pods-DropDownTextFieldSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropDownTextFieldSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drop Down TextField.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField.debug.xcconfig"; sourceTree = "<group>"; };
-		9535106CDC87E5A0E1923001 /* Pods-DropDownTextFieldSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropDownTextFieldSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift.release.xcconfig"; sourceTree = "<group>"; };
-		A5BCD22A26666D475A80DF98 /* Pods_DropDownTextFieldSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DropDownTextFieldSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		623A6714BE755C6BB7CA5BFC /* Pods_Drop_Down_TextField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Drop_Down_TextField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		79BB1A24BCDFB6EAEA98DE76 /* Pods-Drop Down TextField.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Drop Down TextField.debug.xcconfig"; path = "Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField.debug.xcconfig"; sourceTree = "<group>"; };
+		94665E646668D5DAE4C578E9 /* Pods-DropDownTextFieldSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DropDownTextFieldSwift.debug.xcconfig"; path = "Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		C0D8418824FD12DA008277C2 /* DropDownTextFieldSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DropDownTextFieldSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D8418A24FD12DA008277C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0D8418C24FD12DA008277C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDF0034801ECCF3FBB97BB77 /* Pods_DropDownTextFieldSwift.framework in Frameworks */,
+				D1F1B6CF7650199713932BBC /* Pods_DropDownTextFieldSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,30 +77,30 @@
 				E609C86A182ECB1D0058DB63 /* UIKit.framework in Frameworks */,
 				E609C86C182ECB1D0058DB63 /* Foundation.framework in Frameworks */,
 				E609C86E182ECB1D0058DB63 /* CoreGraphics.framework in Frameworks */,
-				B985F059E7C196AF8A0C3F8B /* Pods_Drop_Down_TextField.framework in Frameworks */,
+				FB22E28168BE39BC90590401 /* Pods_Drop_Down_TextField.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		333F617DB57059517F9EE832 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */,
-				6460E5DE651B507CCBE4D3CA /* Pods-Drop Down TextField.release.xcconfig */,
-				7E311CE637B446D65AF7A19E /* Pods-DropDownTextFieldSwift.debug.xcconfig */,
-				9535106CDC87E5A0E1923001 /* Pods-DropDownTextFieldSwift.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		39DD826D1CFC65FE0006FA8E /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
 				39DD82701CFC666A0006FA8E /* Montserrat-Regular.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		4F72E2A6BEFD238EFE7374B3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				79BB1A24BCDFB6EAEA98DE76 /* Pods-Drop Down TextField.debug.xcconfig */,
+				3A036CEC0781388FA9018B5A /* Pods-Drop Down TextField.release.xcconfig */,
+				94665E646668D5DAE4C578E9 /* Pods-DropDownTextFieldSwift.debug.xcconfig */,
+				4B1DAD11DEB0FA86B88CF907 /* Pods-DropDownTextFieldSwift.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		C0D8418924FD12DA008277C2 /* DropDownTextFieldSwift */ = {
@@ -124,7 +124,7 @@
 				C0D8418924FD12DA008277C2 /* DropDownTextFieldSwift */,
 				E609C868182ECB1D0058DB63 /* Frameworks */,
 				E609C866182ECB1D0058DB63 /* Products */,
-				333F617DB57059517F9EE832 /* Pods */,
+				4F72E2A6BEFD238EFE7374B3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,8 +143,8 @@
 				E609C869182ECB1D0058DB63 /* UIKit.framework */,
 				E609C86B182ECB1D0058DB63 /* Foundation.framework */,
 				E609C86D182ECB1D0058DB63 /* CoreGraphics.framework */,
-				1CB983DEE84AEE73FC0FE622 /* Pods_Drop_Down_TextField.framework */,
-				A5BCD22A26666D475A80DF98 /* Pods_DropDownTextFieldSwift.framework */,
+				623A6714BE755C6BB7CA5BFC /* Pods_Drop_Down_TextField.framework */,
+				20D04FE3589AB7AD273ADC09 /* Pods_DropDownTextFieldSwift.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,12 +183,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0D8419B24FD12DB008277C2 /* Build configuration list for PBXNativeTarget "DropDownTextFieldSwift" */;
 			buildPhases = (
-				7866AF9520B7EB087B62EAB5 /* [CP] Check Pods Manifest.lock */,
+				3D877857749C45CE4770F321 /* [CP] Check Pods Manifest.lock */,
 				C0D8418424FD12DA008277C2 /* Sources */,
 				C0D8418524FD12DA008277C2 /* Frameworks */,
 				C0D8418624FD12DA008277C2 /* Resources */,
 				C0F8370529F25C1A00D04EED /* SwiftLint */,
-				9AD7F1BC884B748A5DE6FC03 /* [CP] Embed Pods Frameworks */,
+				109BA642FF7A3917CD555D0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,11 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E609C889182ECB1D0058DB63 /* Build configuration list for PBXNativeTarget "Drop Down TextField" */;
 			buildPhases = (
-				89A727410623A194787EFC80 /* [CP] Check Pods Manifest.lock */,
+				3325F290A670AC947499E05E /* [CP] Check Pods Manifest.lock */,
 				E609C861182ECB1D0058DB63 /* Sources */,
 				E609C862182ECB1D0058DB63 /* Frameworks */,
 				E609C863182ECB1D0058DB63 /* Resources */,
-				FB248F6E3C6DB94E32155665 /* [CP] Embed Pods Frameworks */,
+				A467CA2C77935F11A2B3D17B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,7 +281,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7866AF9520B7EB087B62EAB5 /* [CP] Check Pods Manifest.lock */ = {
+		109BA642FF7A3917CD555D0B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3325F290A670AC947499E05E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Drop Down TextField-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3D877857749C45CE4770F321 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -303,39 +342,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		89A727410623A194787EFC80 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Drop Down TextField-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9AD7F1BC884B748A5DE6FC03 /* [CP] Embed Pods Frameworks */ = {
+		A467CA2C77935F11A2B3D17B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DropDownTextFieldSwift/Pods-DropDownTextFieldSwift-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C0F8370529F25C1A00D04EED /* SwiftLint */ = {
@@ -355,23 +376,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
-		FB248F6E3C6DB94E32155665 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Drop Down TextField/Pods-Drop Down TextField-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -420,7 +424,7 @@
 /* Begin XCBuildConfiguration section */
 		C0D8419924FD12DB008277C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E311CE637B446D65AF7A19E /* Pods-DropDownTextFieldSwift.debug.xcconfig */;
+			baseConfigurationReference = 94665E646668D5DAE4C578E9 /* Pods-DropDownTextFieldSwift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -454,6 +458,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,7 +466,7 @@
 		};
 		C0D8419A24FD12DB008277C2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9535106CDC87E5A0E1923001 /* Pods-DropDownTextFieldSwift.release.xcconfig */;
+			baseConfigurationReference = 4B1DAD11DEB0FA86B88CF907 /* Pods-DropDownTextFieldSwift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -497,6 +502,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -504,7 +510,6 @@
 		};
 		E609C887182ECB1D0058DB63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -556,7 +561,6 @@
 		};
 		E609C888182ECB1D0058DB63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6460E5DE651B507CCBE4D3CA /* Pods-Drop Down TextField.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -602,7 +606,7 @@
 		};
 		E609C88A182ECB1D0058DB63 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81E111F10D6C3313FF0EB7F3 /* Pods-Drop Down TextField.debug.xcconfig */;
+			baseConfigurationReference = 79BB1A24BCDFB6EAEA98DE76 /* Pods-Drop Down TextField.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -622,7 +626,7 @@
 		};
 		E609C88B182ECB1D0058DB63 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6460E5DE651B507CCBE4D3CA /* Pods-Drop Down TextField.release.xcconfig */;
+			baseConfigurationReference = 3A036CEC0781388FA9018B5A /* Pods-Drop Down TextField.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

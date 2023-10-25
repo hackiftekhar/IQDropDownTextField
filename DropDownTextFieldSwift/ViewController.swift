@@ -79,7 +79,7 @@ class ViewController: UIViewController {
 //                                        "California Academy of Mathematics and Science",
 //                                        "Loveless Academic Magnet Program High School",
 //                                        "Irma Lerma Rangel Young Women's Leadership School",
-//                                        "Middlesex County Academy for Science, Mathematics and Engineering Technologies",
+//                                        "Middlesex County Academy, Mathematics and Engineering Technologies",
 //                                        "Queens High School for the Sciences at York College"]
 //        textFieldTextPicker.adjustsFontSizeToFitWidth = false
 
@@ -98,7 +98,7 @@ class ViewController: UIViewController {
         textFieldOptionalTextPicker.itemList = ["1", "2", "3", "4", "5", "6"]
         textFieldOptionalTextPicker.selectedRow = 3
 
-        textFieldOptionalTextPicker.selectionFormatHandler = { (selectedItem, selectedIndex) in
+        textFieldOptionalTextPicker.selectionFormatHandler = { (selectedItem, _) in
 
             if let selectedItem = selectedItem {
                 if selectedItem == "1" {
