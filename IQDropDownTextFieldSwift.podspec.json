@@ -17,6 +17,7 @@
     "source_files": [
         "IQDropDownTextFieldSwift/*.{swift}"
     ],
+    "resources": "IQDropDownTextFieldSwift/PrivacyInfo.xcprivacy",
     "swift_versions": [
         "5.5",
         "5.6",
