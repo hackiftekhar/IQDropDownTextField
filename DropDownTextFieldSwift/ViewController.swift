@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet var textFieldDatePicker: IQDropDownTextField!
     @IBOutlet var textFieldTimePicker: IQDropDownTextField!
     @IBOutlet var textFieldDateTimePicker: IQDropDownTextField!
+    @IBOutlet var menuButton: UIButton!
 
 //    private var dropDown: IQDropDownTextField = IQDropDownTextField()
 
@@ -155,12 +156,9 @@ class ViewController: UIViewController {
         textFieldDateTimePicker.dataSource = self
 
         if #available(iOS 15.0, *) {
-            textFieldTextPicker.showMenuButton = true
-            textFieldOptionalTextPicker.showMenuButton = true
-            textFieldMultiListTextPicker.showMenuButton = true
-            textFieldDatePicker.showMenuButton = true
-            textFieldTimePicker.showMenuButton = true
-            textFieldDateTimePicker.showMenuButton = true
+            menuButton.isHidden = false
+        } else {
+            menuButton.isHidden = true
         }
 
 //        dropDown.delegate = self
@@ -206,6 +204,17 @@ class ViewController: UIViewController {
 //        print("textFieldDatePicker.selectedItem: \(textFieldDatePicker.selectedItem)")
 //        print("textFieldTimePicker.selectedItem: \(textFieldTimePicker.selectedItem)")
 //        print("textFieldDateTimePicker.selectedItem: \(textFieldDateTimePicker.selectedItem)")
+    }
+
+    @IBAction func menuToggle(_ sender: UIButton) {
+        if #available(iOS 15.0, *) {
+            textFieldTextPicker.showMenuButton = !textFieldTextPicker.showMenuButton
+            textFieldOptionalTextPicker.showMenuButton = !textFieldOptionalTextPicker.showMenuButton
+            textFieldMultiListTextPicker.showMenuButton = !textFieldMultiListTextPicker.showMenuButton
+            textFieldDatePicker.showMenuButton = !textFieldDatePicker.showMenuButton
+            textFieldTimePicker.showMenuButton = !textFieldTimePicker.showMenuButton
+            textFieldDateTimePicker.showMenuButton = !textFieldDateTimePicker.showMenuButton
+        }
     }
 
     @IBAction func isOptionalToggle(_ sender: UIButton) {
