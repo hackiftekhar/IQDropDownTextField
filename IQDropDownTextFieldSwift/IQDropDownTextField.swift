@@ -75,11 +75,11 @@ open class IQDropDownTextField: UITextField {
         let view = UIToolbar()
         view.isTranslucent = true
         view.sizeToFit()
-        let buttonflexible: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+        let buttonFlexible: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                                               target: nil, action: nil)
         let buttonDone: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self,
                                                           action: #selector(resignFirstResponder))
-        view.items = [buttonflexible, buttonDone]
+        view.items = [buttonFlexible, buttonDone]
         return view
     }()
 
@@ -161,9 +161,9 @@ open class IQDropDownTextField: UITextField {
 
     private var privateIsOptionalDropDowns: [Bool] = []
 
-    open var multilistSelectionFormatHandler: ((_ selectedItems: [String?], _ selectedIndexes: [Int]) -> String)? {
+    open var multiListSelectionFormatHandler: ((_ selectedItems: [String?], _ selectedIndexes: [Int]) -> String)? {
         didSet {
-            if let handler = multilistSelectionFormatHandler {
+            if let handler = multiListSelectionFormatHandler {
                 super.text = handler(selectedItems, selectedRows)
             } else {
                 super.text = selectedItems.compactMap({ $0 }).joined(separator: ", ")
@@ -275,8 +275,8 @@ open class IQDropDownTextField: UITextField {
     open override func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
 
-        for (index, selectdRow) in privatePickerSelectedRows where 0 <= selectdRow {
-            pickerView.selectRow(selectdRow, inComponent: index, animated: false)
+        for (index, selectedRow) in privatePickerSelectedRows where 0 <= selectedRow {
+            pickerView.selectRow(selectedRow, inComponent: index, animated: false)
         }
         return result
     }
@@ -525,8 +525,8 @@ extension IQDropDownTextField {
             }
         }
 
-        if let multilistSelectionFormatHandler = multilistSelectionFormatHandler {
-            super.text = multilistSelectionFormatHandler(finalResults, rows)
+        if let multiListSelectionFormatHandler = multiListSelectionFormatHandler {
+            super.text = multiListSelectionFormatHandler(finalResults, rows)
         } else if let selectionFormatHandler = selectionFormatHandler,
                   let selectedItem = finalResults.first,
                   let selectedRow = rows.first {

@@ -71,7 +71,7 @@ extension IQDropDownTextField {
         switch dropDownMode {
 
         case .list, .multiList:
-            let differredMenuElement = UIDeferredMenuElement.uncached({ completion in
+            let deferredMenuElement = UIDeferredMenuElement.uncached({ completion in
 
                 var actions: [UIMenuElement] = []
                 if self.multiItemList.count <= 1 {
@@ -109,7 +109,7 @@ extension IQDropDownTextField {
                 }
                 completion(actions)
             })
-            let deferredMenus = UIMenu(title: self.placeholder ?? "", children: [differredMenuElement])
+            let deferredMenus = UIMenu(title: self.placeholder ?? "", children: [deferredMenuElement])
             privateMenuButton.menu = deferredMenus
             privateMenuButton.isHidden = false
         case .time, .date, .dateTime:

@@ -30,7 +30,7 @@ public protocol IQDropDownTextFieldDataSource: AnyObject {
     @MainActor
     func textField(textField: IQDropDownTextField, canSelectItem item: String) -> Bool
 
-    // If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
+    // If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for proposed selection mode.
     // .above: pickerView find the nearest items above the deselected item
     //          that can be selected and then selecting that row.
     // .below: pickerView find the nearest items below the deselected item

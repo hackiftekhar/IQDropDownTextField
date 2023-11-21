@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         textFieldMultiListTextPicker.isOptionalDropDowns = [true, false]
         textFieldMultiListTextPicker.optionalItemTexts = ["Select Feet", "Select Inches"]
         textFieldMultiListTextPicker.multiItemList = [heightFeet, heightInches]
-        textFieldMultiListTextPicker.multilistSelectionFormatHandler = { (selectedItems, selectedIndexes) in
+        textFieldMultiListTextPicker.multiListSelectionFormatHandler = { (selectedItems, selectedIndexes) in
 
             if selectedIndexes.first == 0 {
                 return "Not Sure"
