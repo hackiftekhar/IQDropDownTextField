@@ -675,7 +675,7 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     [self _setSelectedItem:[self.dateTimeFormatter stringFromDate:dtPicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
--(NSDate *)date
+-(nullable NSDate *)date
 {
     switch (self.dropDownMode)
     {
@@ -716,12 +716,12 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
     }
 }
 
--(void)setDate:(NSDate *)date
+-(void)setDate:(nullable NSDate *)date
 {
     [self setDate:date animated:NO];
 }
 
-- (void)setDate:(NSDate *)date animated:(BOOL)animated
+- (void)setDate:(nullable NSDate *)date animated:(BOOL)animated
 {
     switch (self.dropDownMode)
     {

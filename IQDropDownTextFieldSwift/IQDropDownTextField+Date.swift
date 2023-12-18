@@ -95,20 +95,37 @@ extension IQDropDownTextField {
             }
         }
         set {
-            setDate(date: newValue ?? Date(), animated: false)
+            setDate(date: newValue, animated: false)
         }
     }
 
-    @objc open func setDate(date: Date, animated: Bool) {
+    @objc open func setDate(date: Date?, animated: Bool) {
         switch dropDownMode {
         case .date:
-            let selectedItem: String = dateFormatter.string(from: date)
+            let selectedItem: String?
+            if let date = date {
+                selectedItem = dateFormatter.string(from: date)
+            } else {
+                selectedItem = nil
+            }
             privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
         case .time:
-            let selectedItem: String = timeFormatter.string(from: date)
+            let selectedItem: String?
+            if let date = date {
+                selectedItem = timeFormatter.string(from: date)
+            } else {
+                selectedItem = nil
+            }
+
             privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
         case .dateTime:
-            let selectedItem: String = dateTimeFormatter.string(from: date)
+            let selectedItem: String?
+            if let date = date {
+                selectedItem = dateTimeFormatter.string(from: date)
+            } else {
+                selectedItem = nil
+            }
+
             privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
         default:
             break
