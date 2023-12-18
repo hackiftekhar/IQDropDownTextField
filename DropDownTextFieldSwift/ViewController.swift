@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet var textFieldDatePicker: IQDropDownTextField!
     @IBOutlet var textFieldTimePicker: IQDropDownTextField!
     @IBOutlet var textFieldDateTimePicker: IQDropDownTextField!
+    @IBOutlet var menuButton: UIButton!
 
 //    private var dropDown: IQDropDownTextField = IQDropDownTextField()
 
@@ -79,7 +80,7 @@ class ViewController: UIViewController {
 //                                        "California Academy of Mathematics and Science",
 //                                        "Loveless Academic Magnet Program High School",
 //                                        "Irma Lerma Rangel Young Women's Leadership School",
-//                                        "Middlesex County Academy for Science, Mathematics and Engineering Technologies",
+//                                        "Middlesex County Academy, Mathematics and Engineering Technologies",
 //                                        "Queens High School for the Sciences at York College"]
 //        textFieldTextPicker.adjustsFontSizeToFitWidth = false
 
@@ -98,7 +99,7 @@ class ViewController: UIViewController {
         textFieldOptionalTextPicker.itemList = ["1", "2", "3", "4", "5", "6"]
         textFieldOptionalTextPicker.selectedRow = 3
 
-        textFieldOptionalTextPicker.selectionFormatHandler = { (selectedItem, selectedIndex) in
+        textFieldOptionalTextPicker.selectionFormatHandler = { (selectedItem, _) in
 
             if let selectedItem = selectedItem {
                 if selectedItem == "1" {
@@ -119,7 +120,7 @@ class ViewController: UIViewController {
         textFieldMultiListTextPicker.isOptionalDropDowns = [true, false]
         textFieldMultiListTextPicker.optionalItemTexts = ["Select Feet", "Select Inches"]
         textFieldMultiListTextPicker.multiItemList = [heightFeet, heightInches]
-        textFieldMultiListTextPicker.multilistSelectionFormatHandler = { (selectedItems, selectedIndexes) in
+        textFieldMultiListTextPicker.multiListSelectionFormatHandler = { (selectedItems, selectedIndexes) in
 
             if selectedIndexes.first == 0 {
                 return "Not Sure"
@@ -155,12 +156,9 @@ class ViewController: UIViewController {
         textFieldDateTimePicker.dataSource = self
 
         if #available(iOS 15.0, *) {
-            textFieldTextPicker.showMenuButton = true
-            textFieldOptionalTextPicker.showMenuButton = true
-            textFieldMultiListTextPicker.showMenuButton = true
-            textFieldDatePicker.showMenuButton = true
-            textFieldTimePicker.showMenuButton = true
-            textFieldDateTimePicker.showMenuButton = true
+            menuButton.isHidden = false
+        } else {
+            menuButton.isHidden = true
         }
 
 //        dropDown.delegate = self
@@ -206,6 +204,17 @@ class ViewController: UIViewController {
 //        print("textFieldDatePicker.selectedItem: \(textFieldDatePicker.selectedItem)")
 //        print("textFieldTimePicker.selectedItem: \(textFieldTimePicker.selectedItem)")
 //        print("textFieldDateTimePicker.selectedItem: \(textFieldDateTimePicker.selectedItem)")
+    }
+
+    @IBAction func menuToggle(_ sender: UIButton) {
+        if #available(iOS 15.0, *) {
+            textFieldTextPicker.showMenuButton = !textFieldTextPicker.showMenuButton
+            textFieldOptionalTextPicker.showMenuButton = !textFieldOptionalTextPicker.showMenuButton
+            textFieldMultiListTextPicker.showMenuButton = !textFieldMultiListTextPicker.showMenuButton
+            textFieldDatePicker.showMenuButton = !textFieldDatePicker.showMenuButton
+            textFieldTimePicker.showMenuButton = !textFieldTimePicker.showMenuButton
+            textFieldDateTimePicker.showMenuButton = !textFieldDateTimePicker.showMenuButton
+        }
     }
 
     @IBAction func isOptionalToggle(_ sender: UIButton) {

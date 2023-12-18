@@ -89,7 +89,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 
 @optional
 -(BOOL)textField:(nonnull IQDropDownTextField*)textField canSelectItem:(nonnull NSString*)item row:(NSInteger)row;    //Check if an item can be selected by dropdown texField.
--(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nonnull NSString*)item row:(NSInteger)row;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for propsed selection mode.
+-(IQProposedSelection)textField:(nonnull IQDropDownTextField*)textField proposedSelectionModeForItem:(nonnull NSString*)item row:(NSInteger)row;    //If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for proposed selection mode.
 
 @end
 
@@ -100,7 +100,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @interface IQDropDownTextField : UITextField
 
 /**
- This is picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
+ This is picker object which internally used for showing list. Changing some properties might not work properly so do it at your own risk.
  */
 @property (nonnull, nonatomic, readonly) UIPickerView *pickerView;
 
@@ -118,7 +118,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @property (nonatomic, assign) IQDropDownMode dropDownMode;
 
 /**
- Label for the optional iten if isOptionalDropDown is YES. Default is Select.
+ Label for the optional item if isOptionalDropDown is YES. Default is Select.
  */
 @property (nullable, nonatomic, copy) IBInspectable NSString *optionalItemText;
 
@@ -209,7 +209,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 @interface IQDropDownTextField (DateTime)
 
 /**
- These are the picker object which internaly used for showing list. Changing some properties might not work properly so do it at your own risk.
+ These are the picker object which internally used for showing list. Changing some properties might not work properly so do it at your own risk.
  */
 @property (nonnull, nonatomic, readonly) UIDatePicker *datePicker;
 @property (nonnull, nonatomic, readonly) UIDatePicker *timePicker;
@@ -217,7 +217,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 
 
 ///--------------------------------------------------------
-/// @name IQdropDownModeDatePicker/IQDropDownModeTimePicker
+/// @name IQDropDownModeDatePicker/IQDropDownModeTimePicker
 ///*-------------------------------------------------------
 
 /**
@@ -267,7 +267,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 
 
 ///-------------------------------
-/// @name IQdropDownModeDatePicker
+/// @name IQDropDownModeDatePicker
 ///-------------------------------
 
 /**

@@ -370,9 +370,9 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
         _dismissToolbar = [[UIToolbar alloc] init];
         _dismissToolbar.translucent = YES;
         [_dismissToolbar sizeToFit];
-        UIBarButtonItem *buttonflexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem *buttonFlexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         UIBarButtonItem *buttonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(resignFirstResponder)];
-        [_dismissToolbar setItems:@[buttonflexible,buttonDone]];
+        [_dismissToolbar setItems:@[buttonFlexible, buttonDone]];
     }
     
     return _dismissToolbar;
@@ -660,19 +660,19 @@ NSInteger const IQOptionalTextFieldIndex =  -1;
 
 #pragma mark - UIDatePicker delegate
 
-- (void)dateChanged:(UIDatePicker *)dPicker
+- (void)dateChanged:(UIDatePicker *)datePicker
 {
-    [self _setSelectedItem:[self.dateFormatter stringFromDate:dPicker.date] animated:NO shouldNotifyDelegate:YES];
+    [self _setSelectedItem:[self.dateFormatter stringFromDate:datePicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
-- (void)timeChanged:(UIDatePicker *)tPicker
+- (void)timeChanged:(UIDatePicker *)timePicker
 {
-    [self _setSelectedItem:[self.timeFormatter stringFromDate:tPicker.date] animated:NO shouldNotifyDelegate:YES];
+    [self _setSelectedItem:[self.timeFormatter stringFromDate:timePicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
-- (void)dateTimeChanged:(UIDatePicker *)dtPicker
+- (void)dateTimeChanged:(UIDatePicker *)datePicker
 {
-    [self _setSelectedItem:[self.dateTimeFormatter stringFromDate:dtPicker.date] animated:NO shouldNotifyDelegate:YES];
+    [self _setSelectedItem:[self.dateTimeFormatter stringFromDate:datePicker.date] animated:NO shouldNotifyDelegate:YES];
 }
 
 -(nullable NSDate *)date

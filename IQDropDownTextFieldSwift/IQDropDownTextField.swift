@@ -23,11 +23,11 @@
 
 import UIKit
 
-// swiftlint:disable type_body_length
 // swiftlint:disable file_length
+@MainActor
 open class IQDropDownTextField: UITextField {
 
-    public static let optionalItemIndex: Int = -1
+    nonisolated public static let optionalItemIndex: Int = -1
 
     open lazy var pickerView: UIPickerView = {
         let view = UIPickerView()
@@ -42,7 +42,7 @@ open class IQDropDownTextField: UITextField {
         let view = UIDatePicker()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.datePickerMode = .time
-        if #available(iOS 13.4, *) {
+        if #available(iOS 14.0, *) {
             view.preferredDatePickerStyle = .wheels
         }
         view.addTarget(self, action: #selector(timeChanged(_:)), for: .valueChanged)
@@ -75,23 +75,13 @@ open class IQDropDownTextField: UITextField {
         let view = UIToolbar()
         view.isTranslucent = true
         view.sizeToFit()
-        let buttonflexible: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+        let buttonFlexible: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
                                                               target: nil, action: nil)
         let buttonDone: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self,
                                                           action: #selector(resignFirstResponder))
-        view.items = [buttonflexible, buttonDone]
+        view.items = [buttonFlexible, buttonDone]
         return view
     }()
-
-    open var showDismissToolbar: Bool {
-        get {
-            return (inputAccessoryView == dismissToolbar)
-        }
-
-        set {
-            inputAccessoryView = (newValue ? dismissToolbar : nil)
-        }
-    }
 
     internal let privateMenuButton: UIButton = UIButton()
 
@@ -142,21 +132,18 @@ open class IQDropDownTextField: UITextField {
             case .date:
 
                 inputView = datePicker
-
                 if !isOptionalDropDown {
                     date = datePicker.date
                 }
             case .time:
 
                 inputView = timePicker
-
                 if !isOptionalDropDown {
                     date = timePicker.date
                 }
             case .dateTime:
 
                 inputView = dateTimePicker
-
                 if !isOptionalDropDown {
                     date = dateTimePicker.date
                 }
@@ -170,60 +157,13 @@ open class IQDropDownTextField: UITextField {
     }
 
     private var privateOptionalItemText: String?
-    @IBInspectable open var optionalItemText: String? {
-        get {
-            if let privateOptionalItemText = privateOptionalItemText, !privateOptionalItemText.isEmpty {
-                return privateOptionalItemText
-            } else {
-                return NSLocalizedString("Select", comment: "")
-            }
-        }
-        set {
-            privateOptionalItemText = newValue
-            privateUpdateOptionsList()
-        }
-    }
-
     private var privateOptionalItemTexts: [String?] = []
-    open var optionalItemTexts: [String?] {
-        get {
-            return privateOptionalItemTexts
-        }
-        set {
-            privateOptionalItemTexts = newValue
-            privateUpdateOptionsList()
-        }
-    }
-
-    @IBInspectable open var isOptionalDropDown: Bool {
-        get { return privateIsOptionalDropDowns.first ?? true }
-        set {
-            isOptionalDropDowns = [newValue]
-        }
-    }
 
     private var privateIsOptionalDropDowns: [Bool] = []
-    open var isOptionalDropDowns: [Bool] {
-        get { return privateIsOptionalDropDowns }
-        set {
-            if !hasSetInitialIsOptional || privateIsOptionalDropDowns != newValue {
 
-                let previousSelectedRows: [Int] = selectedRows
-
-                privateIsOptionalDropDowns = newValue
-                hasSetInitialIsOptional = true
-
-                if dropDownMode == .list || dropDownMode == .multiList {
-                    pickerView.reloadAllComponents()
-                    selectedRows = previousSelectedRows
-                }
-            }
-        }
-    }
-
-    open var multilistSelectionFormatHandler: ((_ selectedItems: [String?], _ selectedIndexes: [Int]) -> String)? {
+    open var multiListSelectionFormatHandler: ((_ selectedItems: [String?], _ selectedIndexes: [Int]) -> String)? {
         didSet {
-            if let handler = multilistSelectionFormatHandler {
+            if let handler = multiListSelectionFormatHandler {
                 super.text = handler(selectedItems, selectedRows)
             } else {
                 super.text = selectedItems.compactMap({ $0 }).joined(separator: ", ")
@@ -241,39 +181,21 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    @available(*, deprecated, message: "use 'selectedItem' instead")
+    @available(*, deprecated, message: "use 'selectedItem' instead", renamed: "selectedItem")
     open override var text: String? {
         didSet {
         }
     }
 
-    @available(*, deprecated, message: "use 'selectedItem' instead")
+    @available(*, deprecated, message: "use 'selectedItem' instead", renamed: "selectedItem")
     open override var attributedText: NSAttributedString? {
         didSet {
         }
     }
 
-    open var itemList: [String] {
-        get {
-            multiItemList.first ?? []
-        }
-        set {
-            multiItemList = [newValue]
-        }
-    }
-
-    open var itemListView: [UIView?] {
-        get {
-            multiItemListView.first ?? []
-        }
-        set {
-            multiItemListView = [newValue]
-        }
-    }
-
     open var multiItemList: [[String]] = [] {
         didSet {
-            //Refreshing pickerView
+            // Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
             let selectedRows = selectedRows
             self.selectedRows = selectedRows
@@ -282,7 +204,7 @@ open class IQDropDownTextField: UITextField {
 
     open var multiItemListView: [[UIView?]] = [] {
         didSet {
-            //Refreshing pickerView
+            // Refreshing pickerView
             isOptionalDropDowns = privateIsOptionalDropDowns
             let selectedRows = selectedRows
             self.selectedRows = selectedRows
@@ -348,18 +270,17 @@ open class IQDropDownTextField: UITextField {
         initialize()
     }
 
-    // MARK: - UIView overrides
+    // MARK: - Overrides
     @discardableResult
     open override func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
 
-        for (index, selectdRow) in privatePickerSelectedRows where 0 <= selectdRow {
-            pickerView.selectRow(selectdRow, inComponent: index, animated: false)
+        for (index, selectedRow) in privatePickerSelectedRows where 0 <= selectedRow {
+            pickerView.selectRow(selectedRow, inComponent: index, animated: false)
         }
         return result
     }
 
-    // MARK: - UITextField overrides
     open override func caretRect(for position: UITextPosition) -> CGRect {
         if dropDownMode == .textField {
             return super.caretRect(for: position)
@@ -368,9 +289,147 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
+    open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(cut(_:)) || action == #selector(paste(_:)) {
+            return false
+        } else {
+            return super.canPerformAction(action, withSender: sender)
+        }
+    }
+
     // MARK: - Selected Row
 
-    open var selectedRow: Int {
+    // Key represents section index and value represents selection
+    internal var privatePickerSelectedRows: [Int: Int] = [:]
+
+    // MARK: - Setters
+    open func privateUpdateOptionsList() {
+
+        switch dropDownMode {
+        case .date:
+            if !isOptionalDropDown {
+                date = datePicker.date
+            }
+        case .time:
+            if !isOptionalDropDown {
+                date = timePicker.date
+            }
+        case .dateTime:
+
+            if !isOptionalDropDown {
+                date = dateTimePicker.date
+            }
+        case .list, .multiList:
+            pickerView.reloadAllComponents()
+        case .textField:
+            break
+        }
+    }
+}
+
+// MARK: - Toolbar
+
+@MainActor
+extension IQDropDownTextField {
+
+    @objc open var showDismissToolbar: Bool {
+        get {
+            return (inputAccessoryView == dismissToolbar)
+        }
+        set {
+            inputAccessoryView = (newValue ? dismissToolbar : nil)
+        }
+    }
+}
+
+// MARK: - Optional drop down
+
+@MainActor
+extension IQDropDownTextField {
+
+    @IBInspectable
+    open var isOptionalDropDown: Bool {
+        get { return privateIsOptionalDropDowns.first ?? true }
+        set {
+            isOptionalDropDowns = [newValue]
+        }
+    }
+
+    @objc open var isOptionalDropDowns: [Bool] {
+        get { return privateIsOptionalDropDowns }
+        set {
+            if !hasSetInitialIsOptional || privateIsOptionalDropDowns != newValue {
+
+                let previousSelectedRows: [Int] = selectedRows
+
+                privateIsOptionalDropDowns = newValue
+                hasSetInitialIsOptional = true
+
+                if dropDownMode == .list || dropDownMode == .multiList {
+                    pickerView.reloadAllComponents()
+                    selectedRows = previousSelectedRows
+                }
+            }
+        }
+    }
+
+    @IBInspectable
+    open var optionalItemText: String? {
+        get {
+            if let privateOptionalItemText = privateOptionalItemText, !privateOptionalItemText.isEmpty {
+                return privateOptionalItemText
+            } else {
+                return NSLocalizedString("Select", comment: "")
+            }
+        }
+        set {
+            privateOptionalItemText = newValue
+            privateUpdateOptionsList()
+        }
+    }
+
+    public var optionalItemTexts: [String?] {
+        get {
+            return privateOptionalItemTexts
+        }
+        set {
+            privateOptionalItemTexts = newValue
+            privateUpdateOptionsList()
+        }
+    }
+}
+
+// MARK: - Item List
+
+@MainActor
+extension IQDropDownTextField {
+
+    @objc open var itemList: [String] {
+        get {
+            multiItemList.first ?? []
+        }
+        set {
+            multiItemList = [newValue]
+        }
+    }
+
+    public var itemListView: [UIView?] {
+        get {
+            multiItemListView.first ?? []
+        }
+        set {
+            multiItemListView = [newValue]
+        }
+    }
+
+}
+
+// MARK: - Selected Row
+
+@MainActor
+extension IQDropDownTextField {
+
+    @objc open var selectedRow: Int {
         get {
             var pickerViewSelectedRow: Int = selectedRows.first /*It may return -1*/ ?? 0
             pickerViewSelectedRow = max(pickerViewSelectedRow, 0)
@@ -381,10 +440,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    // Key represents section index and value represents selection
-    internal var privatePickerSelectedRows: [Int: Int] = [:]
-
-    open var selectedRows: [Int] {
+    @objc open var selectedRows: [Int] {
         get {
             var selection: [Int] = []
             for index in multiItemList.indices {
@@ -411,22 +467,21 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open func selectedRow(inSection section: Int) -> Int {
+    @objc open func selectedRow(inSection section: Int) -> Int {
         privatePickerSelectedRows[section] ?? Self.optionalItemIndex
     }
-    //    open func rowSize(forComponent component: Int) -> CGSize
 
-    open func setSelectedRow(row: Int, animated: Bool) {
+    @objc open func setSelectedRow(row: Int, animated: Bool) {
         setSelectedRows(rows: [row], animated: animated)
     }
 
-    open func setSelectedRow(row: Int, inSection section: Int, animated: Bool) {
+    @objc open func setSelectedRow(row: Int, inSection section: Int, animated: Bool) {
         var selectedRows = selectedRows
         selectedRows[section] = row
         setSelectedRows(rows: selectedRows, animated: animated)
     }
 
-    open func setSelectedRows(rows: [Int], animated: Bool) {
+    @objc open func setSelectedRows(rows: [Int], animated: Bool) {
 
         var finalResults: [String?] = []
         for (index, row) in rows.enumerated() {
@@ -470,8 +525,8 @@ open class IQDropDownTextField: UITextField {
             }
         }
 
-        if let multilistSelectionFormatHandler = multilistSelectionFormatHandler {
-            super.text = multilistSelectionFormatHandler(finalResults, rows)
+        if let multiListSelectionFormatHandler = multiListSelectionFormatHandler {
+            super.text = multiListSelectionFormatHandler(finalResults, rows)
         } else if let selectionFormatHandler = selectionFormatHandler,
                   let selectedItem = finalResults.first,
                   let selectedRow = rows.first {
@@ -480,13 +535,14 @@ open class IQDropDownTextField: UITextField {
             super.text = finalResults.compactMap({ $0 }).joined(separator: ", ")
         }
     }
+}
 
-    // MARK: - Setters
-    // `setDropDownMode:` has moved as a setter.
+// MARK: - Selected Items
 
-    // `setItemList:` has moved as a setter.
+@MainActor
+extension IQDropDownTextField {
 
-    open var selectedItem: String? {
+    @objc open var selectedItem: String? {
         get {
             return selectedItems.first ?? nil
         }
@@ -504,7 +560,7 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open var selectedItems: [String?] {
+    public var selectedItems: [String?] {
         get {
             switch dropDownMode {
             case .list, .multiList:
@@ -533,46 +589,16 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    open func setSelectedItem(selectedItem: String?, animated: Bool) {
+    @objc open func setSelectedItem(selectedItem: String?, animated: Bool) {
         privateSetSelectedItems(selectedItems: [selectedItem], animated: animated, shouldNotifyDelegate: false)
     }
 
-    open func setSelectedItems(selectedItems: [String?], animated: Bool) {
+    public func setSelectedItems(selectedItems: [String?], animated: Bool) {
         privateSetSelectedItems(selectedItems: selectedItems, animated: animated, shouldNotifyDelegate: false)
-    }
-
-    open func privateUpdateOptionsList() {
-
-        switch dropDownMode {
-        case .date:
-            if !isOptionalDropDown {
-                date = datePicker.date
-            }
-        case .time:
-            if !isOptionalDropDown {
-                date = timePicker.date
-            }
-        case .dateTime:
-
-            if !isOptionalDropDown {
-                date = dateTimePicker.date
-            }
-        case .list, .multiList:
-            pickerView.reloadAllComponents()
-        case .textField:
-            break
-        }
-    }
-
-    open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(cut(_:)) || action == #selector(paste(_:)) {
-            return false
-        } else {
-            return super.canPerformAction(action, withSender: sender)
-        }
     }
 }
 
+@MainActor
 internal extension IQDropDownTextField {
 
     // swiftlint:disable cyclomatic_complexity
@@ -633,7 +659,7 @@ internal extension IQDropDownTextField {
                 }
             } else if isOptionalDropDown,
                       let selectedItem = selectedItems.first,
-                      (selectedItem?.isEmpty ?? true) {
+                      selectedItem == nil || selectedItem?.isEmpty == true {
                 super.text = ""
 
                 datePicker.setDate(Date(), animated: animated)
@@ -666,7 +692,7 @@ internal extension IQDropDownTextField {
                 }
             } else if isOptionalDropDown,
                       let selectedItem = selectedItems.first,
-                      (selectedItem?.isEmpty ?? true) {
+                      selectedItem == nil || selectedItem?.isEmpty == true {
                 super.text = ""
                 timePicker.setDate(Date(), animated: animated)
 
@@ -688,7 +714,7 @@ internal extension IQDropDownTextField {
                 }
             } else if isOptionalDropDown,
                       let selectedItem = selectedItems.first,
-                      (selectedItem?.isEmpty ?? true) {
+                      selectedItem == nil || selectedItem?.isEmpty == true {
 
                 super.text = ""
                 dateTimePicker.setDate(Date(), animated: animated)

@@ -23,7 +23,7 @@
 
 import Foundation
 
-public enum IQDropDownMode {
+public enum IQDropDownMode: Sendable {
     case list
     case multiList
     case time
@@ -32,7 +32,7 @@ public enum IQDropDownMode {
     case textField
 }
 
-public enum IQProposedSelection {
+public enum IQProposedSelection: Sendable {
     case both
     case above
     case below

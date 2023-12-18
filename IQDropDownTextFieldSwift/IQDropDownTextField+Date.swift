@@ -23,6 +23,7 @@
 
 import UIKit
 
+@MainActor
 extension IQDropDownTextField {
 
     // MARK: - UIDatePicker delegate

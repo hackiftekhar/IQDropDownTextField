@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRl-Ae-7la">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sRl-Ae-7la">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4864" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,14 +43,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDG-UA-rhP">
-                                                <rect key="frame" x="0.0" y="0.0" width="183" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="119.5" height="30"/>
                                                 <state key="normal" title="isOptional Toggle"/>
                                                 <connections>
                                                     <action selector="isOptionalToggle:" destination="opo-0h-AeO" eventType="touchUpInside" id="bH7-W5-zGR"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3c-Zk-kYY">
+                                                <rect key="frame" x="127.5" y="0.0" width="119" height="30"/>
+                                                <state key="normal" title="Menu Toggle"/>
+                                                <connections>
+                                                    <action selector="menuToggle:" destination="opo-0h-AeO" eventType="touchUpInside" id="iY2-3T-8fG"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2c-cj-Aow">
-                                                <rect key="frame" x="191" y="0.0" width="183" height="30"/>
+                                                <rect key="frame" x="254.5" y="0.0" width="119.5" height="30"/>
                                                 <state key="normal" title="Reset"/>
                                                 <connections>
                                                     <action selector="resetAction:" destination="opo-0h-AeO" eventType="touchUpInside" id="ey7-6m-QFC"/>
@@ -169,6 +176,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="IQDropDownTextField" id="AlL-8F-lSr"/>
                     <connections>
+                        <outlet property="menuButton" destination="j3c-Zk-kYY" id="uoa-p6-D0L"/>
                         <outlet property="textFieldDatePicker" destination="XhU-vf-Y1H" id="f3d-PQ-2Nb"/>
                         <outlet property="textFieldDateTimePicker" destination="SJ1-nf-3Nu" id="sRc-FO-9xr"/>
                         <outlet property="textFieldMultiListTextPicker" destination="tsL-cB-Va4" id="Adc-XQ-BVD"/>

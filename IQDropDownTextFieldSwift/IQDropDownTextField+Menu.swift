@@ -24,6 +24,7 @@
 import UIKit
 
 @available(iOS 15.0, *)
+@MainActor
 extension IQDropDownTextField {
 
     @objc open var menuButton: UIButton {
@@ -36,6 +37,9 @@ extension IQDropDownTextField {
         }
         set {
             if newValue {
+                datePicker.preferredDatePickerStyle = .inline
+                dateTimePicker.preferredDatePickerStyle = .inline
+
                 self.addSubview(privateMenuButton)
                 NSLayoutConstraint.activate([
                     privateMenuButton.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -45,6 +49,9 @@ extension IQDropDownTextField {
                 ])
                 reconfigureMenu()
             } else {
+                datePicker.preferredDatePickerStyle = .wheels
+                dateTimePicker.preferredDatePickerStyle = .wheels
+
                 privateMenuButton.removeFromSuperview()
             }
         }
@@ -64,29 +71,29 @@ extension IQDropDownTextField {
         switch dropDownMode {
 
         case .list, .multiList:
-            let differredMenuElement = UIDeferredMenuElement.uncached({ completion in
+            let deferredMenuElement = UIDeferredMenuElement.uncached({ completion in
 
                 var actions: [UIMenuElement] = []
                 if self.multiItemList.count <= 1 {
                     let selectedItem = self.selectedItem
-                    for item in self.itemList {
-                        let children = UIAction(title: item, image: nil, state: item == selectedItem ? .on : .off) { (_) in
-                            self.privateSetSelectedItems(selectedItems: [item], animated: true, shouldNotifyDelegate: true)
+                    actions = self.itemList.map { item in
+                        return UIAction(title: item, image: nil,
+                                        state: item == selectedItem ? .on : .off) { (_) in
+                            self.privateSetSelectedItems(selectedItems: [item], animated: true,
+                                                         shouldNotifyDelegate: true)
                         }
-                        actions.append(children)
                     }
                 } else {
                     var selectedItems = self.selectedItems
                     for (index, itemList) in self.multiItemList.enumerated() {
                         let selectedItem = selectedItems[index]
-                        var childrens: [UIMenuElement] = []
-                        for item in itemList {
-
-                            let children = UIAction(title: item, image: nil, state: item == selectedItem ? .on : .off) { (_) in
+                        let childrens: [UIMenuElement] = itemList.map { item in
+                            return UIAction(title: item, image: nil,
+                                            state: item == selectedItem ? .on : .off) { (_) in
                                 selectedItems[index] = item
-                                self.privateSetSelectedItems(selectedItems: selectedItems, animated: true, shouldNotifyDelegate: true)
+                                self.privateSetSelectedItems(selectedItems: selectedItems, animated: true,
+                                                             shouldNotifyDelegate: true)
                             }
-                            childrens.append(children)
                         }
 
                         let title: String
@@ -102,7 +109,7 @@ extension IQDropDownTextField {
                 }
                 completion(actions)
             })
-            let deferredMenus = UIMenu(title: self.placeholder ?? "", children: [differredMenuElement])
+            let deferredMenus = UIMenu(title: self.placeholder ?? "", children: [deferredMenuElement])
             privateMenuButton.menu = deferredMenus
             privateMenuButton.isHidden = false
         case .time, .date, .dateTime:
@@ -147,6 +154,7 @@ extension IQDropDownTextField {
     }
 }
 
+@MainActor
 extension IQDropDownTextField {
     private var containerViewController: UIViewController? {
         var next = self.next
@@ -162,6 +170,7 @@ extension IQDropDownTextField {
     }
 }
 
+@MainActor
 extension IQDropDownTextField: UIPopoverPresentationControllerDelegate {
     public func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         // Force popover style
