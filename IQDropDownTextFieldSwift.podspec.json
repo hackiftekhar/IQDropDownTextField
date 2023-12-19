@@ -1,9 +1,9 @@
 {
     "name": "IQDropDownTextFieldSwift",
-    "version": "4.0.3",
+    "version": "4.0.2",
     "source": {
         "git": "https://github.com/hackiftekhar/IQDropDownTextField.git",
-        "tag": "4.0.3"
+        "tag": "4.0.2"
     },
     "summary": "TextField with DropDown support using UIPickerView",
     "homepage": "https://github.com/hackiftekhar/IQDropDownTextField",

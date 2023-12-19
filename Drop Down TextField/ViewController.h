@@ -11,7 +11,6 @@
 
 @interface ViewController : UIViewController
 {
-
     IBOutlet IQDropDownTextField *textFieldTextPicker;
     IBOutlet IQDropDownTextField *textFieldOptionalTextPicker;
     IBOutlet IQDropDownTextField *textFieldDatePicker;

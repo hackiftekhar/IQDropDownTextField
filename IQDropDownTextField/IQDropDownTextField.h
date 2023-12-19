@@ -23,43 +23,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import "IQDropDownTextFieldConstants.h"
 
-/**
- Drop Down Mode settings.
-
- `IQDropDownModeTextPicker`
- Show pickerView with provided text data.
- 
- `IQDropDownModeTimePicker`
- Show UIDatePicker to pick time.
- 
- `IQDropDownModeDatePicker`
- Show UIDatePicker to pick date.
- */
-typedef NS_ENUM(NSInteger, IQDropDownMode) {
-    IQDropDownModeTextPicker,
-    IQDropDownModeTimePicker,
-    IQDropDownModeDatePicker,
-    IQDropDownModeDateTimePicker,
-    IQDropDownModeTextField
-};
-
-/**
- `IQProposedSelectionAbove`
- pickerView find the nearest items above the deselected item that can be selected and then selecting that row.
-
- `IQProposedSelectionBelow`
- pickerView find the nearest items below the deselected item that can be selected and then selecting that row.
-
- `IQProposedSelectionBoth`
- pickerView find the nearest items that can be selected above or below the deselected item and then selecting that row.
- */
-typedef NS_ENUM(NSInteger, IQProposedSelection) {
-    IQProposedSelectionBoth,
-    IQProposedSelectionAbove,
-    IQProposedSelectionBelow
-};
-
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Integer constant to use with `selectedRow` property, this will select `Select` option in optional textField.
@@ -130,12 +96,12 @@ extern NSInteger const IQOptionalTextFieldIndex;
 /**
  Use selectedItem property to get/set dropdown text.
  */
-@property(nullable, nonatomic,copy)   NSString               *text NS_DEPRECATED_IOS(3_0, 5_0, "Please use selectedItem property to get/set dropdown selected text instead");
+@property(nullable, nonatomic,copy)   NSString *text NS_DEPRECATED_IOS(3_0, 5_0, "Please use selectedItem property to get/set dropdown selected text instead");
 
 /**
  attributedText is unavailable in IQDropDownTextField.
  */
-@property(nullable, nonatomic,copy)   NSAttributedString     *attributedText NS_UNAVAILABLE;
+@property(nullable, nonatomic,copy)   NSAttributedString *attributedText NS_UNAVAILABLE;
 
 /**
  Sets a custom font for the IQDropdownTextField items. Default is boldSystemFontOfSize:18.0.
@@ -204,92 +170,7 @@ extern NSInteger const IQOptionalTextFieldIndex;
 
 @end
 
+NS_ASSUME_NONNULL_END
 
-
-@interface IQDropDownTextField (DateTime)
-
-/**
- These are the picker object which internally used for showing list. Changing some properties might not work properly so do it at your own risk.
- */
-@property (nonnull, nonatomic, readonly) UIDatePicker *datePicker;
-@property (nonnull, nonatomic, readonly) UIDatePicker *timePicker;
-@property (nonnull, nonatomic, readonly) UIDatePicker *dateTimePicker;
-
-
-///--------------------------------------------------------
-/// @name IQDropDownModeDatePicker/IQDropDownModeTimePicker
-///*-------------------------------------------------------
-
-/**
- Selected date in UIDatePicker.
- */
-@property(nullable, nonatomic, copy) NSDate *date;
-
-/**
- Select date in UIDatePicker.
- */
-- (void)setDate:(nullable NSDate *)date animated:(BOOL)animated;
-
-/**
- DateComponents for date picker.
- */
-@property (nullable, nonatomic, readonly, copy) NSDateComponents *dateComponents;
-
-/**
- year
- */
-@property (nonatomic, readonly) NSInteger year;
-
-/**
- month
- */
-@property (nonatomic, readonly) NSInteger month;
-
-/**
- day
- */
-@property (nonatomic, readonly) NSInteger day;
-
-/**
- hour
- */
-@property (nonatomic, readonly) NSInteger hour;
-
-/**
- minute
- */
-@property (nonatomic, readonly) NSInteger minute;
-
-/**
- second
- */
-@property (nonatomic, readonly) NSInteger second;
-
-
-///-------------------------------
-/// @name IQDropDownModeDatePicker
-///-------------------------------
-
-/**
- Select date in UIDatePicker. Default is UIDatePickerModeDate
- */
-@property (nonatomic, assign) UIDatePickerMode datePickerMode;
-
-/**
- Date formatter to show date as text in textField.
- */
-@property (nullable, nonatomic, retain) NSDateFormatter *dateFormatter UI_APPEARANCE_SELECTOR;
-
-
-///-------------------------------
-/// @name IQDropDownModeTimePicker
-///-------------------------------
-
-/**
- Time formatter to show time as text in textField.
- */
-@property (nullable, nonatomic, retain) NSDateFormatter *timeFormatter UI_APPEARANCE_SELECTOR;
-
-@property (nullable, nonatomic, retain) NSDateFormatter *dateTimeFormatter UI_APPEARANCE_SELECTOR;
-
-@end
+// This import is forcefully written as bottom to automatically include the DateTime category when importing IQDropDownTextField
+#import "IQDropDownTextField+DateTime.h"
