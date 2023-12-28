@@ -140,14 +140,17 @@ extension IQDropDownTextField {
             break
         case .time:
             popoverViewController.view = timePicker
+            timePicker.sizeToFit()
             popoverViewController.preferredContentSize = timePicker.bounds.size
             containerViewController.present(popoverViewController, animated: true, completion: nil)
         case .date:
             popoverViewController.view = datePicker
+            datePicker.sizeToFit()
             popoverViewController.preferredContentSize = datePicker.bounds.size
             containerViewController.present(popoverViewController, animated: true, completion: nil)
         case .dateTime:
             popoverViewController.view = dateTimePicker
+            dateTimePicker.sizeToFit()
             popoverViewController.preferredContentSize = dateTimePicker.bounds.size
             containerViewController.present(popoverViewController, animated: true, completion: nil)
         }
