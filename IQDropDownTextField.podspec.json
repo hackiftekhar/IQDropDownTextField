@@ -1,9 +1,9 @@
 {
     "name": "IQDropDownTextField",
-    "version": "4.0.2",
+    "version": "4.0.3",
     "source": {
         "git": "https://github.com/hackiftekhar/IQDropDownTextField.git",
-        "tag": "4.0.2"
+        "tag": "4.0.3"
     },
     "summary": "TextField with DropDown support using UIPickerView",
     "homepage": "https://github.com/hackiftekhar/IQDropDownTextField",
@@ -17,7 +17,7 @@
     "source_files": [
         "IQDropDownTextField/*.{h,m}"
     ],
-    "resources": "IQDropDownTextField/PrivacyInfo.xcprivacy",
+    "resource_bundles": {"IQDropDownTextField": "IQDropDownTextField/PrivacyInfo.xcprivacy"},
     "public_header_files": [
         "IQDropDownTextField/IQDropDownTextField.h",
         "IQDropDownTextField/IQDropDownTextField+DateTime.h",
