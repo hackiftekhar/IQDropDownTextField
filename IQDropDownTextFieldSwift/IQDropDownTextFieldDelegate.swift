@@ -27,15 +27,12 @@ import UIKit
 public protocol IQDropDownTextFieldDelegate: UITextFieldDelegate {
 
     // Called when textField changes it's selected item. Supported for list mode
-    @MainActor
     func textField(textField: IQDropDownTextField, didSelectItem item: String?)
 
     // Called when textField changes it's selected item. Supported for multiList mode
-    @MainActor
     func textField(textField: IQDropDownTextField, didSelectItems items: [String?])
 
     // Called when textField changes it's selected item. Supported for time, date, dateTime mode
-    @MainActor
     func textField(textField: IQDropDownTextField, didSelectDate date: Date?)
 }
 

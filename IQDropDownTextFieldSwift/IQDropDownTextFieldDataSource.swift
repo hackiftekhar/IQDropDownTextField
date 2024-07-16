@@ -27,7 +27,6 @@ import UIKit
 public protocol IQDropDownTextFieldDataSource: AnyObject {
 
     // Check if an item can be selected by dropdown texField.
-    @MainActor
     func textField(textField: IQDropDownTextField, canSelectItem item: String) -> Bool
 
     // If canSelectItem return NO, then textField:proposedSelectionModeForItem: asked for proposed selection mode.
@@ -37,7 +36,6 @@ public protocol IQDropDownTextFieldDataSource: AnyObject {
     //          that can be selected and then selecting that row.
     // both.: pickerView find the nearest items that can be selected
     //          above or below the deselected item and then selecting that row.
-    @MainActor
     func textField(textField: IQDropDownTextField, proposedSelectionModeForItem item: String) -> IQProposedSelection
 }
 
