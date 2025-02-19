@@ -114,14 +114,14 @@ open class IQDropDownTextField: UITextField {
         }
     }
 
-    weak open var dropDownDelegate: IQDropDownTextFieldDelegate?
-    weak open override var delegate: UITextFieldDelegate? {
+    weak open var dropDownDelegate: (any IQDropDownTextFieldDelegate)?
+    weak open override var delegate: (any UITextFieldDelegate)? {
         didSet {
-            dropDownDelegate = delegate as? IQDropDownTextFieldDelegate
+            dropDownDelegate = delegate as? (any IQDropDownTextFieldDelegate)
         }
     }
 
-    open var dataSource: IQDropDownTextFieldDataSource?
+    open var dataSource: (any IQDropDownTextFieldDataSource)?
 
     open var dropDownMode: IQDropDownMode = .list {
         didSet {

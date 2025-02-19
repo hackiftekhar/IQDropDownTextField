@@ -166,28 +166,6 @@ class ViewController: UIViewController {
     }
     // swiftlint:enable function_body_length
 
-    func textField(textField: IQDropDownTextField, didSelectItem item: String?) {
-        print(#function)
-//        print(item)
-    }
-
-    func textField(textField: IQDropDownTextField!, didSelectDate date: NSDate?) {
-        print(#function)
-//        print(date)
-    }
-
-    func textField(textField: IQDropDownTextField, canSelectItem item: String?) -> Bool {
-        print(#function)
-//        print(item)
-        return true
-    }
-
-    func textField(textField: IQDropDownTextField, proposedSelectionModeForItem item: String?) -> IQProposedSelection {
-        print(#function)
-//        print(item)
-        return .both
-    }
-
     func textFieldDidBeginEditing(textField: UITextField) {
         print(#function)
     }
@@ -239,17 +217,28 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: IQDropDownTextFieldDelegate, IQDropDownTextFieldDataSource {
+
+    func textField(textField: IQDropDownTextField, didSelectItem item: String?) {
+        print(#function)
+//        print(item)
+    }
+
     func textField(textField: IQDropDownTextField, didSelectItems items: [String?]) {
     }
 
     func textField(textField: IQDropDownTextField, didSelectDate date: Date?) {
+        print(#function)
     }
 
     func textField(textField: IQDropDownTextField, canSelectItem item: String) -> Bool {
+        print(#function)
+//        print(item)
         return true
     }
 
     func textField(textField: IQDropDownTextField, proposedSelectionModeForItem item: String) -> IQProposedSelection {
+        print(#function)
+//        print(item)
         return .both
     }
 }
